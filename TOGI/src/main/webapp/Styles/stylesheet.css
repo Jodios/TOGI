@@ -1,3 +1,9 @@
+body{
+    
+    background-color: rgba(219,233,224,1);
+    
+}
+
 .header {
   padding: 10px 16px;
   background: #555;
@@ -7,6 +13,24 @@
 /* Page content */
 .content {
   padding: 16px;
+}
+
+/* individual comment dividers :) */
+.comment{
+    
+    border-style: dotted;
+    padding: 20px;
+    margin-bottom: 10px;
+    background-color: rgba(150,179,248,.4);
+    
+}
+
+.newComment{
+    border-radius: 1px;
+    background: none;
+    width: 100px;
+    height: 40px;
+    color:black;
 }
 
 /* The sticky class is added to the header with JS when it reaches its scroll position */
