@@ -1,12 +1,14 @@
 .header {
     padding: 10px 16px;
-    background: #555;
+    background: #a1aabb;
     color: #f1f1f1;
 }
 
 .body{
     font-family: 'Roboto', sans-serif;
     text-align: center;
+    vertical-align: central;
+    color: #f1f1f1;
 }
 
 .buttonSmall {
