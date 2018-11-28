@@ -1,5 +1,18 @@
-.button {
-    background-color: #f4511e;
+.header {
+    padding: 10px 16px;
+    background: #a1aabb;
+    color: #f1f1f1;
+}
+
+.body{
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    vertical-align: central;
+    color: #f1f1f1;
+}
+
+.buttonSmall {
+    background-color: #94c5e3;
     border: none;
     color: white;
     padding: 16px 32px;
@@ -11,6 +24,25 @@
     display: inline-block;
     text-decoration: none;
     cursor: pointer;
+    width: 125px
 }
 
-.button:hover {opacity: 1}
+.buttonLarge {
+    background-color: #94c5e3;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    opacity: 0.6;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    width: 175px
+}
+
+.buttonSmall:hover {opacity: 1}
+
+.buttonLarge:hover {opacity: 1}
