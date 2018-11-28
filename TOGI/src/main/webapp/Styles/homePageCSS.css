@@ -1,13 +1,18 @@
 .header {
     padding: 10px 16px;
     background: #a1aabb;
+    text-align: center;
     color: #f1f1f1;
 }
 
 .body{
     font-family: 'Roboto', sans-serif;
     text-align: center;
-    vertical-align: central;
+    position: absolute;
+    left:50%;
+    top: 50%;
+    transform: translateX(-50%);
+    transform: translateY(-50%);
     color: #f1f1f1;
 }
 
