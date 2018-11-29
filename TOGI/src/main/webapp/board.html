@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TOGI - Image Boards</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+        <link rel="stylesheet" href="Styles/stylesheet.css">
+        <link rel="stylesheet" href="Styles/board.css">
+    </head>
+    <body>
+        <div class="header" id="myHeader">
+            <h2 class="boardName">Board Name</h2>
+            <div class = "logo"></div>
+            <form>
+                <button type="button" class="newComment" id="buttonReply">POST</button>
+            </form>
+        </div>
+
+        <div class="content">
+            <div class="imgdiv"></div>
+            <div class="title">
+                some text
+            </div>
+        </div>
+
+        <script>
+            window.onscroll = function () {
+                myFunction();
+            };
+
+            var header = document.getElementById("myHeader");
+            var sticky = header.offsetTop;
+
+            function myFunction() {
+                if (window.pageYOffset > sticky) {
+                    header.classList.add("sticky");
+                } else {
+                    header.classList.remove("sticky");
+                }
+            }
+        </script>
+    </body>
+</html>

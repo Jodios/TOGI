@@ -1,0 +1,42 @@
+.header{
+    margin-bottom: 80px;
+}
+
+.logo{
+    position: relative;
+    float: left;
+    bottom: 80px;
+    left: -8px;
+    background-image: url("../sampleLogo.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:contain;
+    border-style: dotted;
+    width: 200px;
+    height: 85px;
+}
+
+.imgdiv{
+    position: absolute;
+    float: left;
+    border-style: dotted;
+    left: -10px;
+    width: 100px;
+    height: 100%;
+    background-image: url("../sampleLogo.png");
+    background-repeat: no-repeat;
+}
+.content{
+    border-style: dotted;
+    padding: 20px;
+    margin-bottom: 10px;
+    background-color: rgba(150,179,248,.4);
+}
+
+
+.title{
+    width: 50%;
+    padding: 20px;
+    margin-bottom: 10px;
+    background-color: black;
+}
