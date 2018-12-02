@@ -13,14 +13,23 @@
             <h2 class="boardName">Board Name</h2>
             <div class = "logo"></div>
             <form>
-                <button type="button" class="newComment" id="buttonReply">POST</button>
+                <button type="button" class="newComment" id="buttonPost">POST</button>
+            </form>
+            <form action="submit" style="display:none" method="post" id="commentBox">
+                Image URL: <input type="text" name="name">
+                <fieldset>
+                    <legend>Comment</legend>
+                    <textarea rows="5" cols="50" name="feedback"
+                              placeholder="Enter your comment here..."></textarea>
+                </fieldset>
+                <input type="submit" name="submit">
             </form>
         </div>
 
         <div class="content">
             <div class="imgdiv"></div>
             <div class="title">
-                some text
+                sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample commentsample comment sample comment sample comment sample comment sample comment sample comment sample comment 
             </div>
         </div>
 
@@ -28,6 +37,17 @@
             window.onscroll = function () {
                 myFunction();
             };
+            document.getElementById("buttonPost").onclick = function () {
+                hideCommentBox()
+            };
+            function hideCommentBox() {
+                var x = document.getElementById("commentBox");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                } else {
+                    x.style.display = "none";
+                }
+            }
 
             var header = document.getElementById("myHeader");
             var sticky = header.offsetTop;
