@@ -16,27 +16,34 @@
     height: 85px;
 }
 
+.content{
+    position: relative;    
+    width: 97%;
+    border-style: dotted;
+    padding: 20px;
+    height: 100px;
+    margin-bottom: 10px;
+    background-color: rgba(150,179,248,.4);
+}
+
 .imgdiv{
-    position: absolute;
+    position: relative;
     float: left;
     border-style: dotted;
     left: -10px;
     width: 100px;
     height: 100%;
     background-image: url("../sampleLogo.png");
+    background-position: center;
     background-repeat: no-repeat;
+    background-size:contain;
 }
-.content{
-    border-style: dotted;
-    padding: 20px;
-    margin-bottom: 10px;
-    background-color: rgba(150,179,248,.4);
-}
-
 
 .title{
-    width: 50%;
+    position: relative;
+    float:right;
+    border-style: dotted;
+    width: 80%;
     padding: 20px;
     margin-bottom: 10px;
-    background-color: black;
 }
