@@ -11,17 +11,15 @@
         <div class="header" id="myHeader">
             <h2>TOGI</h2>
             <h2 class="threadName">Thread Name</h2>
-            <form>
-                <button type="button" class="newComment" id="buttonReply">Reply</button>
-            </form>
-            <form action="submit" style="display:none" method="post" id="commentBox">
-                Image URL: <input type="text" name="name">
+            <button type="button" class="newComment" id="buttonReply">Reply</button>
+            <form action="commentList" style="display:none" method="post" id="replyBox">
+                Image URL: <input type="text" name="image">
                 <fieldset>
                     <legend>Comment</legend>
-                    <textarea rows="5" cols="50" name="feedback"
+                    <textarea rows="5" cols="50" name="comment"
                               placeholder="Enter your comment here..."></textarea>
                 </fieldset>
-                <input type="submit" name="submit">
+                <input type="submit" value="Post Comment">
             </form>
         </div>
         <div class="content">
@@ -47,7 +45,7 @@
                 hideCommentBox()
             };
             function hideCommentBox() {
-                var x = document.getElementById("commentBox");
+                var x = document.getElementById("replyBox");
                 if (x.style.display === "none") {
                     x.style.display = "block";
                 } else {
