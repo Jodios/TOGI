@@ -16,42 +16,48 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author jortiz
- */
-@WebServlet(name = "mainServlet", urlPatterns = {"/mainServlet"})
+@WebServlet(name = "Comment List", urlPatterns = {"/commentList"})
 public class mainServlet extends HttpServlet {
 
     Queue comments = new ConcurrentLinkedQueue();
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        String name = request.getParameter("comment");
-        comments.add(name);
-        doGet(request, response);
+        String image = req.getParameter("image");
+
+        String comment = req.getParameter("comment");
+        String info = image;
+        info = info + "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + comment;
+        synchronized (comments) {
+            while (comments.size() > 9) {
+                comments.remove();
+            }
+        }
+        comments.add(info);
+        doGet(req, resp);
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        try (PrintWriter out = response.getWriter()) {
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>GuestBookServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<ol>");
-            Iterator commentIterator = comments.iterator();
-            while (commentIterator.hasNext()) {
-                out.print("<b>Comment: </b>" + commentIterator.next());
+        resp.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter pout = resp.getWriter()) {
+            pout.println("<!DOCTYPE html>");
+            pout.println("<html>");
+            pout.println("<head>");
+            pout.println("<title>Guest List</title>");
+            pout.println("</head>");
+            pout.println("<body>");
+            pout.println("<h1>Most recent guests.</h1>");
+            pout.println("<ol>");
+            for (Object item : comments) {
+                pout.println("<li>" + item + "</li>");
             }
-            out.println("</o1>");
-            out.println("</body>");
-            out.println("</html>");
+            pout.println("</ol>");
+            pout.println("</body>");
+            pout.println("</html>");
         }
     }
 }
