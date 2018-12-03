@@ -30,11 +30,12 @@ public class ArtWS {
     private ArtService artService;
 
     @GET
-    @Path("post/{TOGI}")
+    @Path("post")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response readArt(@PathParam("TOGI") Long id) {
+    public Response readArt() {
 
-        Art art = artService.selectById(id);
+        List<Art> art = artService.selectItems();
         
 //        art.setComment(art.getComment());
         if (art == null) {
@@ -44,7 +45,6 @@ public class ArtWS {
     }
 
     @POST
-    //@Path("comments")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response createArt(Art art) {  
