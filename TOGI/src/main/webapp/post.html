@@ -25,20 +25,73 @@
                 <button onClick="javascript:window.location.href = 'post.html'" id="buttonPost">Post Comment</button>
             </form>
         </div>
-     
 
-        <table id="tdata">
-            <td>
-                <div class="content">
-                    <div class="imgdiv"></div>
-                    <div class="title">
-                      sample comment
-                    </div>
-                </div>
-            </td>
+
+       <table>
+            <thead>
+                <tr>
+                    <th>Comment</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody id="tdata"></tbody>
         </table>
 
+
         <script>
+             function loadComments() {
+               $.ajax({
+                    url: 'api/review',
+                    type: 'get',
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#tdata').empty();
+                        $.each(data, function (i, r) {
+                            var tr = '<tr>'
+                                    + '<td>' + r.comment + '</td>'                            
+                                    + '<td>' + r.image + '</td>'
+                                 ;
+                            $('t#data').append(tr);
+                        });
+                    },
+                    error: function () {
+                        alert('Error');
+                    }
+                });
+            
+        }
+                         
+            
+            $(document).ready(function () {
+                loadComments();
+            
+
+//                $.ajax({
+//                    type: 'get',
+//                    url: 'api/comments',
+//                    dataType: 'json',
+//                    success: function (data) {
+//                        var comments = [];
+//                        $.each(data, function (i, comment) {
+//                            comments.push(comment);
+//                        });
+//                        $('#tdata').empty();
+//                        for (var i = 0; i < comments.length; i++) {
+//                            var comment = comments[i];
+//                            var row = '<tr data-pid="' + comment.comment + '">'
+//                                    + '<td>' + comment.image + '</td>'
+//
+//                                    + '<td><input type="number" value="0" min="0"></td>'
+//                                    + '</tr>';
+//                            $('#tdata').append(row);
+//                        }
+//                    },
+//                    error: function () {
+//                        alert('Network communication error');
+//                    }
+//                });
+            });
+
             window.onscroll = function () {
                 stickyHeader();
             };
@@ -89,9 +142,10 @@
                     contentType: 'application/json',
                     dataType: 'text',
                     success: function (resp) {
-                        
+
                         $('#response').html('Your comment has been sent.');
-                        
+                        loadComments();
+                    
                     },
                     error: function () {
                         alert('Network communication failed');
@@ -102,14 +156,27 @@
 
         </script>
 
-        <script>
+<!--        <script>
             $('buttonPost').on('click', function (e) {
                 $.ajax({
                     url: 'api/comments',
                     type: 'GET',
                     dataType: 'json',
                     success: function (data) {
-                        $('#tdata').append("<tr><td>" + data.column1 + "</td><td>" + data.column2 + "</td><td>" + data.column3 + "</td></tr>");
+                        var comments = [];
+                        $.each(data, function (i, comment) {
+                            comments.push(comment);
+                        });
+                        $('#tdata').empty();
+                        for (var i = 0; i < comments.length; i++) {
+                            var comment = comments[i];
+                            var row = '<tr data-pid="' + comment.comment + '">'
+                                    + '<td>' + comment.image + '</td>'
+
+                                    + '<td><input type="number" value="0" min="0"></td>'
+                                    + '</tr>';
+                            $('#tdata').append(row);
+                        }
                     },
                     error: function () {
                         console.log('error');
@@ -118,7 +185,7 @@
             });
 
         </script>
-        <!--        <script>
+                <script>
                     $.ajax({
                         url: 'api/comments',
                         type: 'post',
