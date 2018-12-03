@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TOGI - Image Boards</title>
+        <title>TŌGI - Image Boards</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
-        <link rel="stylesheet" href="Styles/stylesheet.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link rel="stylesheet" href="Styles/post.css">
     </head>
     <body>
         <div class="header" id="myHeader">
-            <h2>TOGI</h2>
+            <h2>TŌGI</h2>
+            <a href="index.html">
+                <div class = "logo"></div>
+            </a>
             <h2 class="threadName">Thread Name</h2>
             <button type="button" class="newComment" id="buttonReply">Reply</button>
             <form action="commentList" style="display:none" method="post" id="replyBox">
@@ -22,9 +25,17 @@
                 <button id="buttonPost">Post Comment</button>
             </form>
         </div>
-        <div class="content">
-            <p>A table of comments will go here</p>
-        </div>
+
+        <table id="tdata">
+            <td>
+                <div class="content">
+                    <div class="imgdiv"></div>
+                    <div class="title">
+                        sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment 
+                    </div>
+                </div>
+            </td>
+        </table>
 
         <script>
             window.onscroll = function () {
@@ -52,37 +63,57 @@
                     x.style.display = "none";
                 }
             }
-            $('#buttonPost').click(function () {
-                var img = $("#image").val();
-                var comment = $('#comment').val();
-                $('#errorc').html('');
-                $('#error').html('');
-                if (img.length === 0 || comment.length === 0) {
-                    if (img.length === 0) {
-                        $('#errorc').html('Invalid Image URL');
+            //        $('#buttonPost').click(function () {
+            //            var img = $("#image").val();
+            //            var comment = $('#comment').val();
+            //            $('#errorc').html('');
+            //            $('#error').html('');
+            //            if (img.length === 0 || comment.length === 0) {
+            //                if (img.length === 0) {
+            //                    $('#errorc').html('Invalid Image URL');
+            //                }
+            //                if (comment.length === 0) {
+            //                    $('#error').html('Invalid Comment');
+            //                }
+            //                return;
+            //            }
+            //            var data = JSON.stringify({
+            //                image: img,
+            //                comment: comment
+            //            });
+            //            $.ajax({
+            //                url: 'api/comments',
+            //                type: 'post',
+            //                data: data,
+            //                contentType: 'application/json',
+            //                dataType: 'text',
+            //                success: function (resp) {
+            //                    $('#response').html('Your comment has been sent.');
+            //                },
+            //                error: function () {
+            //                    alert('Network communication failed');
+            //                }
+            //            });
+            //        });
+            //    </script>
+        <script>
+            $.ajax({
+                url: 'postservlet',
+                type: 'post',
+                dataType: 'text',
+                success: function (resp) {
+
+                    const boards = $.trim(resp).split("\n");
+                    const table = $("#tdata tbody");
+
+                    for (var i = 0; i < boards.length; i++) {
+                        table.append("<tr><td>" + menu[i].split("-")[0] +
+                                "</td><td class='price'>$" + menu[i].split("-")[1] + "</td></tr>");
                     }
-                    if (comment.length === 0) {
-                        $('#error').html('Invalid Comment');
-                    }
-                    return;
+                },
+                error: function () {
+                    alert('Something has gone wrong');
                 }
-                var data = JSON.stringify({
-                    image: img,
-                    comment: comment
-                });
-                $.ajax({
-                    url: 'api/comments',
-                    type: 'post',
-                    data: data,
-                    contentType: 'application/json',
-                    dataType: 'text',
-                    success: function (resp) {
-                        $('#response').html('Your comment has been sent.');
-                    },
-                    error: function () {
-                        alert('Network communication failed');
-                    }
-                });
             });
         </script>
     </body>

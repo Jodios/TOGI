@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TOGI - Image Boards</title>
+        <title>TŌGI - Image Boards</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
@@ -46,7 +46,7 @@
                 myFunction();
             };
             document.getElementById("buttonPost").onclick = function () {
-                hideCommentBox()
+                hideCommentBox();
             };
             function hideCommentBox() {
                 var x = document.getElementById("postBox");
@@ -71,7 +71,6 @@
         
         <!--this is the script to actually show the threads on the site :)-->
         <script>
-
             $.ajax({
                 url: 'boardservlet',
                 type: 'post',
@@ -85,13 +84,11 @@
                         table.append("<tr><td>" + menu[i].split("-")[0] + 
                                         "</td><td class='price'>$" + menu[i].split("-")[1] + "</td></tr>");
                     }
-
                 },
                 error: function(){
                     alert('Something has gone wrong');
                 }
             });
-
         </script>
     </body>
 </html>

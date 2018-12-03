@@ -46,7 +46,6 @@ public class ArtWS {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response createArt(Art art) {
-
         art.setId(Long.MIN_VALUE);
         art.setComment("test");
         art.setCommentnum(0);
@@ -55,7 +54,6 @@ public class ArtWS {
         art.setBoard("Art");
         art.setPost(0);
         artService.persist(art);
-
         return Response.ok(art.getId()).build();
     }
 }
