@@ -57,12 +57,12 @@
                 var comment = $('#comment').val();
                 $('#errorc').html('');
                 $('#error').html('');
-                if (img.length === 0 || comment.length == 0) {
+                if (img.length === 0 || comment.length === 0) {
                     if (cust.length === 0) {
-                        $('#errorc').html('Invalid customer');
+                        $('#errorc').html('Invalid Image URL');
                     }
                     if (pizza.length === 0) {
-                        $('#error').html('Invalid pizza');
+                        $('#error').html('Invalid Comment');
                     }
                     return;
                 }

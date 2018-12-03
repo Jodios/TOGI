@@ -21,20 +21,20 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-
+@Path("")
 public class ArtWS {
 
     @Context
     private UriInfo context;
     @EJB
-    private ArtService artservice;
-   
+    private ArtService artService;
+
     @GET
     @Path("post/{TOGI}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response readOrder(@PathParam("TOGI") Long id) {
-        
-        Art art = artservice.selectById(id);
+    public Response readArt(@PathParam("TOGI") Long id) {
+
+        Art art = artService.selectById(id);
         if (art == null) {
             return Response.status(Status.NO_CONTENT).build();
         }
@@ -46,17 +46,15 @@ public class ArtWS {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response createArt(Art art) {
-        
-       
-      art.setId(Long.MIN_VALUE);
+
+        art.setId(Long.MIN_VALUE);
         art.setComment("test");
         art.setCommentnum(0);
-        Date date=new Date();
+        Date date = new Date();
         art.setDate(date);
         art.setBoard("Art");
         art.setPost(0);
-        artservice.persist(art);
-       
+        artService.persist(art);
 
         return Response.ok(art.getId()).build();
     }
