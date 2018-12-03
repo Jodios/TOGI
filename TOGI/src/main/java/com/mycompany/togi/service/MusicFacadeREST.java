@@ -20,10 +20,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-/**
- *
- * @author NolanPC
- */
 @Stateless
 @Path("com.mycompany.togi.music")
 public class MusicFacadeREST extends AbstractFacade<Music> {

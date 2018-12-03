@@ -7,27 +7,47 @@ package com.mycompany.togi;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="Photography")
 public class Photography implements Serializable {
 
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "Post#")
+    private Integer post;
+    @Column(name = "Date")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date date;
+    @Size(max = 45)
+    @Column(name = "Title")
+    private String title;
+    @Size(max = 45)
+    @Column(name = "Board")
+    private String board;
+    @Column(name = "Commentnum")
+    private Integer commentnum;
+    @Size(max = 9999)
+    @Column(name = "Comment")
+    private String comment;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
-   
-    
-    private Date date;
-    private Integer commentnum;
-    private String comment;
-    
+  
 
     public Long getId() {
         return id;
@@ -92,5 +112,30 @@ public class Photography implements Serializable {
     public String toString() {
         return "com.mycompany.togi.Photography[ id=" + id + " ]";
     }
-    
+
+    public Photography() {
+    }
+
+    public Photography(Integer post) {
+        this.post = post;
+    }
+
+    public Integer getPost() {
+        return post;
+    }
+
+    public void setPost(Integer post) {
+        this.post = post;
+    }
+
+  
+    public String getBoard() {
+        return board;
+    }
+
+    public void setBoard(String board) {
+        this.board = board;
+    }
+
+   
 }
