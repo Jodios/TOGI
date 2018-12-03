@@ -47,8 +47,7 @@ public class ArtWS {
     //@Path("comments")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response createArt(Art art) {
-       
+    public Response createArt(Art art) {  
         art.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
 //        art.setComment(art.getComment());
 //        art.setImg(art.getImg());
