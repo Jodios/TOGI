@@ -26,21 +26,21 @@
                 <input type="submit" value="Create Post">
             </form>
         </div>
-        
+
         <!--this is the different threads--> 
         <a href="post.html">
-            <table id="tdata">
-                <tr>
-                    <div class="content">
-                        <div class="imgdiv"></div>
-                        <div class="title">
-                            sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample commentsample comment sample comment sample comment sample comment sample comment sample comment sample comment 
-                        </div>
+            <table id="tdata"><tbody>
+                    <tr>
+                <div class="content">
+                    <div class="imgdiv"></div>
+                    <div class="title">
+                        sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample commentsample comment sample comment sample comment sample comment sample comment sample comment sample comment 
                     </div>
+                </div>
                 </tr>
-            </table>
+                </tbody></table>
         </a>
-        
+
         <script>
             window.onscroll = function () {
                 myFunction();
@@ -68,24 +68,29 @@
                 }
             }
         </script>
-        
+
         <!--this is the script to actually show the threads on the site :)-->
         <script>
             $.ajax({
                 url: 'boardservlet',
                 type: 'post',
                 dataType: 'text',
-                success: function (resp){
+                success: function (resp) {
 
-                    const boards = $.trim(resp).split("\n");
+                    const boards = $.trim(resp).split("-");
                     const table = $("#tdata tbody");
 
-                    for(var i = 0; i < boards.length; i++){
-                        table.append("<tr><td>" + menu[i].split("-")[0] + 
-                                        "</td><td class='price'>$" + menu[i].split("-")[1] + "</td></tr>");
+                    for (var i = 0; i < boards.length; i++) {
+                        table.append("<tr><td><div class = 'content'>" +
+                                "<div cass = 'imgdiv'></div>" +
+                                "<div class = 'title'>" +
+                                boards[i].split("-")[0] +
+                                "</div>" +
+                                "</div></td></tr>");
+                        console.log(boards);
                     }
                 },
-                error: function(){
+                error: function () {
                     alert('Something has gone wrong');
                 }
             });
