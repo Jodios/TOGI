@@ -27,15 +27,14 @@
         </div>
      
 
-        <table id="tdata">
-            <td>
-                <div class="content">
-                    <div class="imgdiv"></div>
-                    <div class="title">
-                      sample comment
-                    </div>
-                </div>
-            </td>
+        <table>
+            <thead>
+                <tr>
+                    <th>Comment</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody id="tdata"></tbody>
         </table>
 
         <script>
@@ -103,7 +102,7 @@
         </script>
 
         <script>
-            $('buttonPost').on('click', function (e) {
+            $('#buttonPost').on('click', function (e) {
                 $.ajax({
                     url: 'api/comments',
                     type: 'GET',
