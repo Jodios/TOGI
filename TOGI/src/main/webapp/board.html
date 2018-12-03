@@ -11,18 +11,18 @@
     <body>
         <div class="header" id="myHeader">
             <h2 class="boardName">Board Name</h2>
-            <div class = "logo"></div>
-            <form>
-                <button type="button" class="newComment" id="buttonPost">POST</button>
-            </form>
-            <form action="submit" style="display:none" method="post" id="commentBox">
-                Image URL: <input type="text" name="name">
+            <a href="index.html">
+                <div class = "logo"></div>
+            </a>
+            <button type="button" class="newComment" id="buttonPost">Create Post</button>
+            <form action="submit" style="display:none" method="post" id="postBox">
+                Image URL: <input type="text" name="image">
                 <fieldset>
-                    <legend>Comment</legend>
-                    <textarea rows="5" cols="50" name="feedback"
-                              placeholder="Enter your comment here..."></textarea>
+                    <legend>Title</legend>
+                    <textarea rows="5" cols="50" name="title"
+                              placeholder="Enter your title here..."></textarea>
                 </fieldset>
-                <input type="submit" name="submit">
+                <input type="submit" value="Create Post">
             </form>
         </div>
         <a href="thread.html">
@@ -41,7 +41,7 @@
                 hideCommentBox()
             };
             function hideCommentBox() {
-                var x = document.getElementById("commentBox");
+                var x = document.getElementById("postBox");
                 if (x.style.display === "none") {
                     x.style.display = "block";
                 } else {
