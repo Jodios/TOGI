@@ -11,20 +11,21 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-
 @Stateless
 public class ArtService {
-@PersistenceContext
-private EntityManager em;
+    @PersistenceContext
+    private EntityManager em;
 
-public List<Art> selectItems(){
-    TypedQuery<Art> q=em.createQuery("select a from Art",Art.class);
-    return q.getResultList();
-}
-public void persist(Art art){
-    em.persist(art);
-}
-public Art selectById(Long id){
-    return em.find(Art.class, id);
-}
+    public List<Art> selectItems() {
+        TypedQuery<Art> q = em.createQuery("select a from Art", Art.class);
+        return q.getResultList();
+    }
+
+    public void persist(Art art) {
+        em.persist(art);
+    }
+
+    public Art selectById(Long id) {
+        return em.find(Art.class, id);
+    }
 }
