@@ -16,7 +16,13 @@ public class BoardServlet extends HttpServlet {
         
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+
         
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+                
         response.setContentType("text/html;charset=UTF-8");
         try(PrintWriter out = response.getWriter()){
             comments.add(new testcomment("novemer", "test", 00000001));
@@ -27,16 +33,11 @@ public class BoardServlet extends HttpServlet {
             comments.add(new testcomment("novemer", "test", 00000006));
             comments.add(new testcomment("novemer", "test", 00000007));
             for(int i = 0; i < comments.size(); i++){
-                out.printf("%s", comments.get(i).getComment());
+                out.print(comments.get(i).getId() + "-");
+                System.out.println("HELLO");
             }
             
         }
-        
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-        
         
     }
     
