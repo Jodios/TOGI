@@ -9,12 +9,13 @@
         <link rel="stylesheet" href="Styles/board.css">
     </head>
     <body>
+        <!--this is the banner on the top of the page-->
         <div class="header" id="myHeader">
             <h2 class="boardName">Board Name</h2>
             <a href="index.html">
                 <div class = "logo"></div>
             </a>
-            <button type="button" class="newComment" id="buttonPost">Create Post</button>
+            <button type="button" class="newPost" id="buttonPost">Create Post</button>
             <form action="submit" style="display:none" method="post" id="postBox">
                 Image URL: <input type="text" name="image">
                 <fieldset>
@@ -25,14 +26,21 @@
                 <input type="submit" value="Create Post">
             </form>
         </div>
+        
+        <!--this is the different threads--> 
         <a href="thread.html">
-            <div class="content">
-                <div class="imgdiv"></div>
-                <div class="title">
-                    sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample commentsample comment sample comment sample comment sample comment sample comment sample comment sample comment 
-                </div>
-            </div>
+            <table id="tdata">
+                <tr>
+                    <div class="content">
+                        <div class="imgdiv"></div>
+                        <div class="title">
+                            sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample commentsample comment sample comment sample comment sample comment sample comment sample comment sample comment 
+                        </div>
+                    </div>
+                </tr>
+            </table>
         </a>
+        
         <script>
             window.onscroll = function () {
                 myFunction();
@@ -59,6 +67,31 @@
                     header.classList.remove("sticky");
                 }
             }
+        </script>
+        
+        <!--this is the script to actually show the threads on the site :)-->
+        <script>
+
+            $.ajax({
+                url: 'boardservlet',
+                type: 'post',
+                dataType: 'text',
+                success: function (resp){
+
+                    const boards = $.trim(resp).split("\n");
+                    const table = $("#tdata tbody");
+
+                    for(var i = 0; i < boards.length; i++){
+                        table.append("<tr><td>" + menu[i].split("-")[0] + 
+                                        "</td><td class='price'>$" + menu[i].split("-")[1] + "</td></tr>");
+                    }
+
+                },
+                error: function(){
+                    alert('Something has gone wrong');
+                }
+            });
+
         </script>
     </body>
 </html>
