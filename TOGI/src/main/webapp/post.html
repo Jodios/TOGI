@@ -22,16 +22,17 @@
                     <textarea rows="5" cols="50" name="comment" id="comment"
                               placeholder="Enter your comment here..."></textarea>
                 </fieldset>
-                <button onClick="javascript:window.location.href='post.html'" id="buttonPost">Post Comment</button>
+                <button onClick="javascript:window.location.href = 'post.html'" id="buttonPost">Post Comment</button>
             </form>
         </div>
+     
 
         <table id="tdata">
             <td>
                 <div class="content">
                     <div class="imgdiv"></div>
                     <div class="title">
-                        sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment sample comment 
+                      sample comment
                     </div>
                 </div>
             </td>
@@ -63,60 +64,80 @@
                     x.style.display = "none";
                 }
             }
-                    $('#buttonPost').click(function () {
-                        var img = $("#image").val();
-                        var comment = $('#comment').val();
-                        $('#errorc').html('');
-                        $('#error').html('');
-                        if (img.length === 0 || comment.length === 0) {
-                            if (img.length === 0) {
-                                $('#errorc').html('Invalid Image URL');
-                            }
-                            if (comment.length === 0) {
-                                $('#error').html('Invalid Comment');
-                            }
-                            return;
-                        }
-                        var data = JSON.stringify({
-                            image: img,
-                            comment: comment
-                        });
-                        $.ajax({
-                            url: 'api/comments',
-                            type: 'post',
-                            data: data,
-                            contentType: 'application/json',
-                            dataType: 'text',
-                            success: function (resp) {
-                                $('#response').html('Your comment has been sent.');
-                            },
-                            error: function () {
-                                alert('Network communication failed');
-                            }
-                        });
-                        return false;
-                    });
-                </script>
-        <script>
-            $.ajax({
-                url: 'postservlet',
-                type: 'post',
-                dataType: 'text',
-                success: function (resp) {
-
-                    const boards = $.trim(resp).split("\n");
-                    const table = $("#tdata tbody");
-
-                    for (var i = 0; i < boards.length; i++) {
-                        table.append("<tr><td>" + menu[i].split("-")[0] +
-                                "</td><td class='price'>$" + menu[i].split("-")[1] + "</td></tr>");
+            $('#buttonPost').click(function () {
+                var img = $("#image").val();
+                var comment = $('#comment').val();
+                $('#errorc').html('');
+                $('#error').html('');
+                if (img.length === 0 || comment.length === 0) {
+                    if (img.length === 0) {
+                        $('#errorc').html('Invalid Image URL');
                     }
-                },
-                error: function () {
-                    alert('Something has gone wrong');
+                    if (comment.length === 0) {
+                        $('#error').html('Invalid Comment');
+                    }
+                    return;
                 }
+                var data = JSON.stringify({
+                    image: img,
+                    comment: comment
+                });
+                $.ajax({
+                    url: 'api/comments',
+                    type: 'post',
+                    data: data,
+                    contentType: 'application/json',
+                    dataType: 'text',
+                    success: function (resp) {
+                        
+                        $('#response').html('Your comment has been sent.');
+                        
+                    },
+                    error: function () {
+                        alert('Network communication failed');
+                    }
+                });
+                return false;
             });
-            </script>
-  
+
+        </script>
+
+        <script>
+            $('buttonPost').on('click', function (e) {
+                $.ajax({
+                    url: 'api/comments',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#tdata').append("<tr><td>" + data.column1 + "</td><td>" + data.column2 + "</td><td>" + data.column3 + "</td></tr>");
+                    },
+                    error: function () {
+                        console.log('error');
+                    }
+                });
+            });
+
+        </script>
+        <!--        <script>
+                    $.ajax({
+                        url: 'api/comments',
+                        type: 'post',
+                        dataType: 'text',
+                        success: function (resp) {
+        
+                            const boards = $.trim(resp).split("\n");
+                            const table = $("#tdata tbody");
+        
+                            for (var i = 0; i < boards.length; i++) {
+                                table.append("<tr><td>" + menu[i].split("-")[0] +
+                                        "</td><td class='price'>$" + menu[i].split("-")[1] + "</td></tr>");
+                            }
+                        },
+                        error: function () {
+                            alert('Something has gone wrong');
+                        }
+                    });
+                    </script>-->
+
     </body>
 </html>
