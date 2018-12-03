@@ -6,30 +6,73 @@
 package com.mycompany.togi;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 /**
  *
- * @author NolanPC
+ * @author nolan
  */
 @Entity
+@Table(name="Games")
 public class Games implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String title;
+   
+    
+    private Date date;
+    private Integer commentnum;
+    private String comment;
+    
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getTitle() {
+        title="test";
+        return title;
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Date getDate() {
+        return date;
+        
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Integer getCommentnum() {
+        return commentnum;
+    }
+
+    public void setCommentnum(Integer commentnum) {
+        this.commentnum = commentnum;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+  
 
     @Override
     public int hashCode() {
@@ -41,10 +84,10 @@ public class Games implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Games)) {
+        if (!(object instanceof Art)) {
             return false;
         }
-        Games other = (Games) object;
+        Art other = (Art) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -53,7 +96,7 @@ public class Games implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.togi.Games[ id=" + id + " ]";
+        return "Togi.Art[ id=" + id + " ]";
     }
     
 }
