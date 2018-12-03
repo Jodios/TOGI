@@ -12,7 +12,7 @@ import javax.ws.rs.core.Application;
  *
  * @author NolanPC
  */
-@javax.ws.rs.ApplicationPath("webresources")
+@javax.ws.rs.ApplicationPath("api")
 public class ApplicationConfig extends Application {
 
     @Override
@@ -25,14 +25,6 @@ public class ApplicationConfig extends Application {
  
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(com.mycompany.togi.ArtWS.class);
-        resources.add(com.mycompany.togi.service.ArtFacadeREST.class);
-        resources.add(com.mycompany.togi.service.GamesFacadeREST.class);
-        resources.add(com.mycompany.togi.service.MathematicsFacadeREST.class);
-        resources.add(com.mycompany.togi.service.MusicFacadeREST.class);
-        resources.add(com.mycompany.togi.service.PhotographyFacadeREST.class);
-        resources.add(com.mycompany.togi.service.PoliticsFacadeREST.class);
-        resources.add(com.mycompany.togi.service.RandomFacadeREST.class);
-        resources.add(com.mycompany.togi.service.TechnologyFacadeREST.class);
     }
     
 }

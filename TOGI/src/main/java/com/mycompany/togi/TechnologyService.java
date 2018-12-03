@@ -22,7 +22,7 @@ public class TechnologyService {
 private EntityManager em;
 
 public List<Technology> selectItems(){
-    TypedQuery<Technology> q=em.createQuery("select t from Technology",Technology.class);
+    TypedQuery<Technology> q=em.createQuery("select t from Technology t",Technology.class);
     return q.getResultList();
 }
 public void persist(Technology technology){

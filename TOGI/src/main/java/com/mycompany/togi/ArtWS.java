@@ -21,7 +21,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-@Path("")
+@Path("comments")
 public class ArtWS {
 
     @Context
@@ -35,6 +35,8 @@ public class ArtWS {
     public Response readArt(@PathParam("TOGI") Long id) {
 
         Art art = artService.selectById(id);
+        
+//        art.setComment(art.getComment());
         if (art == null) {
             return Response.status(Status.NO_CONTENT).build();
         }
@@ -42,20 +44,20 @@ public class ArtWS {
     }
 
     @POST
-    @Path("comments")
+    //@Path("comments")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response createArt(Art art) {
-
-        art.setId(Long.MIN_VALUE);
-        art.setComment("test");
+       
+        art.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
+//        art.setComment(art.getComment());
+//        art.setImg(art.getImg());
         art.setCommentnum(0);
         Date date = new Date();
         art.setDate(date);
         art.setBoard("Art");
-        art.setPost(0);
+        art.setPost(0);  
         artService.persist(art);
-
         return Response.ok(art.getId()).build();
     }
 }

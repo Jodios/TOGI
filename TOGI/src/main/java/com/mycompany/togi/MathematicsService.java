@@ -21,7 +21,7 @@ public class MathematicsService {
 private EntityManager em;
 
 public List<Mathematics> selectItems(){
-    TypedQuery<Mathematics> q=em.createQuery("select m from Mathematics",Mathematics.class);
+    TypedQuery<Mathematics> q=em.createQuery("select m from Mathematics m",Mathematics.class);
     return q.getResultList();
 }
 public void persist(Mathematics math){

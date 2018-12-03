@@ -28,12 +28,9 @@ import javax.validation.constraints.Size;
 @Table(name="Art")
 public class Art implements Serializable {
 
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "Post#")
+    @Column(name = "Postnum")
     private Integer post;
-    @Column(name = "Date")
+    @Column(name = "Date_")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
     @Size(max = 45)
@@ -47,6 +44,18 @@ public class Art implements Serializable {
     @Size(max = 9999)
     @Column(name = "Comment")
     private String comment;
+    @Size(max = 500)
+    @Column(name = "imglink")
+    private String image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+  
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -104,7 +113,7 @@ public class Art implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+
         if (!(object instanceof Art)) {
             return false;
         }

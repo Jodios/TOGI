@@ -22,7 +22,7 @@ public class RandomService {
 private EntityManager em;
 
 public List<Random> selectItems(){
-    TypedQuery<Random> q=em.createQuery("select r from Random",Random.class);
+    TypedQuery<Random> q=em.createQuery("select r from Random r",Random.class);
     return q.getResultList();
 }
 public void persist(Random random){

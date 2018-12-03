@@ -28,9 +28,9 @@ public class Mathematics implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "Post#")
+    @Column(name = "Postnum")
     private Integer post;
-    @Column(name = "Date")
+    @Column(name = "Date_")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
     @Size(max = 45)
@@ -47,7 +47,7 @@ public class Mathematics implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
    
 

@@ -14,7 +14,7 @@ public class PhotographyService {
 private EntityManager em;
 
 public List<Photography> selectItems(){
-    TypedQuery<Photography> q=em.createQuery("select p from Photography",Photography.class);
+    TypedQuery<Photography> q=em.createQuery("select p from Photography p",Photography.class);
     return q.getResultList();
 }
 public void persist(Photography photograph){

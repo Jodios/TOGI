@@ -21,7 +21,7 @@ public class GamesService {
 private EntityManager em;
 
 public List<Games> selectItems(){
-    TypedQuery<Games> q=em.createQuery("select g from Games",Games.class);
+    TypedQuery<Games> q=em.createQuery("select g from Games g",Games.class);
     return q.getResultList();
 }
 public void persist(Games game){

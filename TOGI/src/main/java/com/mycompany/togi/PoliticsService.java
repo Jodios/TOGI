@@ -22,7 +22,7 @@ public class PoliticsService {
 private EntityManager em;
 
 public List<Politics> selectItems(){
-    TypedQuery<Politics> q=em.createQuery("select p from Politics",Politics.class);
+    TypedQuery<Politics> q=em.createQuery("select p from Politics p",Politics.class);
     return q.getResultList();
 }
 public void persist(Politics politic){

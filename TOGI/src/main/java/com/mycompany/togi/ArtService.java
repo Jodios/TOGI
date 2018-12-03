@@ -17,7 +17,7 @@ public class ArtService {
     private EntityManager em;
 
     public List<Art> selectItems() {
-        TypedQuery<Art> q = em.createQuery("select a from Art", Art.class);
+        TypedQuery<Art> q = em.createQuery("select a from Art a", Art.class);
         return q.getResultList();
     }
 

@@ -22,7 +22,7 @@ public class MusicService {
 private EntityManager em;
 
 public List<Music> selectItems(){
-    TypedQuery<Music> q=em.createQuery("select m from Music",Music.class);
+    TypedQuery<Music> q=em.createQuery("select m from Music m",Music.class);
     return q.getResultList();
 }
 public void persist(Art art){
