@@ -27,8 +27,6 @@ public class Art implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-   
-    
     private Date date;
     private Integer commentnum;
     private String comment;
@@ -39,7 +37,6 @@ public class Art implements Serializable {
     }
 
     public String getTitle() {
-        title="test";
         return title;
     }
 

@@ -11,13 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-/**
- *
- * @author nolan
- */
+
 @Entity
 @Table(name="Games")
 public class Games implements Serializable {
@@ -39,7 +35,7 @@ public class Games implements Serializable {
     }
 
     public String getTitle() {
-        title="test";
+     
         return title;
     }
 
@@ -84,10 +80,10 @@ public class Games implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Art)) {
+        if (!(object instanceof Games)) {
             return false;
         }
-        Art other = (Art) object;
+        Games other = (Games) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -96,7 +92,7 @@ public class Games implements Serializable {
 
     @Override
     public String toString() {
-        return "Togi.Art[ id=" + id + " ]";
+        return "Togi.Games[ id=" + id + " ]";
     }
     
 }

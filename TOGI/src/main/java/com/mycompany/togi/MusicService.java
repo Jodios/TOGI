@@ -5,7 +5,11 @@
  */
 package com.mycompany.togi;
 
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -14,6 +18,14 @@ import javax.ejb.Stateless;
 @Stateless
 public class MusicService {
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+   @PersistenceContext
+private EntityManager em;
+
+public List<Music> selectItems(){
+    TypedQuery<Music> q=em.createQuery("select m from Music",Music.class);
+    return q.getResultList();
+}
+public void persist(Art art){
+    em.persist(art);
+}
 }
