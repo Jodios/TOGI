@@ -13,13 +13,13 @@
             <h2 class="threadName">Thread Name</h2>
             <button type="button" class="newComment" id="buttonReply">Reply</button>
             <form action="commentList" style="display:none" method="post" id="replyBox">
-                Image URL: <input type="text" name="image">
+                Image URL: <input type="text" name="image" id="image">
                 <fieldset>
                     <legend>Comment</legend>
-                    <textarea rows="5" cols="50" name="comment"
+                    <textarea rows="5" cols="50" name="comment" id="comment"
                               placeholder="Enter your comment here..."></textarea>
                 </fieldset>
-                <input type="submit" value="Post Comment">
+                <button id="buttonPost">Post Comment</button>
             </form>
         </div>
         <div class="content">
@@ -52,6 +52,38 @@
                     x.style.display = "none";
                 }
             }
+            $('#buttonPost').click(function () {
+                var img = $("#image").val();
+                var comment = $('#comment').val();
+                $('#errorc').html('');
+                $('#error').html('');
+                if (img.length === 0 || comment.length == 0) {
+                    if (cust.length === 0) {
+                        $('#errorc').html('Invalid customer');
+                    }
+                    if (pizza.length === 0) {
+                        $('#error').html('Invalid pizza');
+                    }
+                    return;
+                }
+                var data = JSON.stringify({
+                    image: img,
+                    comment: pizza
+                });
+                $.ajax({
+                    url: 'api/comments',
+                    type: 'post',
+                    data: data,
+                    contentType: 'application/json',
+                    dataType: 'text',
+                    success: function (resp) {
+                        $('#response').html('Your comment has been sent.');
+                    },
+                    error: function () {
+                        alert('Network communication failed');
+                    }
+                });
+            });
         </script>
     </body>
 </html>
