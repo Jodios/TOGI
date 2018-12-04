@@ -111,7 +111,7 @@ public class Politics implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.togi.Politics[ id=" + id + " ]";
+        return "Togi.Politics[ id=" + id + " ]";
     }
 
     public Politics() {
