@@ -18,7 +18,7 @@
     <body>
         <!--this is the banner on the top of the page-->
         <div class="header" id="myHeader">
-            <h2 class="boardName">Board Name</h2>
+            <h2 class="boardName">Photography</h2>
             <a href="index.html">
                 <div class = "logo"></div>
             </a>
