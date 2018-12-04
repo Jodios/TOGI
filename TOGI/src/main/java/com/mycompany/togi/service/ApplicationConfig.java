@@ -25,6 +25,7 @@ public class ApplicationConfig extends Application {
  
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(com.mycompany.togi.ArtWS.class);
+        resources.add(com.mycompany.togi.GamesFacadeREST.class);
     }
     
 }

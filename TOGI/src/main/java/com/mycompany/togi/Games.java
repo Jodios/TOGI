@@ -18,12 +18,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
 
 @Entity
 @Table(name="Games")
-@XmlRootElement
 public class Games implements Serializable {
 
     @Id
@@ -34,6 +32,10 @@ public class Games implements Serializable {
     @Column(name = "Date_")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
     @Size(max = 45)
     @Column(name = "Title")
     private String title;
@@ -48,7 +50,7 @@ public class Games implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     

@@ -27,5 +27,8 @@ public List<Games> selectItems(){
 public void persist(Games game){
     em.persist(game);
 }
+ public Art selectById(Long id) {
+        return em.find(Art.class, id);
+    }
 }
 
