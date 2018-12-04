@@ -19,6 +19,7 @@ import javax.ws.rs.core.Response.Status;
 
 @Path("comments")
 public class ArtWS {
+    public static int counter=0;
 
     @Context
     private UriInfo context;
@@ -41,17 +42,14 @@ public class ArtWS {
     }
     
     @POST
+    @Path("post")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response createArt(Art art) {  
         art.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
         Board b=new Board();
-         art.setCommentnum(b.getCommentnum());
-        Integer i=b.getCommentnum()+1;
-         b.setCommentnum(i);
+        art.setCommentnum(b.getCommentnum());
        
-        
-        
        
         Date date = new Date();
         art.setDate(date);
