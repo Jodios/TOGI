@@ -30,7 +30,7 @@
                     <textarea rows="5" cols="50" name="title"
                               placeholder="Enter your title here..."></textarea>
                 </fieldset>
-                <button onClick="javascript:window.location.href = 'post.html'" id="buttonPost">Post Comment</button>
+                <button onClick="javascript:window.location.href = 'politics.jsp'" id="buttonPost">Create Post</button>
             </form>
         </div>
 
@@ -72,40 +72,9 @@
                     header.classList.remove("sticky");
                 }
             }
-        </script>
-
-        <!--this is the script to actually show the threads on the site :)-->
-<!--        <script>
-            $.ajax({
-                url: 'boardservlet',
-                type: 'post',
-                dataType: 'text',
-                success: function (resp) {
-
-                    const boards = $.trim(resp).split("-");
-                    const table = $("#tdata tbody");
-                    let img = "\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAeFBMVEX///8dHRsAAAAZGRcuLi3Ly8sbGxnOzs4VFROpqakQEA1paWi1tbXBwcHx8fHp6elgYGA5OTcHBwCdnZzm5uba2trU1NS6urlWVlWjo6KKioomJiTz8/Pc3NxjY2JMTEt/f3+UlJRERENwcG9QUE97e3oxMS+Ojo28MmnZAAADIElEQVR4nO3ZaXuiMBSGYQyIELcWWrU4Vu0y8///4SAlgEoW7SLMPPe3enF6eCXNQj0PAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/7nNMk7TePrwM92Wg0BDznQ1sbYm8O0Nn0XlfWG+9nWtbVRYB7+s/abC1xH6hIYiS784EXKghFJsjQ/yOdE2OpCJ9hYrQzHQMiXUFxnbze5FeHx9JFLD9WPZ3qWs/WTAb0i4EVFLxfuVCX0xtwZcmAJ+fcK58FtL9lcl9IV9plqcDplvThi0PMGiRjvfGBKGDgEfzQG/POFTXSXzeTSpHqgfXJ4wFBtrwIVoUIVJ80N7QnFO31CGVZNxOpn8WVddxVRTctd2j1Hx06M1oDesjdTXm+xHjY+1pSqhWDYvtxRVf/QiKz+ZqE/ks66meZPl1dHq8Omlu4VFdctOl1cJ7ZNZTX2LjYmlDu3yC8qL5fiCphX1/YiJ0+VXJcySsqixDdkJWXCYNfqUsDGQR6u7wuqfSJgKNQu6NTnT+YTV/ikUMrPsuFvdJOHyeB4dme+wWn7DfFEax5dOh7dIeLoero1VabWiFTeaL3CZfm1pcZOEx/x7c9nLyQ7Fzx9l5j7Qe5DQ+31Wl4/XV/sh9kMfEnrjltOFdNxm9COhNwxajojGQ3CtHwk9b7oS4vTEoN15H+n+XKrM4sORofkow+7uSyfTY84NF2meMqkf4pNDzU0S2t8EmZruquEavThc3/Vd20wN5ea08nrJ8anrCdWmLTqajt4i99HQ+YSB3zJxXjLeO59QnQ/DZtW77PgoXY5OObyn8eszsDpR+QOHrl1YD83v2l7UEhiKbfw4mz1Mq4km2Tl07cCexjLcGm/YP14I1nsbl3eDPUjo7XRlcuXStQcJvW3SWuMLpwNUHxJ6b22FkcML+oNeJPSy88OTWDu+sPlkwrDgnDDUsS1sm61IGv8Qyqcc/f/WTpRNr00YFZwTRjr2pXuThfXasordb7JsmlyV8IfNh3G63z8tXdYIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA9MJfebspKLXeD+8AAAAASUVORK5CYII=\"";
-                    let imgurl = img.replace("\"", "'");
-                    let link = "\"index.html\"";
-                    for (var i = 0; i < boards.length; i++) {
-                        table.append("<tr><td><a href = " + link + "><div class = \"content\">" +
-                                "<div class = \"imgdiv\" style=\"background-image: url("+imgurl+")\"></div>" +
-                                "<div class = \"title\" >" +
-                                boards[i].split("-")[0] +
-                                "</div>" +
-                                "</div></a></td></tr>");
-                        console.log("<a href = " + link + "><tr><td><div class = \"content\">");
-                    }
-                },
-                error: function () {
-                    alert('Something has gone wrong');
-                }
-            });
-        </script>-->
-        <script>
             function loadComments() {
                 $.ajax({
-                    url: 'api/comments/post',
+                    url: 'api/polcomments/post',
                     type: 'get',
                     dataType: 'json',
                     success: function (data) {
@@ -144,9 +113,12 @@
                     header.classList.remove("sticky");
                 }
             }
+           
+    
             document.getElementById("buttonReply").onclick = function () {
                 hideCommentBox();
             };
+            
             function hideCommentBox() {
                 var x = document.getElementById("postBox");
                 if (x.style.display === "none") {
@@ -155,6 +127,7 @@
                     x.style.display = "none";
                 }
             }
+            
             $('#buttonPost').click(function () {
                 window.location.reload();
                 var img = $("#image").val();
@@ -175,7 +148,7 @@
                     comment: comment
                 });
                 $.ajax({
-                    url: 'api/comments',
+                    url: 'api/polcomments',
                     type: 'post',
                     data: data,
                     contentType: 'application/json',
