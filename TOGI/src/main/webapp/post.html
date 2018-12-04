@@ -6,6 +6,7 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link rel="stylesheet" href="Styles/post.css">
+        <link rel="stylesheet" href="Styles/board.css">
     </head>
     <body>
         <div class="header" id="myHeader">
@@ -21,53 +22,50 @@
                     <legend>Comment</legend>
                     <textarea rows="5" cols="50" name="comment" id="comment"
                               placeholder="Enter your comment here..."></textarea>
-                    
+
                 </fieldset>
                 <button onClick="javascript:window.location.href = 'post.html'" id="buttonPost">Post Comment</button>
             </form>
         </div>
 
-        <table>
-
-            <thead>
-                <tr>
-                    <th>Comment</th>
-                    <th>Image</th>
-                </tr>
-            </thead>
-            <tbody id="tdata"></tbody>
+        <table id="tdata">
+            <tbody>                
+            </tbody>
         </table>
 
 
         <script>
-             function loadComments() {   
-               $.ajax({
+            function loadComments() {
+                $.ajax({
                     url: 'api/comments/post',
                     type: 'get',
                     dataType: 'json',
                     success: function (data) {
                         $('#tdata').empty();
                         $.each(data, function (i, r) {
-                            var tr = '<tr>'
-                                    + '<td>' + r.comment + '</td>'                            
-                                    + '<td>' + r.image + '</td>'
-                                 ;
+                            var tr = "<tr><td><div class = \"content\">" +
+                                    "<div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div>" +
+                                    "<div class = \"title\" >" +
+                                    r.comment +
+                                    "</div>" + "</div></td></tr>";
                             $('#tdata').append(tr);
+//                            table.append("<tr><td><div class = \"content\">" +
+//                                    "<div class = \"imgdiv\" style=\"background-image: url(" + imgurl + ")\"></div>" +
+//                                    "<div class = \"title\" >" +
+//                                    boards[i].split("-")[0] +
+//                                    "</div>" +
+//                                    "</div></td></tr>");
                         });
                     },
                     error: function () {
                         alert('Error');
                     }
                 });
-                  
-            
-        }
-                         
-            
+            }
+
+
             $(document).ready(function () {
                 loadComments();
-            
-
             });
 
 //            window.onscroll = function () {
@@ -96,7 +94,7 @@
                 }
             }
             $('#buttonPost').click(function () {
-                    window.location.reload();
+                window.location.reload();
                 var img = $("#image").val();
                 var comment = $('#comment').val();
                 $('#errorc').html('');
@@ -122,15 +120,15 @@
                     dataType: 'text',
                     success: function (resp) {
                         alert('success');
-                      loadComments();
+                        loadComments();
 //                      
-                    
+
                     },
                     error: function () {
-                       alert('Error');
+                        alert('Error');
                     }
                 });
-              
+
                 return false;
             });
 

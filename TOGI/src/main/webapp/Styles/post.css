@@ -58,23 +58,3 @@ body{
 .sticky + .content {
     padding-top: 102px;
 }
-
-/*body{
-        background-color: #02a8f4;
-}
-
-h2{
-
-        color: blue;
-
-}
-
-.header{
-        border-style: dotted;
-        height: 90px;
-}
-
-.boards{
-        border-style: dotted;
-        height: 800px;
-}*/
