@@ -1,19 +1,21 @@
 .header {
     padding: 10px 16px;
-    background: #a1aabb;
+    background: rgba(39,164,221, .5);;
     text-align: center;
     color: #000000;
 }
 
 .body{
     font-family: 'Roboto', sans-serif;
+    
     text-align: center;
     position: absolute;
-    color: #f1f1f1;
+    background-color: rgba(219,233,224,1);
+    color: #000000;
 }
 
 .buttonSmall {
-    background-color: rgba(150,179,248,.4);
+    background-color: rgba(150,179,248,1);
     border: none;
     color: white;
     padding: 16px 32px;
@@ -29,7 +31,7 @@
 }
 
 .buttonLarge {
-    background-color: rgba(150,179,248,.4);
+    background-color: rgba(150,179,248,1);
     border: none;
     color: white;
     padding: 16px 32px;
@@ -44,6 +46,6 @@
     width: 175px
 }
 
-.buttonSmall:hover {opacity: 1}
+.buttonSmall:hover {opacity: .4}
 
-.buttonLarge:hover {opacity: 1}
+.buttonLarge:hover {opacity: .4}
