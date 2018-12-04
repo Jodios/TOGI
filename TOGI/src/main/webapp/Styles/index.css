@@ -2,7 +2,7 @@
     padding: 10px 16px;
     background: #a1aabb;
     text-align: center;
-    color: #f1f1f1;
+    color: #000000;
 }
 
 .body{
@@ -13,7 +13,7 @@
 }
 
 .buttonSmall {
-    background-color: #94c5e3;
+    background-color: rgba(150,179,248,.4);
     border: none;
     color: white;
     padding: 16px 32px;
@@ -29,7 +29,7 @@
 }
 
 .buttonLarge {
-    background-color: #94c5e3;
+    background-color: rgba(150,179,248,.4);
     border: none;
     color: white;
     padding: 16px 32px;
