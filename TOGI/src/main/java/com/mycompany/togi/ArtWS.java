@@ -26,7 +26,7 @@ public class ArtWS {
     private ArtService artService;
 
     @GET
-    @Path("post")
+    @Path("get")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response readArt() {
@@ -39,7 +39,7 @@ public class ArtWS {
         }
         return Response.ok(art).build();
     }
-
+    
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
