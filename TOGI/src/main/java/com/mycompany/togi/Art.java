@@ -33,6 +33,11 @@ public class Art implements Serializable {
     @Column(name = "Date_")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
+
+    public void setCommentnum(Integer commentnum) {
+        this.commentnum = commentnum;
+       
+    }
     @Size(max = 45)
     @Column(name = "Title")
     private String title;
@@ -87,19 +92,19 @@ public class Art implements Serializable {
 
     public Integer getCommentnum() {
         return commentnum;
-    }
-
-    public void setCommentnum(Integer commentnum) {
-        this.commentnum = commentnum;
-        commentnum++;
+        
     }
 
     public String getComment() {
         return comment;
     }
 
+
+
+
     public void setComment(String comment) {
         this.comment = comment;
+  
     }
 
   

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.mycompany.togi;
 
 import java.math.BigDecimal;
@@ -37,7 +33,7 @@ public class ArtWS {
 
         List<Art> art = artService.selectItems();
         
-//        art.setComment(art.getComment());
+
         if (art == null) {
             return Response.status(Status.NO_CONTENT).build();
         }
@@ -49,13 +45,14 @@ public class ArtWS {
     @Produces(MediaType.TEXT_PLAIN)
     public Response createArt(Art art) {  
         art.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
-//        art.setComment(art.getComment());
-//        art.setImg(art.getImg());
-        art.setCommentnum(0);
+        Board b=new Board();
+        art.setCommentnum(b.getCommentnum());
+        Integer postnum=art.getCommentnum();
+
         Date date = new Date();
         art.setDate(date);
         art.setBoard("Art");
-        art.setPost(0);  
+        art.setPost(postnum);  
         artService.persist(art);
         return Response.ok(art.getId()).build();
     }

@@ -15,7 +15,7 @@
             </a>
             <h2 class="threadName">Thread Name</h2>
             <button type="button" class="newComment" id="buttonReply">Reply</button>
-            <form action="commentList" style="display:none" method="post" id="replyBox">
+            <form action="post.html" style="display:none" method="post" id="replyBox">
                 Image URL: <input type="text" name="image" id="image">
                 <fieldset>
                     <legend>Comment</legend>
@@ -42,7 +42,7 @@
 
 
         <script>
-             function loadComments() {
+             function loadComments() {   
                $.ajax({
                     url: 'api/comments/post',
                     type: 'get',
@@ -58,9 +58,10 @@
                         });
                     },
                     error: function () {
-//                        alert('Error');
+                        alert('Error');
                     }
                 });
+                  
             
         }
                          
@@ -97,6 +98,7 @@
                 }
             }
             $('#buttonPost').click(function () {
+                    window.location.reload();
                 var img = $("#image").val();
                 var comment = $('#comment').val();
                 $('#errorc').html('');
@@ -121,15 +123,16 @@
                     contentType: 'application/json',
                     dataType: 'text',
                     success: function (resp) {
-
-                        $('#response').html('Your comment has been sent.');
-                        loadComments();
+                        alert('success');
+                      loadComments();
+//                      
                     
                     },
                     error: function () {
-                       loadComments()
+                       alert('Error');
                     }
                 });
+              
                 return false;
             });
 
