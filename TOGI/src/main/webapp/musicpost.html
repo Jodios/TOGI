@@ -24,7 +24,7 @@
                               placeholder="Enter your comment here..."></textarea>
 
                 </fieldset>
-                <button onClick="javascript:window.location.href = 'post.html'" id="buttonPost">Post Comment</button>
+                <button onClick="javascript:window.location.href = 'musicpost.html'" id="buttonPost">Post Comment</button>
             </form>
         </div>
 
@@ -37,7 +37,7 @@
         <script>
             function loadComments() {
                 $.ajax({
-                    url: 'api/comments/get',
+                    url: 'api/musiccomments/get',
                     type: 'get',
                     dataType: 'json',
                     success: function (data) {
@@ -113,7 +113,7 @@
                     comment: comment
                 });
                 $.ajax({
-                    url: 'api/comments',
+                    url: 'api/musiccomments/post',
                     type: 'post',
                     data: data,
                     contentType: 'application/json',
@@ -125,7 +125,7 @@
 
                     },
                     error: function () {
-                        alert('Error');
+                       
                     }
                 });
 
