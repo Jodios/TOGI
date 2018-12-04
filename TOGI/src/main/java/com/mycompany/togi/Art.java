@@ -146,6 +146,7 @@ public class Art implements Serializable {
     }
 
     public void setPost(Integer post) {
+        
         this.post = post;
     }
 
