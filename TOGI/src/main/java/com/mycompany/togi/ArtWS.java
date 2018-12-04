@@ -24,6 +24,7 @@ public class ArtWS {
     private UriInfo context;
     @EJB
     private ArtService artService;
+    private GamesService gamesservice;
 
     @GET
     @Path("post")
@@ -56,4 +57,5 @@ public class ArtWS {
         artService.persist(art);
         return Response.ok(art.getId()).build();
     }
+
 }
