@@ -7,7 +7,6 @@ package com.mycompany.togi;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 
@@ -24,17 +22,23 @@ import javax.validation.constraints.Size;
 @Table(name="Games")
 public class Games implements Serializable {
 
-    @Id
-    @Basic(optional = false)
-    @NotNull
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
     @Column(name = "Postnum")
     private Integer post;
     @Column(name = "Date_")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCommentnum(Integer commentnum) {
+        this.commentnum = commentnum;
+       
     }
     @Size(max = 45)
     @Column(name = "Title")
@@ -47,12 +51,24 @@ public class Games implements Serializable {
     @Size(max = 9999)
     @Column(name = "Comment")
     private String comment;
+    @Size(max = 500)
+    @Column(name = "imglink")
+    private String image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+  
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     
 
     public Long getId() {
@@ -60,7 +76,6 @@ public class Games implements Serializable {
     }
 
     public String getTitle() {
-     
         return title;
     }
 
@@ -79,21 +94,20 @@ public class Games implements Serializable {
 
     public Integer getCommentnum() {
         return commentnum;
-    }
-
-    public void setCommentnum(Integer commentnum) {
-        this.commentnum = commentnum;
+        
     }
 
     public String getComment() {
         return comment;
     }
 
+
+
+
     public void setComment(String comment) {
         this.comment = comment;
-    }
-
   
+    }
 
     @Override
     public int hashCode() {

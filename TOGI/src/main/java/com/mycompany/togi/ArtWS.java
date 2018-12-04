@@ -47,13 +47,17 @@ public class ArtWS {
     public Response createArt(Art art) {  
         art.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
         Board b=new Board();
-        art.setCommentnum(b.getCommentnum());
-        Integer postnum=art.getCommentnum();
-
+         art.setCommentnum(b.getCommentnum());
+        Integer i=b.getCommentnum()+1;
+         b.setCommentnum(i);
+       
+        
+        
+       
         Date date = new Date();
         art.setDate(date);
         art.setBoard("Art");
-        art.setPost(0);  
+        art.setPost(1);  
         artService.persist(art);
         return Response.ok(art.getId()).build();
     }

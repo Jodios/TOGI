@@ -22,25 +22,22 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-
 @Stateless
 @Path("gcomments")
-public class GamesFacadeREST {
-    
+public class GamesWS {
+
     @Context
     private UriInfo context;
     @EJB
-    
     private GamesService gamesservice;
 
-   @GET
+    @GET
     @Path("post")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response readgames() {
 
         List<Games> games = gamesservice.selectItems();
-        
 
         if (games == null) {
             return Response.status(Response.Status.NO_CONTENT).build();
@@ -51,19 +48,18 @@ public class GamesFacadeREST {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response createGames(Games games) {  
-        games.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
-        Board b=new Board();
+    public Response createGames(Games games) {
+        games.setId(Long.MIN_VALUE + Long.MAX_VALUE / 2);
+        Board b = new Board();
         games.setCommentnum(b.getCommentnum());
-        Integer postnum=games.getCommentnum();
+        Integer postnum = games.getCommentnum();
 
         Date date = new Date();
         games.setDate(date);
         games.setBoard("Games");
-        games.setPost(0);  
+        games.setPost(0);
         gamesservice.persist(games);
         return Response.ok(games.getId()).build();
     }
 
-    
 }
