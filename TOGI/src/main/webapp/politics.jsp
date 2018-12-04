@@ -22,15 +22,15 @@
             <a href="index.html">
                 <div class = "logo"></div>
             </a>
-            <button type="button" class="newPost" id="buttonPost">Create Post</button>
-            <form action="politics.html" style="display:none" method="post" id="postBox">
-                Image URL: <input type="text" id="image">
+            <button type="button" class="newPost" id="buttonReply">Create Post</button>
+            <form action="politics.jsp" style="display:none" method="post" id="postBox">
+                Image URL: <input type="text" name="image" id="image">
                 <fieldset>
                     <legend>Title</legend>
                     <textarea rows="5" cols="50" name="title"
                               placeholder="Enter your title here..."></textarea>
                 </fieldset>
-                <input type="submit" value="Create Post">
+                <button onClick="javascript:window.location.href = 'post.html'" id="buttonPost">Post Comment</button>
             </form>
         </div>
 
@@ -112,7 +112,7 @@
                         $('#tdata').empty();
                         $.each(data, function (i, r) {
                             var tr = "<tr><td><a href = 'post.html'><div class = \"content\">" +
-                                    "<div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div>" +
+                                    "<object><a href='"+r.image+"'><div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div></a></object>" +
                                     "<div class = \"title\" >" +
                                     r.comment +
                                     "</div>" + "</div></a></td></tr>";
@@ -130,9 +130,9 @@
                 loadComments();
             });
 
-//            window.onscroll = function () {
-//                stickyHeader();
-//            };
+            window.onscroll = function () {
+                stickyHeader();
+            };
 
             var header = document.getElementById("myHeader");
             var sticky = header.offsetTop;
@@ -144,7 +144,7 @@
                     header.classList.remove("sticky");
                 }
             }
-            document.getElementById("buttonPost").onclick = function () {
+            document.getElementById("buttonReply").onclick = function () {
                 hideCommentBox();
             };
             function hideCommentBox() {
