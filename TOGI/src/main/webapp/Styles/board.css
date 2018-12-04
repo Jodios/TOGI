@@ -11,7 +11,7 @@
     height: 60px;
     float: right;
     bottom: 65px;
-    -webkit-transition-duration: 0.4s; /* Safari */
+    -webkit-transition-duration: 0.4s;
     transition-duration: 0.8s;
 }
 .newPost:hover{
@@ -35,6 +35,7 @@
 
 .content{
     position: relative;    
+    float: left;
     width: 97%;
     border-style: dotted;
     padding: 20px;

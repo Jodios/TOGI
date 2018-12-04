@@ -1,3 +1,10 @@
+<%-- 
+    Document   : art
+    Created on : Dec 3, 2018, 7:17:16 PM
+    Author     : jortiz
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
