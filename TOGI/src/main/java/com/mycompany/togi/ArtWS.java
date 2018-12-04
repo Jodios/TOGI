@@ -52,7 +52,7 @@ public class ArtWS {
         Date date = new Date();
         art.setDate(date);
         art.setBoard("Art");
-        art.setPost(postnum);  
+        art.setPost(0);  
         artService.persist(art);
         return Response.ok(art.getId()).build();
     }

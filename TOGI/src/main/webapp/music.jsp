@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="Styles/board.css">
     </head>
     <body>
-        <!--this is the banner on the top of the page-->
+        
         <div class="header" id="myHeader">
             <h2 class="boardName">Music</h2>
             <a href="index.html">
