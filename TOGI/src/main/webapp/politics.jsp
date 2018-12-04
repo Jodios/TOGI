@@ -40,7 +40,7 @@
                 <div class="content">
                     <div class="imgdiv"></div>
                     <div class="title">
-                        This board is mean to discuss politics.
+                        This board is mean to discuss politics. 
                     </div>
                 </div>
                             </a></td></tr>

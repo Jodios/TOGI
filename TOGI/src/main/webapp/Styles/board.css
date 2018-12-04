@@ -32,15 +32,18 @@
     width: 200px;
     height: 85px;
 }
-
+table{
+    width: 97%
+}
 .content{
-    position: relative;    
+    position: relative;  
+    background: rgba(39,164,221, .2);
     float: left;
-    width: 97%;
+    width: 100%;
     border-style: dotted;
     padding: 20px;
     height: 100px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .imgdiv{
@@ -60,7 +63,8 @@
     position: relative;
     float:right;
     border-style: dotted;
-    width: 80%;
+    width: 90%;
+    height: 50%;
     padding: 20px;
     margin-bottom: 10px;
 }
