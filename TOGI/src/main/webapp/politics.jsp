@@ -23,8 +23,8 @@
                 <div class = "logo"></div>
             </a>
             <button type="button" class="newPost" id="buttonPost">Create Post</button>
-            <form action="submit" style="display:none" method="post" id="postBox">
-                Image URL: <input type="text" name="image">
+            <form action="politics.html" style="display:none" method="post" id="postBox">
+                Image URL: <input type="text" id="image">
                 <fieldset>
                     <legend>Title</legend>
                     <textarea rows="5" cols="50" name="title"
@@ -75,7 +75,7 @@
         </script>
 
         <!--this is the script to actually show the threads on the site :)-->
-        <script>
+<!--        <script>
             $.ajax({
                 url: 'boardservlet',
                 type: 'post',
@@ -101,6 +101,99 @@
                     alert('Something has gone wrong');
                 }
             });
+        </script>-->
+        <script>
+            function loadComments() {
+                $.ajax({
+                    url: 'api/comments/post',
+                    type: 'get',
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#tdata').empty();
+                        $.each(data, function (i, r) {
+                            var tr = "<tr><td><a href = 'post.html'><div class = \"content\">" +
+                                    "<div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div>" +
+                                    "<div class = \"title\" >" +
+                                    r.comment +
+                                    "</div>" + "</div></a></td></tr>";
+                            $('#tdata').append(tr);
+                        });
+                    },
+                    error: function () {
+                        alert('Error');
+                    }
+                });
+            }
+
+
+            $(document).ready(function () {
+                loadComments();
+            });
+
+//            window.onscroll = function () {
+//                stickyHeader();
+//            };
+
+            var header = document.getElementById("myHeader");
+            var sticky = header.offsetTop;
+
+            function stickyHeader() {
+                if (window.pageYOffset > sticky) {
+                    header.classList.add("sticky");
+                } else {
+                    header.classList.remove("sticky");
+                }
+            }
+            document.getElementById("buttonPost").onclick = function () {
+                hideCommentBox();
+            };
+            function hideCommentBox() {
+                var x = document.getElementById("postBox");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                } else {
+                    x.style.display = "none";
+                }
+            }
+            $('#buttonPost').click(function () {
+                window.location.reload();
+                var img = $("#image").val();
+                var comment = $('#comment').val();
+                $('#errorc').html('');
+                $('#error').html('');
+                if (img.length === 0 || comment.length === 0) {
+                    if (img.length === 0) {
+                        $('#errorc').html('Invalid Image URL');
+                    }
+                    if (comment.length === 0) {
+                        $('#error').html('Invalid Comment');
+                    }
+                    return;
+                }
+                var data = JSON.stringify({
+                    image: img,
+                    comment: comment
+                });
+                $.ajax({
+                    url: 'api/comments',
+                    type: 'post',
+                    data: data,
+                    contentType: 'application/json',
+                    dataType: 'text',
+                    success: function (resp) {
+                        alert('success');
+                        loadComments();
+//                      
+
+                    },
+                    error: function () {
+                        alert('Error');
+                    }
+                });
+
+                return false;
+            });
+
         </script>
     </body>
 </html>
