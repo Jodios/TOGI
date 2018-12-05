@@ -21,10 +21,14 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
-@Table(name="Politics")
+@Table(name = "Politics")
 
 public class Politics implements Serializable {
-  public void setId(Long id) {
+    public static Integer pcounter=0;
+
+
+
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -40,7 +44,7 @@ public class Politics implements Serializable {
 
     public void setCommentnum(Integer commentnum) {
         this.commentnum = commentnum;
-       
+
     }
 
     public Date getDate() {
@@ -74,7 +78,7 @@ public class Politics implements Serializable {
     public void setImage(String image) {
         this.image = image;
     }
-    
+
     @Size(max = 45)
     @Column(name = "Title")
     private String title;
@@ -89,7 +93,7 @@ public class Politics implements Serializable {
     @Size(max = 500)
     @Column(name = "imglink")
     private String image;
-    
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -133,9 +137,13 @@ public class Politics implements Serializable {
 
     public void setPost(Integer post) {
         this.post = post;
+        pcounter=this.post;
+        System.out.println(pcounter);
     }
 
-   
+    public static void setPcounter(Integer pcounter) {
+        Politics.pcounter = pcounter;
+    }
 
     public String getBoard() {
         return board;
@@ -153,7 +161,4 @@ public class Politics implements Serializable {
         return id;
     }
 
-
-  
-    
 }

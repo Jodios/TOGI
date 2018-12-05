@@ -14,7 +14,7 @@
             <a href="index.html">
                 <div class = "logo"></div>
             </a>
-            <h2 class="threadName">Thread Name</h2>
+            <h2 id="thread" class="threadName">Thread Name</h2>
             <button type="button" class="newComment" id="buttonReply">Reply</button>
             <form action="politicspost.html" style="display:none" method="post" id="replyBox">
                 Image URL: <input type="text" name="image" id="image">
@@ -40,15 +40,23 @@
                     url: 'api/polcomments/get2',
                     type: 'get',
                     dataType: 'json',
-                    success: function (data) {
+                    success: function (data) { 
+                     
                         $('#tdata').empty();
+                        
+                      
                         $.each(data, function (i, r) {
+                          
+                           console.log(r.post)
                             var tr = "<tr><td><div class = \"content\">" +
                                     "<div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div>" +
                                     "<div class = \"title\" >" +
                                     r.comment +
                                     "</div>" + "</div></td></tr>";
                             $('#tdata').append(tr);
+                            $("#thread").text(r.title);
+                        
+                    
 //                            table.append("<tr><td><div class = \"content\">" +
 //                                    "<div class = \"imgdiv\" style=\"background-image: url(" + imgurl + ")\"></div>" +
 //                                    "<div class = \"title\" >" +
