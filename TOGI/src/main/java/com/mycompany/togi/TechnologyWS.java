@@ -17,56 +17,55 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-@Path("gcomments")
-public class GamesWS {
-    private static int postCounter=1;
+@Path("techcomments")
+public class TechnologyWS {
+    public static int counter=0;
 
     @Context
     private UriInfo context;
     @EJB
-    private GamesService gamesService;
-    
+    private TechnologyService techService;
+
     @GET
     @Path("get")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response readGames() {
+    public Response readTechnology() {
 
-        List<Games> games = gamesService.selectItems();
+        List<Technology> tech = techService.selectItems();
         
 
-        if (games == null) {
+        if (tech == null) {
             return Response.status(Status.NO_CONTENT).build();
         }
-        return Response.ok(games).build();
+        return Response.ok(tech).build();
     }
     
     @POST
     @Path("post")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response createGames(Games games) {  
-        games.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
+    public Response createTechnology(Technology tech) {  
+        tech.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
         Board b=new Board();
-        games.setCommentnum(b.getCommentnum());
+        tech.setCommentnum(b.getCommentnum());
        
        
         Date date = new Date();
-        games.setDate(date);
-        games.setBoard("Games");
-        games.setPost(postCounter);  
-        gamesService.persist(games);
-        postCounter++;
-        return Response.ok(games.getId()).build();
+        tech.setDate(date);
+        tech.setBoard("Photography");
+        tech.setPost(1);  
+        techService.persist(tech);
+        return Response.ok(tech.getId()).build();
     }
-      public Response readgames() {
+      public Response readtechnology() {
 
-        List<Games> games = gamesService.selectItems();
+        List<Technology> tech = techService.selectItems();
 
-        if (games == null) {
+        if (tech == null) {
             return Response.status(Response.Status.NO_CONTENT).build();
         }
-        return Response.ok(games).build();
+        return Response.ok(tech).build();
     }
 
 

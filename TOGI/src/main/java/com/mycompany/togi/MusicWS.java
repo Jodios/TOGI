@@ -53,7 +53,7 @@ public class MusicWS {
        
         Date date = new Date();
         music.setDate(date);
-        music.setBoard("Music");
+        music.setBoard("Photography");
         music.setPost(1);  
         musicService.persist(music);
         return Response.ok(music.getId()).build();

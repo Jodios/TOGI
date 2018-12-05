@@ -17,56 +17,55 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-@Path("gcomments")
-public class GamesWS {
-    private static int postCounter=1;
+@Path("pcomments")
+public class PhotographyWS {
+    public static int counter=0;
 
     @Context
     private UriInfo context;
     @EJB
-    private GamesService gamesService;
-    
+    private PhotographyService photogService;
+
     @GET
     @Path("get")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response readGames() {
+    public Response readPhotography() {
 
-        List<Games> games = gamesService.selectItems();
+        List<Photography> photog = photogService.selectItems();
         
 
-        if (games == null) {
+        if (photog == null) {
             return Response.status(Status.NO_CONTENT).build();
         }
-        return Response.ok(games).build();
+        return Response.ok(photog).build();
     }
     
     @POST
     @Path("post")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response createGames(Games games) {  
-        games.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
+    public Response createPhotography(Photography photog) {  
+        photog.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
         Board b=new Board();
-        games.setCommentnum(b.getCommentnum());
+        photog.setCommentnum(b.getCommentnum());
        
        
         Date date = new Date();
-        games.setDate(date);
-        games.setBoard("Games");
-        games.setPost(postCounter);  
-        gamesService.persist(games);
-        postCounter++;
-        return Response.ok(games.getId()).build();
+        photog.setDate(date);
+        photog.setBoard("Photography");
+        photog.setPost(1);  
+        photogService.persist(photog);
+        return Response.ok(photog.getId()).build();
     }
-      public Response readgames() {
+      public Response readphotography() {
 
-        List<Games> games = gamesService.selectItems();
+        List<Photography> photog = photogService.selectItems();
 
-        if (games == null) {
+        if (photog == null) {
             return Response.status(Response.Status.NO_CONTENT).build();
         }
-        return Response.ok(games).build();
+        return Response.ok(photog).build();
     }
 
 

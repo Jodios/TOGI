@@ -17,56 +17,55 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-@Path("gcomments")
-public class GamesWS {
-    private static int postCounter=1;
+@Path("randcomments")
+public class RandomWS {
+    public static int counter=0;
 
     @Context
     private UriInfo context;
     @EJB
-    private GamesService gamesService;
-    
+    private RandomService randService;
+
     @GET
     @Path("get")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response readGames() {
+    public Response readRandom() {
 
-        List<Games> games = gamesService.selectItems();
+        List<Random> rand = randService.selectItems();
         
 
-        if (games == null) {
+        if (rand == null) {
             return Response.status(Status.NO_CONTENT).build();
         }
-        return Response.ok(games).build();
+        return Response.ok(rand).build();
     }
     
     @POST
     @Path("post")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response createGames(Games games) {  
-        games.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
+    public Response createRandom(Random rand) {  
+        rand.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
         Board b=new Board();
-        games.setCommentnum(b.getCommentnum());
+        rand.setCommentnum(b.getCommentnum());
        
        
         Date date = new Date();
-        games.setDate(date);
-        games.setBoard("Games");
-        games.setPost(postCounter);  
-        gamesService.persist(games);
-        postCounter++;
-        return Response.ok(games.getId()).build();
+        rand.setDate(date);
+        rand.setBoard("Photography");
+        rand.setPost(1);  
+        randService.persist(rand);
+        return Response.ok(rand.getId()).build();
     }
-      public Response readgames() {
+      public Response readrandom() {
 
-        List<Games> games = gamesService.selectItems();
+        List<Random> rand = randService.selectItems();
 
-        if (games == null) {
+        if (rand == null) {
             return Response.status(Response.Status.NO_CONTENT).build();
         }
-        return Response.ok(games).build();
+        return Response.ok(rand).build();
     }
 
 

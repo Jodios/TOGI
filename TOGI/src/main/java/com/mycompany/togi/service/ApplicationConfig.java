@@ -30,7 +30,6 @@ public class ApplicationConfig extends Application {
         resources.add(com.mycompany.togi.MusicWS.class);
         resources.add(com.mycompany.togi.PoliticsWS.class);
         resources.add(service.PhotographyFacadeREST.class);
-        resources.add(service.RandomFacadeREST.class);
         resources.add(service.TechnologyFacadeREST.class);
     }
     
