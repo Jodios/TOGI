@@ -30,7 +30,7 @@ public class PoliticsWS {
     @Path("get")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response readPolitics() {
+    public synchronized Response readPolitics() {
 
         List<Politics> pol = politicsService.selectItems();
         
@@ -45,7 +45,7 @@ public class PoliticsWS {
     @Path("get2")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response readPolitics2() {
+    public synchronized Response readPolitics2() {
 
         List<Politics> pol = politicsService.selectItems();
      
@@ -61,7 +61,7 @@ public class PoliticsWS {
     @Path("post")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response createPolitics(Politics pol) {  
+    public synchronized Response createPolitics(Politics pol) {  
         
         pol.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
        
@@ -82,7 +82,7 @@ public class PoliticsWS {
     @Path("post2")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response createPolitics2(Politics pol) {  
+    public synchronized Response createPolitics2(Politics pol) {  
         
         pol.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
         pol.setCommentnum(ccounter);
