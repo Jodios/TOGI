@@ -28,5 +28,7 @@ public List<Politics> selectItems(){
 public void persist(Politics politic){
     em.persist(politic);
 }
-
+ public Politics selecttitle(String title) {
+        return em.find(Politics.class,title);
+    }
 }

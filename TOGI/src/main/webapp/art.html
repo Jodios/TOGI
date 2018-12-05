@@ -42,12 +42,17 @@
                     success: function (data) {
                         $('#tdata').empty();
                         $.each(data, function (i, r) {
-                            var tr = "<tr><td><a href = 'gamespost.html'><div class = \"content\">" +
+                                 if(r.title !== undefined){
+                            var tr = "<tr><td><a href = 'artpost.html'><div class = \"content\">" +
                                     "<object><a href = '" + r.image + "'><div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div></a></object>" +
                                     "<div class = \"title\" >" +
                                     r.title + ":     " + r.comment +
                                     "</div>" + "</div></a></td></tr>";
                             $('#tdata').append(tr);
+                        }
+                        else{
+                            
+                        }
                         });
                     },
                     error: function () {

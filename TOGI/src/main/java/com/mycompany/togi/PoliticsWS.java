@@ -17,6 +17,7 @@ import javax.ws.rs.core.Response.Status;
 
 @Path("polcomments")
 public class PoliticsWS {
+ 
     public static Integer pcounter=0;
      public static Integer ccounter=0;
 
@@ -47,6 +48,7 @@ public class PoliticsWS {
     public Response readPolitics2() {
 
         List<Politics> pol = politicsService.selectItems();
+     
         
 
         if (pol == null) {
@@ -89,6 +91,7 @@ public class PoliticsWS {
         Date date = new Date();
         pol.setDate(date);
         pol.setBoard("Politics");
+        pol.setTitle(pol.getTitle());
       
         politicsService.persist(pol);
         return Response.ok(pol.getId()).build();
