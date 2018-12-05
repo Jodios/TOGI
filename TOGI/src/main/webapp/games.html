@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TŌGI - Image Boards</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link rel="stylesheet" href="Styles/post.css">
+        <link rel="stylesheet" href="Styles/board.css">
+    </head>
+    <body>
+        <div class="header" id="myHeader">
+            <a href="index.html">
+                <div class = "logo"></div>
+            </a>
+            <h2 class="threadName">Games</h2>
+            <button type="button" class="newComment" id="buttonReply">Reply</button>
+            <form action="games.html" style="display:none" method="post" id="replyBox">
+                Image URL: <input type="text" name="image" id="image">
+                <fieldset>
+                    <legend>Title</legend>
+                    <textarea rows="5" cols="50" name="title" id="comment"
+                              placeholder="Enter your title here..."></textarea>
+
+                </fieldset>
+                <button onClick="javascript:window.location.href = 'games.html'" id="buttonPost">Post Comment</button>
+            </form>
+        </div>
+
+        <table id="tdata">
+            <tbody>                
+            </tbody>
+        </table>
+
+
+        <script>
+            function loadComments() {
+                $.ajax({
+                    url: 'api/gcomments/get',
+                    type: 'get',
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#tdata').empty();
+                        $.each(data, function (i, r) {
+                            var tr = "<tr><td><div class = \"content\">" +
+                                    "<div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div>" +
+                                    "<div class = \"title\" >" +
+                                    r.comment +
+                                    "</div>" + "</div></td></tr>";
+                            $('#tdata').append(tr);
+                        });
+                    },
+                    error: function () {
+                        alert('Error');
+                    }
+                });
+            }
+
+
+            $(document).ready(function () {
+                loadComments();
+            });
+
+            window.onscroll = function () {
+                stickyHeader();
+            };
+
+            var header = document.getElementById("myHeader");
+            var sticky = header.offsetTop;
+
+            function stickyHeader() {
+                if (window.pageYOffset > sticky) {
+                    header.classList.add("sticky");
+                } else {
+                    header.classList.remove("sticky");
+                }
+            }
+            document.getElementById("buttonReply").onclick = function () {
+                hideCommentBox();
+            };
+            function hideCommentBox() {
+                var x = document.getElementById("replyBox");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                } else {
+                    x.style.display = "none";
+                }
+            }
+            $('#buttonPost').click(function () {
+                window.location.reload();
+                var img = $("#image").val();
+                var comment = $('#comment').val();
+                $('#errorc').html('');
+                $('#error').html('');
+                if (img.length === 0 || comment.length === 0) {
+                    if (img.length === 0) {
+                        $('#errorc').html('Invalid Image URL');
+                    }
+                    if (comment.length === 0) {
+                        $('#error').html('Invalid Comment');
+                    }
+                    return;
+                }
+                var data = JSON.stringify({
+                    image: img,
+                    comment: comment
+                });
+                $.ajax({
+                    url: 'api/gcomments/post',
+                    type: 'post',
+                    data: data,
+                    contentType: 'application/json',
+                    dataType: 'text',
+                    success: function (resp) {
+                        alert('success');
+                        loadComments();
+//                      
+
+                    },
+                    error: function () {
+                        alert('Error');
+                    }
+                });
+
+                return false;
+            });
+
+        </script>
+
+    </body>
+</html>
