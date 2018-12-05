@@ -2,17 +2,14 @@ package com.mycompany.togi;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -20,7 +17,7 @@ import javax.validation.constraints.Size;
  * @author nolan
  */
 @Entity
-@Table(name="Photography")
+@Table(name = "Photography")
 public class Photography implements Serializable {
 
     @Column(name = "Postnum")
@@ -31,7 +28,7 @@ public class Photography implements Serializable {
 
     public void setCommentnum(Integer commentnum) {
         this.commentnum = commentnum;
-       
+
     }
     @Size(max = 45)
     @Column(name = "Title")
@@ -55,14 +52,11 @@ public class Photography implements Serializable {
     public void setImage(String image) {
         this.image = image;
     }
-  
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    
 
     public Long getId() {
         return id;
@@ -78,7 +72,7 @@ public class Photography implements Serializable {
 
     public Date getDate() {
         return date;
-        
+
     }
 
     public void setDate(Date date) {
@@ -87,22 +81,17 @@ public class Photography implements Serializable {
 
     public Integer getCommentnum() {
         return commentnum;
-        
+
     }
 
     public String getComment() {
         return comment;
     }
 
-
-
-
     public void setComment(String comment) {
         this.comment = comment;
-  
-    }
 
-  
+    }
 
     @Override
     public int hashCode() {
@@ -141,11 +130,9 @@ public class Photography implements Serializable {
     }
 
     public void setPost(Integer post) {
-        
+
         this.post = post;
     }
-
-   
 
     public String getBoard() {
         return board;
@@ -163,5 +150,4 @@ public class Photography implements Serializable {
         this.id = id;
     }
 
-    
 }
