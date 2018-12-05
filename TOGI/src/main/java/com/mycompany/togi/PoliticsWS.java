@@ -24,7 +24,7 @@ public class PoliticsWS {
     private PoliticsService politicsService;
 
     @GET
-    @Path("post")
+    @Path("get")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response readPolitics() {
@@ -39,6 +39,7 @@ public class PoliticsWS {
     }
 
     @POST
+    @Path("post")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response createPolitics(Politics pol) {  

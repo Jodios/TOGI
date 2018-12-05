@@ -25,6 +25,7 @@ public class ArtWS {
     private UriInfo context;
     @EJB
     private ArtService artService;
+    private GamesService gamesservice;
 
     @GET
     @Path("get")
@@ -57,6 +58,32 @@ public class ArtWS {
         art.setPost(1);  
         artService.persist(art);
         return Response.ok(art.getId()).build();
+    }
+      public Response readgames() {
+
+        List<Games> games = gamesservice.selectItems();
+
+        if (games == null) {
+            return Response.status(Response.Status.NO_CONTENT).build();
+        }
+        return Response.ok(games).build();
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response createGames(Games games) {
+        games.setId(Long.MIN_VALUE + Long.MAX_VALUE / 2);
+        Board b = new Board();
+        games.setCommentnum(b.getCommentnum());
+        Integer postnum = games.getCommentnum();
+
+        Date date = new Date();
+        games.setDate(date);
+        games.setBoard("Games");
+        games.setPost(0);
+        gamesservice.persist(games);
+        return Response.ok(games.getId()).build();
     }
 
 }

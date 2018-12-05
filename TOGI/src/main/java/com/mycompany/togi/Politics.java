@@ -22,17 +22,59 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name="Politics")
-@XmlRootElement
-public class Politics implements Serializable {
 
-    @Id
-    @Basic(optional = false)
-    @NotNull
+public class Politics implements Serializable {
+  public void setId(Long id) {
+        this.id = id;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
     @Column(name = "Postnum")
     private Integer post;
     @Column(name = "Date_")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
+
+    public void setCommentnum(Integer commentnum) {
+        this.commentnum = commentnum;
+       
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+    
     @Size(max = 45)
     @Column(name = "Title")
     private String title;
@@ -44,51 +86,15 @@ public class Politics implements Serializable {
     @Size(max = 9999)
     @Column(name = "Comment")
     private String comment;
-
+    @Size(max = 500)
+    @Column(name = "imglink")
+    private String image;
+    
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getTitle() {
-  
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Date getDate() {
-        return date;
-        
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public Integer getCommentnum() {
-        return commentnum;
-    }
-
-    public void setCommentnum(Integer commentnum) {
-        this.commentnum = commentnum;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
     @Override
     public int hashCode() {
         int hash = 0;
@@ -139,9 +145,14 @@ public class Politics implements Serializable {
         this.board = board;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Integer getCommentnum() {
+        return commentnum;
     }
+
+    public Long getId() {
+        return id;
+    }
+
 
   
     
