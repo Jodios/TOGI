@@ -19,7 +19,8 @@ import javax.ws.rs.core.Response.Status;
 
 @Path("mucomments")
 public class MusicWS {
-    public static int counter=0;
+      public static Integer pcounter=0;
+     public static Integer ccounter=0;
 
     @Context
     private UriInfo context;
@@ -31,6 +32,20 @@ public class MusicWS {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response readMusic() {
+
+        List<Music> music = musicService.selectItems();
+        
+
+        if (music == null) {
+            return Response.status(Status.NO_CONTENT).build();
+        }
+        return Response.ok(music).build();
+    }
+     @GET
+    @Path("get2")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response readMusic2() {
 
         List<Music> music = musicService.selectItems();
         
@@ -58,14 +73,23 @@ public class MusicWS {
         musicService.persist(music);
         return Response.ok(music.getId()).build();
     }
-      public Response readmusic() {
 
-        List<Music> music = musicService.selectItems();
-
-        if (music == null) {
-            return Response.status(Response.Status.NO_CONTENT).build();
-        }
-        return Response.ok(music).build();
+     @POST
+    @Path("post2")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response createMusic2(Music music) {  
+        music.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
+        Board b=new Board();
+        music.setCommentnum(b.getCommentnum());
+       
+       
+        Date date = new Date();
+        music.setDate(date);
+        music.setBoard("Music");
+        music.setPost(1);  
+        musicService.persist(music);
+        return Response.ok(music.getId()).build();
     }
 
 

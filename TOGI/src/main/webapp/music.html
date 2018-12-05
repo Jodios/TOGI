@@ -4,7 +4,6 @@
         <title>TŌGI - Image Boards</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link rel="stylesheet" href="Styles/post.css">
         <link rel="stylesheet" href="Styles/board.css">
     </head>
@@ -16,7 +15,7 @@
             </a>
             <button type="button" class="newComment" id="buttonReply">Reply</button>
             <form action="music.html" style="display:none" method="post" id="replyBox">
-                 Title: <input type="text" name="title" id="title"><span id="errorc" class="error"></span>
+                Title: <input type="text" name="title" id="title"><span id="errorc" class="error"></span>
                 Image URL: <input type="text" name="image" id="image"><span id="errorc" class="error"></span>
                 <fieldset>
                     <legend>Comment</legend><span id="errorc" class="error"></span>
@@ -43,12 +42,17 @@
                     success: function (data) {
                         $('#tdata').empty();
                         $.each(data, function (i, r) {
-                            var tr = "<tr><td><a href = 'musicpost.html'><div class = \"content\">" +
-                                    "<object><a href = '"+ r.image +"'><div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div></a></object>" +
+                                 if(r.title !== undefined){
+                            var tr = "<tr><td><a href = 'muematicspost.html'><div class = \"content\">" +
+                                    "<object><a href = '" + r.image + "'><div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div></a></object>" +
                                     "<div class = \"title\" >" +
-                                   r.title +":     " + r.comment +
+                                    r.title + ":     " + r.comment +
                                     "</div>" + "</div></a></td></tr>";
                             $('#tdata').append(tr);
+                        }
+                        else{
+                            
+                        }
                         });
                     },
                     error: function () {
@@ -91,19 +95,19 @@
                 window.location.reload();
                 var img = $("#image").val();
                 var comment = $('#comment').val();
-                var title=$('#title').val();
+                var title = $('#title').val();
                 $('#errorc').html('');
                 $('#error').html('');
                 $('#error').html('');
-                if (img.length === 0 || comment.length === 0 ||title.length === 0) {
+                if (img.length === 0 || comment.length === 0 || title.length === 0) {
                     if (img.length === 0) {
                         $('#errorc').html('Invalid Image URL');
                     }
                     if (comment.length === 0) {
                         $('#error').html('Invalid Comment');
                     }
-                    if(title.length === 0){
-                         $('#error').html('Ivalid Title');
+                    if (title.length === 0) {
+                        $('#error').html('Ivalid Title');
                     }
                     return;
                 }
@@ -125,7 +129,7 @@
 
                     },
                     error: function () {
-                        alert('Error');
+//                        alert('Error');
                     }
                 });
 
