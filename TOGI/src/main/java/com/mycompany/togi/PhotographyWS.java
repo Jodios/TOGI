@@ -19,55 +19,79 @@ import javax.ws.rs.core.Response.Status;
 
 @Path("pcomments")
 public class PhotographyWS {
-    public static int counter=0;
+   public static Integer pcounter = 0;
+    public static Integer ccounter = 0;
+
 
     @Context
     private UriInfo context;
     @EJB
-    private PhotographyService photogService;
+    private PhotographyService photoService;
 
     @GET
     @Path("get")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response readPhotography() {
+    public Response readPhoto() {
 
-        List<Photography> photog = photogService.selectItems();
+        List<Photography> photo = photoService.selectItems();
         
 
-        if (photog == null) {
+        if (photo == null) {
             return Response.status(Status.NO_CONTENT).build();
         }
-        return Response.ok(photog).build();
+        return Response.ok(photo).build();
     }
+      @GET
+    @Path("get2")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response readPhoto2() {
+
+       List<Photography> photo = photoService.selectItems();
+        
+
+        if (photo == null) {
+            return Response.status(Status.NO_CONTENT).build();
+        }
+        return Response.ok(photo).build();
+    }
+    
     
     @POST
     @Path("post")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response createPhotography(Photography photog) {  
-        photog.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
-        Board b=new Board();
-        photog.setCommentnum(b.getCommentnum());
-       
-       
+    public Response createPhoto(Photography photo) {
+     photo.setId(Long.MIN_VALUE + Long.MAX_VALUE / 2);
+        Board b = new Board();
+        photo.setCommentnum(b.getCommentnum());
+
         Date date = new Date();
-        photog.setDate(date);
-        photog.setBoard("Photography");
-        photog.setPost(1);  
-        photogService.persist(photog);
-        return Response.ok(photog.getId()).build();
+        photo.setDate(date);
+        photo.setBoard("Photography");
+        pcounter++;
+        photo.setPost(pcounter);
+        ccounter++;
+        photoService.persist(photo);
+        return Response.ok(photo.getId()).build();
     }
-      public Response readphotography() {
-
-        List<Photography> photog = photogService.selectItems();
-
-        if (photog == null) {
-            return Response.status(Response.Status.NO_CONTENT).build();
-        }
-        return Response.ok(photog).build();
+     @POST
+    @Path("post2")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response createPhoto2(Photography photo) {
+        photo.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
+        photo.setCommentnum(ccounter);
+        ccounter++;
+        photo.setPost(pcounter);
+        Date date = new Date();
+        photo.setDate(date);
+        photo.setBoard("Photography");
+     
+      
+      photoService.persist(photo);
+        return Response.ok(photo.getId()).build();
     }
-
-
-
+     
 }

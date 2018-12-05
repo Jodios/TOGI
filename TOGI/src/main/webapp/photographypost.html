@@ -16,7 +16,7 @@
             </a>
             <h2 class="threadName">Thread Name</h2>
             <button type="button" class="newComment" id="buttonReply">Reply</button>
-            <form action="post.html" style="display:none" method="post" id="replyBox">
+            <form action="photographypost.html" style="display:none" method="post" id="replyBox">
                 Image URL: <input type="text" name="image" id="image">
                 <fieldset>
                     <legend>Comment</legend>
@@ -37,7 +37,7 @@
         <script>
             function loadComments() {
                 $.ajax({
-                    url: 'api/photographycomments/get',
+                    url: 'api/pcomments/get2',
                     type: 'get',
                     dataType: 'json',
                     success: function (data) {
@@ -49,12 +49,6 @@
                                     r.comment +
                                     "</div>" + "</div></td></tr>";
                             $('#tdata').append(tr);
-//                            table.append("<tr><td><div class = \"content\">" +
-//                                    "<div class = \"imgdiv\" style=\"background-image: url(" + imgurl + ")\"></div>" +
-//                                    "<div class = \"title\" >" +
-//                                    boards[i].split("-")[0] +
-//                                    "</div>" +
-//                                    "</div></td></tr>");
                         });
                     },
                     error: function () {
@@ -113,7 +107,7 @@
                     comment: comment
                 });
                 $.ajax({
-                    url: 'api/gcomments',
+                    url: 'api/pcomments/post2',
                     type: 'post',
                     data: data,
                     contentType: 'application/json',
@@ -121,11 +115,10 @@
                     success: function (resp) {
                         alert('success');
                         loadComments();
-//                      
-
                     },
                     error: function () {
-                       
+
+                        alert('');
                     }
                 });
 

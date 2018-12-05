@@ -19,7 +19,9 @@ import javax.ws.rs.core.Response.Status;
 
 @Path("techcomments")
 public class TechnologyWS {
-    public static int counter=0;
+   public static Integer pcounter = 0;
+    public static Integer ccounter = 0;
+
 
     @Context
     private UriInfo context;
@@ -40,34 +42,58 @@ public class TechnologyWS {
         }
         return Response.ok(tech).build();
     }
+      @GET
+    @Path("get2")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response readTechnology2() {
+
+        List<Technology> tech = techService.selectItems();
+        
+
+        if (tech == null) {
+            return Response.status(Status.NO_CONTENT).build();
+        }
+        return Response.ok(tech).build();
+    }
+    
     
     @POST
     @Path("post")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response createTechnology(Technology tech) {  
-        tech.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
-        Board b=new Board();
+    public Response createTechnology(Technology tech) {
+      tech.setId(Long.MIN_VALUE + Long.MAX_VALUE / 2);
+        Board b = new Board();
         tech.setCommentnum(b.getCommentnum());
-       
-       
+
         Date date = new Date();
         tech.setDate(date);
-        tech.setBoard("Photography");
-        tech.setPost(1);  
+        tech.setBoard("Technology");
+        pcounter++;
+        tech.setPost(pcounter);
+        ccounter++;
         techService.persist(tech);
         return Response.ok(tech.getId()).build();
     }
-      public Response readtechnology() {
-
-        List<Technology> tech = techService.selectItems();
-
-        if (tech == null) {
-            return Response.status(Response.Status.NO_CONTENT).build();
-        }
-        return Response.ok(tech).build();
+     @POST
+    @Path("post2")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response createTechnology2(Technology tech) {
+        tech.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
+        tech.setCommentnum(ccounter);
+        ccounter++;
+        tech.setPost(pcounter);
+        Date date = new Date();
+        tech.setDate(date);
+        tech.setBoard("Technology");
+     
+      
+       techService.persist(tech);
+        return Response.ok(tech.getId()).build();
     }
-
+     
 
 
 }

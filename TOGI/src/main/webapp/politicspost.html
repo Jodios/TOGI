@@ -42,21 +42,21 @@
                     dataType: 'json',
                     success: function (data) { 
 //                        var qs = new Querystring();
-                        var getUrlParameter = function getUrlParameter(sParam) {
-                            var sPageURL = window.location.search.substring(1),
-                                sURLVariables = sPageURL.split('&'),
-                                sParameterName,
-                                i;
-
-                            for (i = 0; i < sURLVariables.length; i++) {
-                                sParameterName = sURLVariables[i].split('=');
-
-                                if (sParameterName[0] === sParam) {
-                                    return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
-                                }
-                            }
-                        };
-                        console.log(getUrlParameter);
+//                        var getUrlParameter = function getUrlParameter(sParam) {
+//                            var sPageURL = window.location.search.substring(1),
+//                                sURLVariables = sPageURL.split('&'),
+//                                sParameterName,
+//                                i;
+//
+//                            for (i = 0; i < sURLVariables.length; i++) {
+//                                sParameterName = sURLVariables[i].split('=');
+//
+//                                if (sParameterName[0] === sParam) {
+//                                    return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+//                                }
+//                            }
+//                        };
+//                        console.log(getUrlParameter);
                         $('#tdata').empty();
                         
                         $.each(data, function (i, r) {
@@ -66,15 +66,14 @@
                                     "<div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div>" +
                                     "<div class = \"title\" >" +
                                     r.comment +
-//                                    "com:"+i +"post"+ r.post+
+
                                             "</div>" + "</div></td></tr>";
                        
                             $('#tdata').append(tr);
-                            $("#thread").text(r.title);
+                  
                        
                          }
-                    console.log(r.post+"\n");
-                   console.log(num+"\n");
+               
 //                            table.append("<tr><td><div class = \"content\">" +
 //                                    "<div class = \"imgdiv\" style=\"background-image: url(" + imgurl + ")\"></div>" +
 //                                    "<div class = \"title\" >" +

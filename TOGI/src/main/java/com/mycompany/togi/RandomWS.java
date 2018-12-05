@@ -19,12 +19,14 @@ import javax.ws.rs.core.Response.Status;
 
 @Path("randcomments")
 public class RandomWS {
-    public static int counter=0;
+  public static Integer pcounter = 0;
+    public static Integer ccounter = 0;
+
 
     @Context
     private UriInfo context;
     @EJB
-    private RandomService randService;
+    private RandomService randomService;
 
     @GET
     @Path("get")
@@ -32,7 +34,21 @@ public class RandomWS {
     @Produces(MediaType.APPLICATION_JSON)
     public Response readRandom() {
 
-        List<Random> rand = randService.selectItems();
+        List<Random> random = randomService.selectItems();
+        
+
+        if (random == null) {
+            return Response.status(Status.NO_CONTENT).build();
+        }
+        return Response.ok(random).build();
+    }
+      @GET
+    @Path("get2")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response readRandom2() {
+
+        List<Random> rand = randomService.selectItems();
         
 
         if (rand == null) {
@@ -41,32 +57,45 @@ public class RandomWS {
         return Response.ok(rand).build();
     }
     
+    
     @POST
     @Path("post")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response createRandom(Random rand) {  
-        rand.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
-        Board b=new Board();
+    public Response createRandom(Random rand) {
+      rand.setId(Long.MIN_VALUE + Long.MAX_VALUE / 2);
+        Board b = new Board();
         rand.setCommentnum(b.getCommentnum());
-       
-       
+
         Date date = new Date();
         rand.setDate(date);
-        rand.setBoard("Photography");
-        rand.setPost(1);  
-        randService.persist(rand);
+        rand.setBoard("Random");
+        pcounter++;
+        rand.setPost(pcounter);
+        ccounter++;
+        randomService.persist(rand);
         return Response.ok(rand.getId()).build();
     }
-      public Response readrandom() {
-
-        List<Random> rand = randService.selectItems();
-
-        if (rand == null) {
-            return Response.status(Response.Status.NO_CONTENT).build();
-        }
-        return Response.ok(rand).build();
+     @POST
+    @Path("post2")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response createTechnology2(Random rand) {
+        rand.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
+        rand.setCommentnum(ccounter);
+        ccounter++;
+        rand.setPost(pcounter);
+        Date date = new Date();
+        rand.setDate(date);
+        rand.setBoard("Random");
+     
+      
+      randomService.persist(rand);
+        return Response.ok(rand.getId()).build();
     }
+     
+
+
 
 
 
