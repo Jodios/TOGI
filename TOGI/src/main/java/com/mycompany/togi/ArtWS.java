@@ -69,21 +69,6 @@ public class ArtWS {
         return Response.ok(games).build();
     }
 
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.TEXT_PLAIN)
-    public Response createGames(Games games) {
-        games.setId(Long.MIN_VALUE + Long.MAX_VALUE / 2);
-        Board b = new Board();
-        games.setCommentnum(b.getCommentnum());
-        Integer postnum = games.getCommentnum();
 
-        Date date = new Date();
-        games.setDate(date);
-        games.setBoard("Games");
-        games.setPost(0);
-        gamesservice.persist(games);
-        return Response.ok(games.getId()).build();
-    }
 
 }
