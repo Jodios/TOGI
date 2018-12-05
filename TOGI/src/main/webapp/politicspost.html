@@ -44,18 +44,21 @@
                      
                         $('#tdata').empty();
                         
-                      
+                    
                         $.each(data, function (i, r) {
+                         
                           
-                           console.log(r.post)
+                     
                             var tr = "<tr><td><div class = \"content\">" +
                                     "<div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div>" +
                                     "<div class = \"title\" >" +
-                                    r.comment +
-                                    "</div>" + "</div></td></tr>";
+//                                    r.comment +"com:"+i +"post"+ r.post+
+                                            "</div>" + "</div></td></tr>";
+//                        }
                             $('#tdata').append(tr);
                             $("#thread").text(r.title);
-                        
+                       
+                       
                     
 //                            table.append("<tr><td><div class = \"content\">" +
 //                                    "<div class = \"imgdiv\" style=\"background-image: url(" + imgurl + ")\"></div>" +
