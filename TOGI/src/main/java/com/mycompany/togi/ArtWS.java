@@ -31,7 +31,7 @@ public class ArtWS {
     @Path("get")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response readArt() {
+    public synchronized Response readArt() {
 
         List<Art> art = artService.selectItems();
 
@@ -45,7 +45,7 @@ public class ArtWS {
     @Path("get2")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response readArt2() {
+    public synchronized Response readArt2() {
 
         List<Art> art = artService.selectItems();
 
@@ -62,7 +62,7 @@ public class ArtWS {
     @Path("post")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response createArt(Art art) {
+    public synchronized Response createArt(Art art) {
         art.setId(Long.MIN_VALUE + Long.MAX_VALUE / 2);
         Board b = new Board();
         art.setCommentnum(b.getCommentnum());
@@ -80,7 +80,7 @@ public class ArtWS {
     @Path("post2")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response createArt2(Art art) {
+    public synchronized Response createArt2(Art art) {
         art.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
         art.setCommentnum(ccounter);
         ccounter++;
