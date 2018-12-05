@@ -16,7 +16,7 @@
             </a>
             <button type="button" class="newComment" id="buttonReply">Create Post</button>
             <form action="politics.html" style="display:none" method="post" id="replyBox">
-                 Title: <input type="text" name="title" id="title"><span id="errorc" class="error"></span>
+                Title: <input type="text" name="title" id="title"><span id="errorc" class="error"></span>
                 Image URL: <input type="text" name="image" id="image"><span id="errorc" class="error"></span>
                 <fieldset>
                     <legend>First Comment</legend><span id="errorc" class="error"></span>
@@ -43,19 +43,16 @@
                     success: function (data) {
                         $('#tdata').empty();
                         $.each(data, function (i, r) {
-                          $('#tdata').empty();
-                        $.each(data, function (i, r) {
-                                 if(r.title !== undefined){
-                          var tr = "<tr><td><a href = 'politicspost.html?post="+r.post+"&title="+r.title+"'><div class = \"content\">" +
+                            if (r.title !== undefined) {
+                                var tr = "<tr><td><a href = 'politicspost.html?post=" + r.post + "&title=" + r.title + "'><div class = \"content\">" +
                                         "<object><a href = '" + r.image + "'><div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div></a></object>" +
                                         "<div class = \"title\" ><b>" +
-                                        r.title + 
+                                        r.title +
                                         "</b></div>" + "</div></a></td></tr>";
-                            $('#tdata').append(tr);
-                        }
-                        else{
-                            
-                        }
+                                $('#tdata').append(tr);
+                            } else {
+
+                            }
                         });
                     },
                     error: function () {
@@ -98,19 +95,19 @@
                 window.location.reload();
                 var img = $("#image").val();
                 var comment = $('#comment').val();
-                var title=$('#title').val();
+                var title = $('#title').val();
                 $('#errorc').html('');
                 $('#error').html('');
                 $('#error').html('');
-                if (img.length === 0 || comment.length === 0 ||title.length === 0) {
+                if (img.length === 0 || comment.length === 0 || title.length === 0) {
                     if (img.length === 0) {
                         $('#errorc').html('Invalid Image URL');
                     }
                     if (comment.length === 0) {
                         $('#error').html('Invalid Comment');
                     }
-                    if(title.length === 0){
-                         $('#error').html('Ivalid Title');
+                    if (title.length === 0) {
+                        $('#error').html('Ivalid Title');
                     }
                     return;
                 }
