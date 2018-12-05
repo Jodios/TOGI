@@ -17,15 +17,15 @@
             <h2 class="threadName">Thread Name</h2>
             <button type="button" class="newComment" id="buttonReply">Reply</button>
             <form action="politics.html" style="display:none" method="post" id="replyBox">
-                 Title: <input type="text" name="title" id="title"><span id="error" class="error"></span>
-                Image URL: <input type="text" name="image" id="image"><span id="error" class="error"></span>
+                 Title: <input type="text" name="title" id="title"><span id="errorc" class="error"></span>
+                Image URL: <input type="text" name="image" id="image"><span id="errorc" class="error"></span>
                 <fieldset>
-                    <legend>Comment</legend><span id="error" class="error"></span>
+                    <legend>Comment</legend><span id="errorc" class="error"></span>
                     <textarea rows="5" cols="50" name="comment" id="comment"
                               placeholder="Enter your comment here..."></textarea>
 
                 </fieldset>
-                <button  id="buttonPost">Post Comment</button>
+                <button onClick="javascript:window.location.href = 'politics.html'" id="buttonPost">Post Comment</button>
             </form>
         </div>
 
