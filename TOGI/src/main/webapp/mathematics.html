@@ -44,31 +44,16 @@
                         $('#tdata').empty();
                         console.log(data);
                         $.each(data, function (i, r) {
-<<<<<<< HEAD
-                                 if(r.title !== undefined){
-                            var tr = "<tr><td><a href = 'mathematicspost.html'><div class = \"content\">" +
-                                    "<object><a href = '" + r.image + "'><div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div></a></object>" +
-                                    "<div class = \"title\" ><b>" +
-                                    r.title + "</b>:     " + r.comment +
-                                    "</div>" + "</div></a></td></tr>";
-                            $('#tdata').append(tr);
-                        }
-                        else{
-                            
-                        }
-=======
-                            if(r.title !== undefined){
-                                var tr = "<tr><td><a href = 'mathematicspost.html?post="+r.post+"&title="+r.title+"'><div class = \"content\">" +
+                            if (r.title !== undefined) {
+                                var tr = "<tr><td><a href = 'mathematicspost.html'><div class = \"content\">" +
                                         "<object><a href = '" + r.image + "'><div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div></a></object>" +
-                                        "<div class = \"title\" >" +
-                                        r.title + ":     " + r.comment +
+                                        "<div class = \"title\" ><b>" +
+                                        r.title + "</b>:     " + r.comment +
                                         "</div>" + "</div></a></td></tr>";
                                 $('#tdata').append(tr);
-                            }
-                            else{
+                            } else {
 
                             }
->>>>>>> d8db8fb5c9a9060d80cd16f67317ce01712eb056
                         });
                     },
                     error: function () {
