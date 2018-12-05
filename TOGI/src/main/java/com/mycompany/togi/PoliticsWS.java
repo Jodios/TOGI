@@ -62,19 +62,16 @@ public class PoliticsWS {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public synchronized Response createPolitics(Politics pol) {  
-        
-        pol.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
-       
-        pcounter++;
-        pol.setPost(pcounter);
-      
+      pol.setId(Long.MIN_VALUE + Long.MAX_VALUE / 2);
+        Board b = new Board();
+        pol.setCommentnum(b.getCommentnum());
+
         Date date = new Date();
         pol.setDate(date);
-        pol.setBoard("Politics");
-        pol.setCommentnum(ccounter);
+        pol.setBoard("Art");
+        pcounter++;
+        pol.setPost(pcounter);
         ccounter++;
-
-
         politicsService.persist(pol);
         return Response.ok(pol.getId()).build();
     }

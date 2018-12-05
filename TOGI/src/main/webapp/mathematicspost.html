@@ -42,6 +42,7 @@
                 });
                 return vars;
             }
+           
             function loadComments() {
                 $.ajax({
                     url: 'api/mathcomments/get2',
@@ -54,12 +55,17 @@
                         console.log("testtesttest");
                         $('#tdata').empty();
                         $.each(data, function (i, r) {
+                            if(post==r.post){
                             var tr = "<tr><td><div class = \"content\">" +
                                     "<div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div>" +
                                     "<div class = \"title\" >" +
                                     r.comment +
                                     "</div>" + "</div></td></tr>";
                             $('#tdata').append(tr);
+                        }
+                        else{
+                            
+                        }
 //                            table.append("<tr><td><div class = \"content\">" +
 //                                    "<div class = \"imgdiv\" style=\"background-image: url(" + imgurl + ")\"></div>" +
 //                                    "<div class = \"title\" >" +
@@ -67,6 +73,11 @@
 //                                    "</div>" +
 //                                    "</div></td></tr>");
                         });
+                          $.each(data, function (i, r) {
+                              r.post=post;
+                           });
+                        
+                        
                     },
                     error: function () {
                         alert('Error');
@@ -124,14 +135,17 @@
                     comment: comment
                 });
                 $.ajax({
+                    
                     url: 'api/mathcomments/post2',
                     type: 'post',
                     data: data,
                     contentType: 'application/json',
                     dataType: 'text',
                     success: function (resp) {
+                        var post = getUrlVars()["post"];
                         alert('success');
                         loadComments();
+                        
                     },
                     error: function () {
 //                        alert('');
