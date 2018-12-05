@@ -49,8 +49,6 @@ public class GamesWS {
         games.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
         Board b=new Board();
         games.setCommentnum(b.getCommentnum());
-       
-       
         Date date = new Date();
         games.setDate(date);
         games.setBoard("Games");
