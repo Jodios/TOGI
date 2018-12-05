@@ -1,4 +1,3 @@
-
 package com.mycompany.togi;
 
 import java.math.BigDecimal;
@@ -19,13 +18,14 @@ import javax.ws.rs.core.Response.Status;
 
 @Path("comments")
 public class ArtWS {
-    public static int counter=0;
+
+    public static Integer pcounter = 0;
+    public static Integer ccounter = 0;
 
     @Context
     private UriInfo context;
     @EJB
     private ArtService artService;
-    private GamesService gamesservice;
 
     @GET
     @Path("get")
@@ -34,28 +34,28 @@ public class ArtWS {
     public Response readArt() {
 
         List<Art> art = artService.selectItems();
-        
 
         if (art == null) {
             return Response.status(Status.NO_CONTENT).build();
         }
         return Response.ok(art).build();
     }
-    
+
     @POST
     @Path("post")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response createArt(Art art) {  
-        art.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
-        Board b=new Board();
+    public Response createArt(Art art) {
+        art.setId(Long.MIN_VALUE + Long.MAX_VALUE / 2);
+        Board b = new Board();
         art.setCommentnum(b.getCommentnum());
-       
-       
+
         Date date = new Date();
         art.setDate(date);
         art.setBoard("Art");
-        art.setPost(1);  
+        pcounter++;
+        art.setPost(pcounter);
+        ccounter++;
         artService.persist(art);
         return Response.ok(art.getId()).build();
     }
