@@ -1,5 +1,7 @@
 package com.mycompany.togi;
 
+import static com.mycompany.togi.PoliticsWS.ccounter;
+import static com.mycompany.togi.PoliticsWS.pcounter;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -79,15 +81,15 @@ public class ArtWS {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response createArt2(Art art) {
-        art.setId(Long.MIN_VALUE + Long.MAX_VALUE / 2);
-        Board b = new Board();
-        art.setCommentnum(b.getCommentnum());
+        art.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
+        art.setCommentnum(ccounter);
+        ccounter++;
+        art.setPost(pcounter);
         Date date = new Date();
         art.setDate(date);
         art.setBoard("Art");
-        pcounter++;
-        art.setPost(pcounter);
-        ccounter++;
+     
+      
         artService.persist(art);
         return Response.ok(art.getId()).build();
     }

@@ -19,7 +19,8 @@ import javax.ws.rs.core.Response.Status;
 
 @Path("mathcomments")
 public class MathematicsWS {
-    public static int counter=0;
+      public static Integer pcounter=0;
+     public static Integer ccounter=0;
 
     @Context
     private UriInfo context;
@@ -40,12 +41,44 @@ public class MathematicsWS {
         }
         return Response.ok(math).build();
     }
+     @GET
+    @Path("get2")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response readMathematics2() {
+
+        List<Mathematics> math = mathService.selectItems();
+        
+
+        if (math == null) {
+            return Response.status(Status.NO_CONTENT).build();
+        }
+        return Response.ok(math).build();
+    }
     
     @POST
     @Path("post")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response createMathematics(Mathematics math) {  
+        math.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
+        Board b=new Board();
+        math.setCommentnum(b.getCommentnum());
+       
+       
+        Date date = new Date();
+        math.setDate(date);
+        math.setBoard("Mathematics");
+        math.setPost(1);  
+        mathService.persist(math);
+        return Response.ok(math.getId()).build();
+    }
+
+     @POST
+    @Path("post2")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response createMathematics2(Mathematics math) {  
         math.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
         Board b=new Board();
         math.setCommentnum(b.getCommentnum());

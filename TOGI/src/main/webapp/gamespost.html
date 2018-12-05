@@ -11,7 +11,7 @@
     <body>
         <div class="header" id="myHeader">
             <h2>TŌGI</h2>
-            <a href="index.html">7
+            <a href="index.html">
                 <div class = "logo"></div>
             </a>
             <h2 class="threadName">Thread Name</h2>
@@ -37,7 +37,7 @@
         <script>
             function loadComments() {
                 $.ajax({
-                    url: 'api/gcomments/post',
+                    url: 'api/comments/get2',
                     type: 'get',
                     dataType: 'json',
                     success: function (data) {
@@ -113,7 +113,7 @@
                     comment: comment
                 });
                 $.ajax({
-                    url: 'api/gcomments',
+                    url: 'api/comments/post2',
                     type: 'post',
                     data: data,
                     contentType: 'application/json',
@@ -121,11 +121,9 @@
                     success: function (resp) {
                         alert('success');
                         loadComments();
-//                      
-
                     },
                     error: function () {
-                        alert('Error');
+//                        alert('');
                     }
                 });
 

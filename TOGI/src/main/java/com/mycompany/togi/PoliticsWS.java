@@ -91,7 +91,7 @@ public class PoliticsWS {
         Date date = new Date();
         pol.setDate(date);
         pol.setBoard("Politics");
-        pol.setTitle(pol.getTitle());
+     
       
         politicsService.persist(pol);
         return Response.ok(pol.getId()).build();

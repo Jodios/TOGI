@@ -16,7 +16,7 @@
             </a>
             <h2 class="threadName">Thread Name</h2>
             <button type="button" class="newComment" id="buttonReply">Reply</button>
-            <form action="post.html" style="display:none" method="post" id="replyBox">
+            <form action="mathematicspost.html" style="display:none" method="post" id="replyBox">
                 Image URL: <input type="text" name="image" id="image">
                 <fieldset>
                     <legend>Comment</legend>
@@ -37,7 +37,7 @@
         <script>
             function loadComments() {
                 $.ajax({
-                    url: 'api/mathcomments/get',
+                    url: 'api/comments/get2',
                     type: 'get',
                     dataType: 'json',
                     success: function (data) {
@@ -113,7 +113,7 @@
                     comment: comment
                 });
                 $.ajax({
-                    url: 'api/mathcomments/post',
+                    url: 'api/comments/post2',
                     type: 'post',
                     data: data,
                     contentType: 'application/json',
@@ -121,11 +121,9 @@
                     success: function (resp) {
                         alert('success');
                         loadComments();
-//                      
-
                     },
                     error: function () {
-                       
+//                        alert('');
                     }
                 });
 
