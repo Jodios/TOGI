@@ -19,7 +19,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-@Path("comments")
+@Path("gcomments")
 public class GamesWS {
      public static Integer pcounter=0;
      public static Integer ccounter=0;

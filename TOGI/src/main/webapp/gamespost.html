@@ -37,7 +37,7 @@
         <script>
             function loadComments() {
                 $.ajax({
-                    url: 'api/comments/get2',
+                    url: 'api/gcomments/get2',
                     type: 'get',
                     dataType: 'json',
                     success: function (data) {
@@ -113,7 +113,7 @@
                     comment: comment
                 });
                 $.ajax({
-                    url: 'api/comments/post2',
+                    url: 'api/gcomments/post2',
                     type: 'post',
                     data: data,
                     contentType: 'application/json',
