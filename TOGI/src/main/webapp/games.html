@@ -15,15 +15,15 @@
             </a>
             <button type="button" class="newComment" id="buttonReply">Create Post</button>
             <form action="games.html" style="display:none" method="post" id="replyBox">
-                Title: <input type="text" name="title" id="title"><span id="errorc" class="error"></span>
-                Image URL: <input type="text" name="image" id="image"><span id="errorc" class="error"></span>
+                Title: <input type="text" name="title" id="title" required>
+                Image URL: <input type="text" name="image" id="image">
                 <fieldset>
-                    <legend>First Comment</legend><span id="errorc" class="error"></span>
+                    <legend>First Comment</legend>
                     <textarea rows="5" cols="50" name="comment" id="comment"
-                              placeholder="Enter your comment here..."></textarea>
+                              placeholder="Enter your comment here..." required></textarea>
 
                 </fieldset>
-                <button onClick="javascript:window.location.href = 'games.html'" id="buttonPost">Create Post</button>
+                <button id="buttonPost">Create Post</button>
             </form>
         </div>
 
@@ -40,19 +40,18 @@
                     type: 'get',
                     dataType: 'json',
                     success: function (data) {
-                       $('#tdata').empty();
+                        $('#tdata').empty();
                         $.each(data, function (i, r) {
-                                 if(r.title !== undefined){
-                          var tr = "<tr><td><a href = 'gamespost.html?post="+r.post+"&title="+r.title+"'><div class = \"content\">" +
+                            if (r.title !== undefined) {
+                                var tr = "<tr><td><a href = 'gamespost.html?post=" + r.post + "&title=" + r.title + "'><div class = \"content\">" +
                                         "<object><a href = '" + r.image + "'><div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div></a></object>" +
                                         "<div class = \"title\" ><b>" +
-                                        r.title + 
+                                        r.title +
                                         "</b></div>" + "</div></a></td></tr>";
-                            $('#tdata').append(tr);
-                        }
-                        else{
-                            
-                        }
+                                $('#tdata').append(tr);
+                            } else {
+
+                            }
                         });
                     },
                     error: function () {
@@ -65,10 +64,6 @@
             $(document).ready(function () {
                 loadComments();
             });
-
-//            window.onscroll = function () {
-//                stickyHeader();
-//            };
 
             var header = document.getElementById("myHeader");
             var sticky = header.offsetTop;
@@ -92,23 +87,13 @@
                 }
             }
             $('#buttonPost').click(function () {
-                window.location.reload();
                 var img = $("#image").val();
+                if (img === ""){
+                    img = "sampleLogo.png";
+                }
                 var comment = $('#comment').val();
                 var title = $('#title').val();
-                $('#errorc').html('');
-                $('#error').html('');
-                $('#error').html('');
-                if (img.length === 0 || comment.length === 0 || title.length === 0) {
-                    if (img.length === 0) {
-                        $('#errorc').html('Invalid Image URL');
-                    }
-                    if (comment.length === 0) {
-                        $('#error').html('Invalid Comment');
-                    }
-                    if (title.length === 0) {
-                        $('#error').html('Ivalid Title');
-                    }
+                if ( comment.length === 0 || title.length === 0) {
                     return;
                 }
                 var data = JSON.stringify({
@@ -123,9 +108,9 @@
                     contentType: 'application/json',
                     dataType: 'text',
                     success: function (resp) {
-                        alert('success');
+//                        alert('success');
                         loadComments();
-//                      
+                        window.location.reload();
 
                     },
                     error: function () {

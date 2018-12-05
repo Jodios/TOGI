@@ -63,7 +63,7 @@ public class MathematicsWS {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response createMathematics(Mathematics math) {  
-    math.setId(Long.MIN_VALUE + Long.MAX_VALUE / 2);
+   math.setId(Long.MIN_VALUE + Long.MAX_VALUE / 2);
         Board b = new Board();
         math.setCommentnum(b.getCommentnum());
 

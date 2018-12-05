@@ -4,26 +4,25 @@
         <title>TŌGI - Image Boards</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link rel="stylesheet" href="Styles/post.css">
         <link rel="stylesheet" href="Styles/board.css">
     </head>
     <body>
         <div class="header" id="myHeader">
-            <h2 class="boardName">Thread Name</h2>
+            <h2 id="title" class="boardName"></h2>
             <a href="index.html">
                 <div class = "logo"></div>
             </a>
-            <button type="button" class="newComment" id="buttonReply">Reply</button>
+            <button type="button" class="newComment" id="buttonReply" >Reply</button>
             <form action="technologypost.html" style="display:none" method="post" id="replyBox">
                 Image URL: <input type="text" name="image" id="image">
                 <fieldset>
                     <legend>Comment</legend>
-                    <textarea rows="5" cols="50" name="comment" id="comment"
-                              placeholder="Enter your comment here..."></textarea>
+                    <textarea rows="5" cols="50" name="comment" id="comment" 
+                              placeholder="Enter your comment here..." required></textarea>
 
                 </fieldset>
-                <button onClick="javascript:window.location.href = 'technologypost.html'" id="buttonPost">Post Comment</button>
+                <button id="buttonPost">Post Comment</button>
             </form>
         </div>
 
@@ -34,9 +33,9 @@
 
 
         <script>
-             function getUrlVars() {
+            function getUrlVars() {
                 var vars = {};
-                var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+                var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
                     vars[key] = value;
                 });
                 return vars;
@@ -49,20 +48,29 @@
                     success: function (data) {
                         var post = getUrlVars()["post"];
                         var title = getUrlVars()["title"];
+                        var title = decodeURI(title);
+                        document.getElementById("title").innerHTML = title;
+
                         $('#tdata').empty();
                         $.each(data, function (i, r) {
-                            if(post==r.post){
-                            var tr = "<tr><td><div class = \"content\">" +
-                                    "<div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div>" +
-                                    "<div class = \"title\" >" +
-                                    r.comment +
-                                    "</div>" + "</div></td></tr>";
-                            $('#tdata').append(tr);
-                        }
+                            if (post == r.post) {
+                                var tr = "<tr><td><div class = \"content\">" +
+                                        "<div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div>" +
+                                        "<div class = \"title\" >" +
+                                        r.comment +
+                                        "</div>" + "</div></td></tr>";
+                                $('#tdata').append(tr);
+                            } else {
+
+                            }
                         });
+
+
+
                     },
+
                     error: function () {
-//                        alert('Error');
+                        alert('Error');
                     }
                 });
             }
@@ -98,18 +106,12 @@
                 }
             }
             $('#buttonPost').click(function () {
-                window.location.reload();
                 var img = $("#image").val();
+                if (img === "") {
+                    img = "sampleLogo.png";
+                }
                 var comment = $('#comment').val();
-                $('#errorc').html('');
-                $('#error').html('');
-                if (img.length === 0 || comment.length === 0) {
-                    if (img.length === 0) {
-                        $('#errorc').html('Invalid Image URL');
-                    }
-                    if (comment.length === 0) {
-                        $('#error').html('Invalid Comment');
-                    }
+                if (comment.length === 0) {
                     return;
                 }
                 var data = JSON.stringify({
@@ -123,12 +125,12 @@
                     contentType: 'application/json',
                     dataType: 'text',
                     success: function (resp) {
-                        alert('success');
+//                        alert('success');
                         loadComments();
+
                     },
                     error: function () {
 
-                        alert('');
                     }
                 });
 
