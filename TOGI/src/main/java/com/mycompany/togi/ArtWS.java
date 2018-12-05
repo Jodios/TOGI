@@ -59,16 +59,4 @@ public class ArtWS {
         artService.persist(art);
         return Response.ok(art.getId()).build();
     }
-      public Response readgames() {
-
-        List<Games> games = gamesservice.selectItems();
-
-        if (games == null) {
-            return Response.status(Response.Status.NO_CONTENT).build();
-        }
-        return Response.ok(games).build();
-    }
-
-
-
 }

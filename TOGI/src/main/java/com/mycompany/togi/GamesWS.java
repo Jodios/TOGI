@@ -25,7 +25,7 @@ public class GamesWS {
     private UriInfo context;
     @EJB
     private GamesService gamesService;
-
+    private int postCount = 0;
     @GET
     @Path("get")
     @Consumes(MediaType.APPLICATION_JSON)
