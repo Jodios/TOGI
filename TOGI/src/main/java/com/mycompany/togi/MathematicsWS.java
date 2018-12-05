@@ -1,6 +1,8 @@
 
 package com.mycompany.togi;
 
+import static com.mycompany.togi.PoliticsWS.ccounter;
+import static com.mycompany.togi.PoliticsWS.pcounter;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -61,15 +63,16 @@ public class MathematicsWS {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response createMathematics(Mathematics math) {  
-        math.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
-        Board b=new Board();
+       math.setId(Long.MIN_VALUE + Long.MAX_VALUE / 2);
+        Board b = new Board();
         math.setCommentnum(b.getCommentnum());
-       
-       
+
         Date date = new Date();
         math.setDate(date);
         math.setBoard("Mathematics");
-        math.setPost(1);  
+        pcounter++;
+        math.setPost(pcounter);
+        ccounter++;
         mathService.persist(math);
         return Response.ok(math.getId()).build();
     }
@@ -79,16 +82,16 @@ public class MathematicsWS {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response createMathematics2(Mathematics math) {  
-        math.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
-        Board b=new Board();
-        math.setCommentnum(b.getCommentnum());
-       
-       
+         math.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
+        math.setCommentnum(ccounter);
+        ccounter++;
+        math.setPost(pcounter);
         Date date = new Date();
         math.setDate(date);
         math.setBoard("Mathematics");
-        math.setPost(1);  
-        mathService.persist(math);
+     
+      
+       mathService.persist(math);
         return Response.ok(math.getId()).build();
     }
 
