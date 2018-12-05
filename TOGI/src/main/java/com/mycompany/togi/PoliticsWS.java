@@ -75,7 +75,7 @@ public class PoliticsWS {
         politicsService.persist(pol);
         return Response.ok(pol.getId()).build();
     }
-      @POST
+    @POST
     @Path("post2")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
