@@ -61,15 +61,16 @@ public class MusicWS {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response createMusic(Music music) {  
-        music.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
-        Board b=new Board();
+       music.setId(Long.MIN_VALUE + Long.MAX_VALUE / 2);
+        Board b = new Board();
         music.setCommentnum(b.getCommentnum());
-       
-       
+
         Date date = new Date();
         music.setDate(date);
         music.setBoard("Music");
-        music.setPost(1);  
+        pcounter++;
+        music.setPost(pcounter);
+        ccounter++;
         musicService.persist(music);
         return Response.ok(music.getId()).build();
     }
@@ -79,16 +80,16 @@ public class MusicWS {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response createMusic2(Music music) {  
-        music.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
-        Board b=new Board();
-        music.setCommentnum(b.getCommentnum());
-       
-       
+          music.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
+        music.setCommentnum(ccounter);
+        ccounter++;
+        music.setPost(pcounter);
         Date date = new Date();
         music.setDate(date);
         music.setBoard("Music");
-        music.setPost(1);  
-        musicService.persist(music);
+     
+      
+       musicService.persist(music);
         return Response.ok(music.getId()).build();
     }
 

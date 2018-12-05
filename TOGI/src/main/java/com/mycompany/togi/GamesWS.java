@@ -84,16 +84,16 @@ public class GamesWS {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response createGames2(Games games) {  
-    games.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
+         games.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
         games.setCommentnum(ccounter);
         ccounter++;
         games.setPost(pcounter);
         Date date = new Date();
         games.setDate(date);
         games.setBoard("Games");
-   
+     
       
-        gamesService.persist(games);
+       gamesService.persist(games);
         return Response.ok(games.getId()).build();
     }
     

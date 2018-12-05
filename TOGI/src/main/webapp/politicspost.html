@@ -34,53 +34,41 @@
 
 
         <script>
+             function getUrlVars() {
+                var vars = {};
+                var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+                    vars[key] = value;
+                });
+                return vars;
+            }
             function loadComments() {
                 $.ajax({
                     url: 'api/polcomments/get2',
                     type: 'get',
                     dataType: 'json',
                     success: function (data) { 
-//                        var qs = new Querystring();
-//                        var getUrlParameter = function getUrlParameter(sParam) {
-//                            var sPageURL = window.location.search.substring(1),
-//                                sURLVariables = sPageURL.split('&'),
-//                                sParameterName,
-//                                i;
-//
-//                            for (i = 0; i < sURLVariables.length; i++) {
-//                                sParameterName = sURLVariables[i].split('=');
-//
-//                                if (sParameterName[0] === sParam) {
-//                                    return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
-//                                }
-//                            }
-//                        };
-//                        console.log(getUrlParameter);
+                                 var post = getUrlVars()["post"];
+                        var title = getUrlVars()["title"];
+
                         $('#tdata').empty();
-                        
                         $.each(data, function (i, r) {
-                         if(r.post===num){
-                             
+                            if(post==r.post){
                             var tr = "<tr><td><div class = \"content\">" +
                                     "<div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div>" +
                                     "<div class = \"title\" >" +
                                     r.comment +
-
-                                            "</div>" + "</div></td></tr>";
-                       
+                                    "</div>" + "</div></td></tr>";
                             $('#tdata').append(tr);
-                  
-                       
-                         }
-               
-//                            table.append("<tr><td><div class = \"content\">" +
-//                                    "<div class = \"imgdiv\" style=\"background-image: url(" + imgurl + ")\"></div>" +
-//                                    "<div class = \"title\" >" +
-//                                    boards[i].split("-")[0] +
-//                                    "</div>" +
-//                                    "</div></td></tr>");
-                        });
+                        }
+                        else{
+                            
+                        }
+                       });
+                        
+                        
+                        
                     },
+                    
                     error: function () {
                         alert('Error');
                     }

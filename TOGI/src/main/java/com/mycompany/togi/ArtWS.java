@@ -81,16 +81,16 @@ public class ArtWS {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public synchronized Response createArt2(Art art) {
-        art.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
+         art.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
         art.setCommentnum(ccounter);
         ccounter++;
         art.setPost(pcounter);
         Date date = new Date();
         art.setDate(date);
-        art.setBoard("Art");
+        art.setBoard("Mathematics");
      
       
-        artService.persist(art);
+       artService.persist(art);
         return Response.ok(art.getId()).build();
     }
 }

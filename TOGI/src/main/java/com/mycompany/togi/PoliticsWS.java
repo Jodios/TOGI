@@ -81,7 +81,7 @@ public class PoliticsWS {
     @Produces(MediaType.TEXT_PLAIN)
     public synchronized Response createPolitics2(Politics pol) {  
         
-        pol.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
+         pol.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
         pol.setCommentnum(ccounter);
         ccounter++;
         pol.setPost(pcounter);
@@ -90,7 +90,7 @@ public class PoliticsWS {
         pol.setBoard("Politics");
      
       
-        politicsService.persist(pol);
+       politicsService.persist(pol);
         return Response.ok(pol.getId()).build();
     }
 

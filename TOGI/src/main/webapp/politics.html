@@ -43,12 +43,14 @@
                     success: function (data) {
                         $('#tdata').empty();
                         $.each(data, function (i, r) {
-                            if(r.title !== undefined){
-                            var tr = "<tr><td><a href = 'politicspost.html?post=" + r.post +"'><div class = \"content\">" +
-                                    "<object><a href = '"+ r.image +"'><div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div></a></object>" +
-                                    "<div class = \"title\" ><b>" +
-                                   r.title +"</b>:     " + r.comment +
-                                    "</div>" + "</div></a></td></tr>";
+                          $('#tdata').empty();
+                        $.each(data, function (i, r) {
+                                 if(r.title !== undefined){
+                          var tr = "<tr><td><a href = 'politicspost.html?post="+r.post+"&title="+r.title+"'><div class = \"content\">" +
+                                        "<object><a href = '" + r.image + "'><div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div></a></object>" +
+                                        "<div class = \"title\" >" +
+                                        r.title + 
+                                        "</div>" + "</div></a></td></tr>";
                             $('#tdata').append(tr);
                         }
                         else{

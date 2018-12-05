@@ -81,7 +81,7 @@ public class RandomWS {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response createTechnology2(Random rand) {
-        rand.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
+          rand.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
         rand.setCommentnum(ccounter);
         ccounter++;
         rand.setPost(pcounter);
@@ -90,7 +90,7 @@ public class RandomWS {
         rand.setBoard("Random");
      
       
-      randomService.persist(rand);
+       randomService.persist(rand);
         return Response.ok(rand.getId()).build();
     }
      

@@ -81,16 +81,16 @@ public class PhotographyWS {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response createPhoto2(Photography photo) {
-        photo.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
+           photo.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
         photo.setCommentnum(ccounter);
         ccounter++;
         photo.setPost(pcounter);
         Date date = new Date();
         photo.setDate(date);
-        photo.setBoard("Photography");
+        photo.setBoard("Photo");
      
       
-      photoService.persist(photo);
+       photoService.persist(photo);
         return Response.ok(photo.getId()).build();
     }
      

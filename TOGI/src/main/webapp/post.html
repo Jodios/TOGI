@@ -34,22 +34,41 @@
 
 
         <script>
+             function getUrlVars() {
+                var vars = {};
+                var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+                    vars[key] = value;
+                });
+                return vars;
+            }
             function loadComments() {
                 $.ajax({
                     url: 'api/comments/get2',
                     type: 'get',
                     dataType: 'json',
                     success: function (data) {
+                          var post = getUrlVars()["post"];
+                        var title = getUrlVars()["title"];
+
                         $('#tdata').empty();
                         $.each(data, function (i, r) {
+                            if(post==r.post){
                             var tr = "<tr><td><div class = \"content\">" +
                                     "<div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div>" +
                                     "<div class = \"title\" >" +
                                     r.comment +
                                     "</div>" + "</div></td></tr>";
                             $('#tdata').append(tr);
-                        });
+                        }
+                        else{
+                            
+                        }
+                       });
+                        
+                        
+                        
                     },
+                    
                     error: function () {
 //                        alert('Error');
                     }

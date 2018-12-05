@@ -81,7 +81,7 @@ public class TechnologyWS {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response createTechnology2(Technology tech) {
-        tech.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
+         tech.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
         tech.setCommentnum(ccounter);
         ccounter++;
         tech.setPost(pcounter);
