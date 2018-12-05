@@ -45,9 +45,9 @@
                                  if(r.title !== undefined){
                           var tr = "<tr><td><a href = 'photographypost.html?post="+r.post+"&title="+r.title+"'><div class = \"content\">" +
                                         "<object><a href = '" + r.image + "'><div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div></a></object>" +
-                                        "<div class = \"title\" >" +
+                                        "<div class = \"title\" ><b>" +
                                         r.title +
-                                        "</div>" + "</div></a></td></tr>";
+                                        "</b></div>" + "</div></a></td></tr>";
                             $('#tdata').append(tr);
                         }
                         else{

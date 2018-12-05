@@ -45,9 +45,9 @@
                                  if(r.title !== undefined){
                           var tr = "<tr><td><a href = 'technologypost.html?post="+r.post+"&title="+r.title+"'><div class = \"content\">" +
                                         "<object><a href = '" + r.image + "'><div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div></a></object>" +
-                                        "<div class = \"title\" >" +
-                                        r.title + ":     " + r.comment +
-                                        "</div>" + "</div></a></td></tr>";
+                                        "<div class = \"title\" ><b>" +
+                                        r.title +
+                                        "</b></div>" + "</div></a></td></tr>";
                             $('#tdata').append(tr);
                         }
                         else{
