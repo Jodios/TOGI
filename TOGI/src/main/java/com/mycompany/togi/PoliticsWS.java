@@ -17,7 +17,8 @@ import javax.ws.rs.core.Response.Status;
 
 @Path("polcomments")
 public class PoliticsWS {
-    public static Integer counter=0;
+    public static Integer pcounter=0;
+     public static Integer ccounter=0;
 
     @Context
     private UriInfo context;
@@ -61,17 +62,17 @@ public class PoliticsWS {
     public Response createPolitics(Politics pol) {  
         
         pol.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
-        Board board=new Board();
-        pol.setCommentnum(board.getCommentnum());
-        Integer i=board.getCommentnum()+1;
-        board.setCommentnum(i);       
-     
+       
+        pcounter++;
+        pol.setPost(pcounter);
+      
         Date date = new Date();
         pol.setDate(date);
         pol.setBoard("Politics");
-        pol.setPost(counter);  
+        pol.setCommentnum(ccounter);
+        ccounter++;
 
-        counter++;
+
         politicsService.persist(pol);
         return Response.ok(pol.getId()).build();
     }
@@ -82,15 +83,13 @@ public class PoliticsWS {
     public Response createPolitics2(Politics pol) {  
         
         pol.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
-        Board board=new Board();
-        pol.setCommentnum(board.getCommentnum());
-        Integer i=board.getCommentnum()+1;
-        board.setCommentnum(i);       
-     
+        pol.setCommentnum(ccounter);
+        ccounter++;
+        pol.setPost(pcounter);
         Date date = new Date();
         pol.setDate(date);
         pol.setBoard("Politics");
-        pol.setPost(Politics.pcounter);
+      
         politicsService.persist(pol);
         return Response.ok(pol.getId()).build();
     }
