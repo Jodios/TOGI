@@ -57,7 +57,7 @@ public class GamesWS {
         Date date = new Date();
         games.setDate(date);
         games.setBoard("Games");
-        games.setPost(0);
+        games.setPost(postnum);
         gamesservice.persist(games);
         return Response.ok(games.getId()).build();
     }

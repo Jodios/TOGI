@@ -10,17 +10,18 @@
     </head>
     <body>
         <div class="header" id="myHeader">
+            <h2 class="boardName">Games</h2>
             <a href="index.html">
                 <div class = "logo"></div>
             </a>
-            <h2 class="threadName">Games</h2>
             <button type="button" class="newComment" id="buttonReply">Reply</button>
             <form action="games.html" style="display:none" method="post" id="replyBox">
-                Image URL: <input type="text" name="image" id="image">
+                 Title: <input type="text" name="title" id="title"><span id="errorc" class="error"></span>
+                Image URL: <input type="text" name="image" id="image"><span id="errorc" class="error"></span>
                 <fieldset>
-                    <legend>Title</legend>
-                    <textarea rows="5" cols="50" name="title" id="comment"
-                              placeholder="Enter your title here..."></textarea>
+                    <legend>Comment</legend><span id="errorc" class="error"></span>
+                    <textarea rows="5" cols="50" name="comment" id="comment"
+                              placeholder="Enter your comment here..."></textarea>
 
                 </fieldset>
                 <button onClick="javascript:window.location.href = 'games.html'" id="buttonPost">Post Comment</button>
@@ -42,11 +43,11 @@
                     success: function (data) {
                         $('#tdata').empty();
                         $.each(data, function (i, r) {
-                            var tr = "<tr><td><div class = \"content\">" +
-                                    "<div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div>" +
+                            var tr = "<tr><td><a href = 'gamespost.html'><div class = \"content\">" +
+                                    "<object><a href = '"+ r.image +"'><div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div></a></object>" +
                                     "<div class = \"title\" >" +
-                                    r.comment +
-                                    "</div>" + "</div></td></tr>";
+                                   r.title +":     " + r.comment +
+                                    "</div>" + "</div></a></td></tr>";
                             $('#tdata').append(tr);
                         });
                     },
@@ -61,9 +62,9 @@
                 loadComments();
             });
 
-            window.onscroll = function () {
-                stickyHeader();
-            };
+//            window.onscroll = function () {
+//                stickyHeader();
+//            };
 
             var header = document.getElementById("myHeader");
             var sticky = header.offsetTop;
@@ -90,20 +91,26 @@
                 window.location.reload();
                 var img = $("#image").val();
                 var comment = $('#comment').val();
+                var title=$('#title').val();
                 $('#errorc').html('');
                 $('#error').html('');
-                if (img.length === 0 || comment.length === 0) {
+                $('#error').html('');
+                if (img.length === 0 || comment.length === 0 ||title.length === 0) {
                     if (img.length === 0) {
                         $('#errorc').html('Invalid Image URL');
                     }
                     if (comment.length === 0) {
                         $('#error').html('Invalid Comment');
                     }
+                    if(title.length === 0){
+                         $('#error').html('Ivalid Title');
+                    }
                     return;
                 }
                 var data = JSON.stringify({
                     image: img,
-                    comment: comment
+                    comment: comment,
+                    title: title
                 });
                 $.ajax({
                     url: 'api/gcomments/post',
