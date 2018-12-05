@@ -17,55 +17,55 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-@Path("mucomments")
-public class MusicWS {
+@Path("pcomments")
+public class PhotographyWS {
     public static int counter=0;
 
     @Context
     private UriInfo context;
     @EJB
-    private MusicService musicService;
+    private PhotographyService photogService;
 
     @GET
     @Path("get")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response readMusic() {
+    public Response readPhotography() {
 
-        List<Music> music = musicService.selectItems();
+        List<Photography> photog = photogService.selectItems();
         
 
-        if (music == null) {
+        if (photog == null) {
             return Response.status(Status.NO_CONTENT).build();
         }
-        return Response.ok(music).build();
+        return Response.ok(photog).build();
     }
     
     @POST
     @Path("post")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response createMusic(Music music) {  
-        music.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
+    public Response createPhotography(Photography photog) {  
+        photog.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
         Board b=new Board();
-        music.setCommentnum(b.getCommentnum());
+        photog.setCommentnum(b.getCommentnum());
        
        
         Date date = new Date();
-        music.setDate(date);
-        music.setBoard("Photography");
-        music.setPost(1);  
-        musicService.persist(music);
-        return Response.ok(music.getId()).build();
+        photog.setDate(date);
+        photog.setBoard("Photography");
+        photog.setPost(1);  
+        photogService.persist(photog);
+        return Response.ok(photog.getId()).build();
     }
-      public Response readmusic() {
+      public Response readphotography() {
 
-        List<Music> music = musicService.selectItems();
+        List<Photography> photog = photogService.selectItems();
 
-        if (music == null) {
+        if (photog == null) {
             return Response.status(Response.Status.NO_CONTENT).build();
         }
-        return Response.ok(music).build();
+        return Response.ok(photog).build();
     }
 
 

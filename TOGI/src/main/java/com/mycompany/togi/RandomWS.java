@@ -17,55 +17,55 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-@Path("mucomments")
-public class MusicWS {
+@Path("randcomments")
+public class RandomWS {
     public static int counter=0;
 
     @Context
     private UriInfo context;
     @EJB
-    private MusicService musicService;
+    private RandomService randService;
 
     @GET
     @Path("get")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response readMusic() {
+    public Response readRandom() {
 
-        List<Music> music = musicService.selectItems();
+        List<Random> rand = randService.selectItems();
         
 
-        if (music == null) {
+        if (rand == null) {
             return Response.status(Status.NO_CONTENT).build();
         }
-        return Response.ok(music).build();
+        return Response.ok(rand).build();
     }
     
     @POST
     @Path("post")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response createMusic(Music music) {  
-        music.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
+    public Response createRandom(Random rand) {  
+        rand.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
         Board b=new Board();
-        music.setCommentnum(b.getCommentnum());
+        rand.setCommentnum(b.getCommentnum());
        
        
         Date date = new Date();
-        music.setDate(date);
-        music.setBoard("Photography");
-        music.setPost(1);  
-        musicService.persist(music);
-        return Response.ok(music.getId()).build();
+        rand.setDate(date);
+        rand.setBoard("Photography");
+        rand.setPost(1);  
+        randService.persist(rand);
+        return Response.ok(rand.getId()).build();
     }
-      public Response readmusic() {
+      public Response readrandom() {
 
-        List<Music> music = musicService.selectItems();
+        List<Random> rand = randService.selectItems();
 
-        if (music == null) {
+        if (rand == null) {
             return Response.status(Response.Status.NO_CONTENT).build();
         }
-        return Response.ok(music).build();
+        return Response.ok(rand).build();
     }
 
 
