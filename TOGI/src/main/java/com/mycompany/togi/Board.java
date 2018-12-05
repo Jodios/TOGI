@@ -13,6 +13,5 @@ public class Board {
     public void setCommentnum(Integer commentnum) {
         this.commentnum = commentnum;
 
-}
-
+    }
 }
