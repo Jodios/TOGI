@@ -63,14 +63,16 @@ public class PoliticsWS {
         
         pol.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
        
-        
-     
+        pcounter++;
+        pol.setPost(pcounter);
+      
         Date date = new Date();
         pol.setDate(date);
         pol.setBoard("Politics");
-        pol.setPost(pcounter);  
+        pol.setCommentnum(ccounter);
+        ccounter++;
 
-        pcounter++;
+
         politicsService.persist(pol);
         return Response.ok(pol.getId()).build();
     }
@@ -83,11 +85,11 @@ public class PoliticsWS {
         pol.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
         pol.setCommentnum(ccounter);
         ccounter++;
-     
+        pol.setPost(pcounter);
         Date date = new Date();
         pol.setDate(date);
         pol.setBoard("Politics");
-        pol.setPost(Politics.pcounter);
+      
         politicsService.persist(pol);
         return Response.ok(pol.getId()).build();
     }

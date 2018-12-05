@@ -43,22 +43,21 @@
                     success: function (data) { 
                      
                         $('#tdata').empty();
+//                        let num=data[0]["post"];
                         
-                    
                         $.each(data, function (i, r) {
-                         
-                          
-                     
+                         if(r.post===num){
                             var tr = "<tr><td><div class = \"content\">" +
                                     "<div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div>" +
                                     "<div class = \"title\" >" +
-//                                    r.comment +"com:"+i +"post"+ r.post+
+                                    r.comment +
+//                                    "com:"+i +"post"+ r.post+
                                             "</div>" + "</div></td></tr>";
-//                        }
+                       
                             $('#tdata').append(tr);
                             $("#thread").text(r.title);
                        
-                       
+                         }
                     
 //                            table.append("<tr><td><div class = \"content\">" +
 //                                    "<div class = \"imgdiv\" style=\"background-image: url(" + imgurl + ")\"></div>" +
