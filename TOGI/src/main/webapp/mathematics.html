@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TŌGI - Image Boards</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link rel="stylesheet" href="Styles/post.css">
+        <link rel="stylesheet" href="Styles/board.css">
+    </head>
+    <body>
+        <div class="header" id="myHeader">
+            <h2 class="boardName">Mathematics</h2>
+            <a href="index.html">
+                <div class = "logo"></div>
+            </a>
+            <button type="button" class="newComment" id="buttonReply">Reply</button>
+            <form action="mathematics.html" style="display:none" method="post" id="replyBox">
+                 Title: <input type="text" name="title" id="title"><span id="errorc" class="error"></span>
+                Image URL: <input type="text" name="image" id="image"><span id="errorc" class="error"></span>
+                <fieldset>
+                    <legend>Comment</legend><span id="errorc" class="error"></span>
+                    <textarea rows="5" cols="50" name="comment" id="comment"
+                              placeholder="Enter your comment here..."></textarea>
+
+                </fieldset>
+                <button onClick="javascript:window.location.href = 'mathematics.html'" id="buttonPost">Post Comment</button>
+            </form>
+        </div>
+
+        <table id="tdata">
+            <tbody>                
+            </tbody>
+        </table>
+
+
+        <script>
+            function loadComments() {
+                $.ajax({
+                    url: 'api/mathcomments/get',
+                    type: 'get',
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#tdata').empty();
+                        $.each(data, function (i, r) {
+                            var tr = "<tr><td><a href = 'mathematicspost.html'><div class = \"content\">" +
+                                    "<object><a href = '"+ r.image +"'><div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div></a></object>" +
+                                    "<div class = \"title\" >" +
+                                   r.title +":     " + r.comment +
+                                    "</div>" + "</div></a></td></tr>";
+                            $('#tdata').append(tr);
+                        });
+                    },
+                    error: function () {
+                        alert('Error');
+                    }
+                });
+            }
+
+
+            $(document).ready(function () {
+                loadComments();
+            });
+
+//            window.onscroll = function () {
+//                stickyHeader();
+//            };
+
+            var header = document.getElementById("myHeader");
+            var sticky = header.offsetTop;
+
+            function stickyHeader() {
+                if (window.pageYOffset > sticky) {
+                    header.classList.add("sticky");
+                } else {
+                    header.classList.remove("sticky");
+                }
+            }
+            document.getElementById("buttonReply").onclick = function () {
+                hideCommentBox();
+            };
+            function hideCommentBox() {
+                var x = document.getElementById("replyBox");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                } else {
+                    x.style.display = "none";
+                }
+            }
+            $('#buttonPost').click(function () {
+                window.location.reload();
+                var img = $("#image").val();
+                var comment = $('#comment').val();
+                var title=$('#title').val();
+                $('#errorc').html('');
+                $('#error').html('');
+                $('#error').html('');
+                if (img.length === 0 || comment.length === 0 ||title.length === 0) {
+                    if (img.length === 0) {
+                        $('#errorc').html('Invalid Image URL');
+                    }
+                    if (comment.length === 0) {
+                        $('#error').html('Invalid Comment');
+                    }
+                    if(title.length === 0){
+                         $('#error').html('Ivalid Title');
+                    }
+                    return;
+                }
+                var data = JSON.stringify({
+                    image: img,
+                    comment: comment,
+                    title: title
+                });
+                $.ajax({
+                    url: 'api/mathcomments/post',
+                    type: 'post',
+                    data: data,
+                    contentType: 'application/json',
+                    dataType: 'text',
+                    success: function (resp) {
+                        alert('success');
+                        loadComments();
+//                      
+
+                    },
+                    error: function () {
+                        alert('Error');
+                    }
+                });
+
+                return false;
+            });
+
+        </script>
+
+    </body>
+</html>
