@@ -14,9 +14,9 @@
             <a href="index.html">
                 <div class = "logo"></div>
             </a>
-            <h2 class="threadName">Thread Name</h2>
+            <h2 id="thread" class="threadName">Thread Name</h2>
             <button type="button" class="newComment" id="buttonReply">Reply</button>
-            <form action="post.html" style="display:none" method="post" id="replyBox">
+            <form action="musicpost.html" style="display:none" method="post" id="replyBox">
                 Image URL: <input type="text" name="image" id="image">
                 <fieldset>
                     <legend>Comment</legend>
@@ -37,18 +37,44 @@
         <script>
             function loadComments() {
                 $.ajax({
-                    url: 'api/musiccomments/get',
+                    url: 'api/mucomments/get2',
                     type: 'get',
                     dataType: 'json',
-                    success: function (data) {
+                    success: function (data) { 
+//                        var qs = new Querystring();
+                        var getUrlParameter = function getUrlParameter(sParam) {
+                            var sPageURL = window.location.search.substring(1),
+                                sURLVariables = sPageURL.split('&'),
+                                sParameterName,
+                                i;
+
+                            for (i = 0; i < sURLVariables.length; i++) {
+                                sParameterName = sURLVariables[i].split('=');
+
+                                if (sParameterName[0] === sParam) {
+                                    return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+                                }
+                            }
+                        };
+                        console.log(getUrlParameter);
                         $('#tdata').empty();
+                        
                         $.each(data, function (i, r) {
+                         if(r.post===num){
+                             
                             var tr = "<tr><td><div class = \"content\">" +
                                     "<div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div>" +
                                     "<div class = \"title\" >" +
                                     r.comment +
-                                    "</div>" + "</div></td></tr>";
+//                                    "com:"+i +"post"+ r.post+
+                                            "</div>" + "</div></td></tr>";
+                       
                             $('#tdata').append(tr);
+                            $("#thread").text(r.title);
+                       
+                         }
+                    console.log(r.post+"\n");
+                   console.log(num+"\n");
 //                            table.append("<tr><td><div class = \"content\">" +
 //                                    "<div class = \"imgdiv\" style=\"background-image: url(" + imgurl + ")\"></div>" +
 //                                    "<div class = \"title\" >" +
@@ -113,7 +139,7 @@
                     comment: comment
                 });
                 $.ajax({
-                    url: 'api/musiccomments/post',
+                    url: 'api/mucomments/post2',
                     type: 'post',
                     data: data,
                     contentType: 'application/json',
