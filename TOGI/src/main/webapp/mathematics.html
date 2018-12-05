@@ -13,17 +13,17 @@
             <a href="index.html">
                 <div class = "logo"></div>
             </a>
-            <button type="button" class="newComment" id="buttonReply">Reply</button>
+            <button type="button" class="newComment" id="buttonReply">Create Post</button>
             <form action="mathematics.html" style="display:none" method="post" id="replyBox">
                 Title: <input type="text" name="title" id="title"><span id="errorc" class="error"></span>
                 Image URL: <input type="text" name="image" id="image"><span id="errorc" class="error"></span>
                 <fieldset>
-                    <legend>Comment</legend><span id="errorc" class="error"></span>
+                    <legend>First Comment</legend><span id="errorc" class="error"></span>
                     <textarea rows="5" cols="50" name="comment" id="comment"
                               placeholder="Enter your comment here..."></textarea>
 
                 </fieldset>
-                <button onClick="javascript:window.location.href = 'mathematics.html'" id="buttonPost">Post Comment</button>
+                <button onClick="javascript:window.location.href = 'mathematics.html'" id="buttonPost">Create Post</button>
             </form>
         </div>
 
@@ -44,6 +44,19 @@
                         $('#tdata').empty();
                         console.log(data);
                         $.each(data, function (i, r) {
+<<<<<<< HEAD
+                                 if(r.title !== undefined){
+                            var tr = "<tr><td><a href = 'mathematicspost.html'><div class = \"content\">" +
+                                    "<object><a href = '" + r.image + "'><div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div></a></object>" +
+                                    "<div class = \"title\" ><b>" +
+                                    r.title + "</b>:     " + r.comment +
+                                    "</div>" + "</div></a></td></tr>";
+                            $('#tdata').append(tr);
+                        }
+                        else{
+                            
+                        }
+=======
                             if(r.title !== undefined){
                                 var tr = "<tr><td><a href = 'mathematicspost.html?post="+r.post+"&title="+r.title+"'><div class = \"content\">" +
                                         "<object><a href = '" + r.image + "'><div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div></a></object>" +
@@ -55,6 +68,7 @@
                             else{
 
                             }
+>>>>>>> d8db8fb5c9a9060d80cd16f67317ce01712eb056
                         });
                     },
                     error: function () {

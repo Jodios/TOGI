@@ -13,17 +13,17 @@
             <a href="index.html">
                 <div class = "logo"></div>
             </a>
-            <button type="button" class="newComment" id="buttonReply">Reply</button>
+            <button type="button" class="newComment" id="buttonReply">Create Post</button>
             <form action="art.html" style="display:none" method="post" id="replyBox">
                 Title: <input type="text" name="title" id="title"><span id="errorc" class="error"></span>
                 Image URL: <input type="text" name="image" id="image"><span id="errorc" class="error"></span>
                 <fieldset>
-                    <legend>Comment</legend><span id="errorc" class="error"></span>
+                    <legend>First Comment</legend><span id="errorc" class="error"></span>
                     <textarea rows="5" cols="50" name="comment" id="comment"
                               placeholder="Enter your comment here..."></textarea>
 
                 </fieldset>
-                <button onClick="javascript:window.location.href = 'art.html'" id="buttonPost">Post Comment</button>
+                <button onClick="javascript:window.location.href = 'art.html'" id="buttonPost">Create Post</button>
             </form>
         </div>
 
@@ -45,8 +45,8 @@
                                  if(r.title !== undefined){
                             var tr = "<tr><td><a href = 'post.html'><div class = \"content\">" +
                                     "<object><a href = '" + r.image + "'><div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div></a></object>" +
-                                    "<div class = \"title\" >" +
-                                    r.title + ":     " + r.comment +
+                                    "<div class = \"title\" ><b>" +
+                                    r.title + "</b>:     " + r.comment +
                                     "</div>" + "</div></a></td></tr>";
                             $('#tdata').append(tr);
                         }
