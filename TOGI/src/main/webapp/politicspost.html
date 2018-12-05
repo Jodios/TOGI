@@ -16,7 +16,7 @@
             </a>
             <h2 class="threadName">Thread Name</h2>
             <button type="button" class="newComment" id="buttonReply">Reply</button>
-            <form action="post.html" style="display:none" method="post" id="replyBox">
+            <form action="politicspost.html" style="display:none" method="post" id="replyBox">
                 Image URL: <input type="text" name="image" id="image">
                 <fieldset>
                     <legend>Comment</legend>
@@ -24,7 +24,7 @@
                               placeholder="Enter your comment here..."></textarea>
 
                 </fieldset>
-                <button onClick="javascript:window.location.href = 'gamespost.html'" id="buttonPost">Post Comment</button>
+                <button onClick="javascript:window.location.href = 'politicspost.html'" id="buttonPost">Post Comment</button>
             </form>
         </div>
 
@@ -37,7 +37,7 @@
         <script>
             function loadComments() {
                 $.ajax({
-                    url: 'api/politicscomments/get',
+                    url: 'api/polcomments/get2',
                     type: 'get',
                     dataType: 'json',
                     success: function (data) {
@@ -113,7 +113,7 @@
                     comment: comment
                 });
                 $.ajax({
-                    url: 'api/politicscomments/post',
+                    url: 'api/polcomments/post2',
                     type: 'post',
                     data: data,
                     contentType: 'application/json',

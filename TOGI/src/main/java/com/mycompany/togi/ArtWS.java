@@ -59,7 +59,4 @@ public class ArtWS {
         artService.persist(art);
         return Response.ok(art.getId()).build();
     }
-
-
-
 }

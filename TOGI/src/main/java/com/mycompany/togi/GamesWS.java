@@ -19,13 +19,13 @@ import javax.ws.rs.core.Response.Status;
 
 @Path("gcomments")
 public class GamesWS {
-    public static int counter=0;
+    private static int counter=1;
 
     @Context
     private UriInfo context;
     @EJB
     private GamesService gamesService;
-
+    
     @GET
     @Path("get")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -54,8 +54,9 @@ public class GamesWS {
         Date date = new Date();
         games.setDate(date);
         games.setBoard("Games");
-        games.setPost(1);  
+        games.setPost(counter);  
         gamesService.persist(games);
+        counter++;
         return Response.ok(games.getId()).build();
     }
       public Response readgames() {
