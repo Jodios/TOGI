@@ -34,6 +34,7 @@
 
 
         <script>
+
             function loadComments() {
                 $.ajax({
                     url: 'api/mathcomments/get',
@@ -41,18 +42,19 @@
                     dataType: 'json',
                     success: function (data) {
                         $('#tdata').empty();
+                        console.log(data);
                         $.each(data, function (i, r) {
-                                 if(r.title !== undefined){
-                            var tr = "<tr><td><a href = 'mathematicspost.html'><div class = \"content\">" +
-                                    "<object><a href = '" + r.image + "'><div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div></a></object>" +
-                                    "<div class = \"title\" >" +
-                                    r.title + ":     " + r.comment +
-                                    "</div>" + "</div></a></td></tr>";
-                            $('#tdata').append(tr);
-                        }
-                        else{
-                            
-                        }
+                            if(r.title !== undefined){
+                                var tr = "<tr><td><a href = 'mathematicspost.html?post="+r.post+"&title="+r.title+"'><div class = \"content\">" +
+                                        "<object><a href = '" + r.image + "'><div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div></a></object>" +
+                                        "<div class = \"title\" >" +
+                                        r.title + ":     " + r.comment +
+                                        "</div>" + "</div></a></td></tr>";
+                                $('#tdata').append(tr);
+                            }
+                            else{
+
+                            }
                         });
                     },
                     error: function () {

@@ -35,12 +35,23 @@
 
 
         <script>
+            function getUrlVars() {
+                var vars = {};
+                var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+                    vars[key] = value;
+                });
+                return vars;
+            }
             function loadComments() {
                 $.ajax({
                     url: 'api/mathcomments/get2',
                     type: 'get',
                     dataType: 'json',
                     success: function (data) {
+                        var post = getUrlVars()["post"];
+                        var title = getUrlVars()["title"];
+                        console.log(post + "   " + title);
+                        console.log("testtesttest");
                         $('#tdata').empty();
                         $.each(data, function (i, r) {
                             var tr = "<tr><td><div class = \"content\">" +
