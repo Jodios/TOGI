@@ -37,12 +37,46 @@ public class PoliticsWS {
         }
         return Response.ok(pol).build();
     }
+    
+    @GET
+    @Path("get2")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response readPolitics2() {
+
+        List<Politics> pol = politicsService.selectItems();
+        
+
+        if (pol == null) {
+            return Response.status(Status.NO_CONTENT).build();
+        }
+        return Response.ok(pol).build();
+    }
 
     @POST
     @Path("post")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response createPolitics(Politics pol) {  
+        
+        pol.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
+        Board board=new Board();
+        pol.setCommentnum(board.getCommentnum());
+        Integer i=board.getCommentnum()+1;
+        board.setCommentnum(i);       
+     
+        Date date = new Date();
+        pol.setDate(date);
+        pol.setBoard("Politics");
+        pol.setPost(1);  
+        politicsService.persist(pol);
+        return Response.ok(pol.getId()).build();
+    }
+      @POST
+    @Path("post2")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response createPolitics2(Politics pol) {  
         
         pol.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
         Board board=new Board();
