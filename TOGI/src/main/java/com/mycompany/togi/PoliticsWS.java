@@ -17,6 +17,7 @@ import javax.ws.rs.core.Response.Status;
 
 @Path("polcomments")
 public class PoliticsWS {
+    public static Integer counter=0;
 
     @Context
     private UriInfo context;
@@ -68,7 +69,9 @@ public class PoliticsWS {
         Date date = new Date();
         pol.setDate(date);
         pol.setBoard("Politics");
-        pol.setPost(1);  
+        pol.setPost(counter);  
+
+        counter++;
         politicsService.persist(pol);
         return Response.ok(pol.getId()).build();
     }
@@ -87,7 +90,7 @@ public class PoliticsWS {
         Date date = new Date();
         pol.setDate(date);
         pol.setBoard("Politics");
-        pol.setPost(1);  
+        pol.setPost(Politics.pcounter);
         politicsService.persist(pol);
         return Response.ok(pol.getId()).build();
     }
