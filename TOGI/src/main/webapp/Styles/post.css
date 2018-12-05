@@ -1,11 +1,13 @@
 body{
     background-color: rgba(219,233,224,1);
+    font-family: '/Styles/rioGlamour.otf', sans-serif;
+
 }
 .header {
-  padding: 10px 16px;
-  background: rgba(150,179,248,1);
-  color: black;
-  text-align: center;
+    padding: 10px 16px;
+    background: rgba(150,179,248,1);
+    color: black;
+    text-align: center;
 }
 
 /* Page content */
@@ -15,18 +17,19 @@ body{
 
 /* individual comment dividers :) */
 .comment{
-    border-style: dotted;
     padding: 20px;
     margin-bottom: 10px;
     background-color: rgba(150,179,248,.4);
 }
 
 .newComment{
+    font-family: '/Styles/rioGlamour.otf', sans-serif;
+
     position: relative;
     border-radius: 1px;
     background: none;
     border: none;
-    font-size: 30px;
+    font-size: 20px;
     width: 150px;
     height: 60px;
     float: right;
@@ -36,7 +39,7 @@ body{
 }
 .newComment:hover{
     background-color: rgba(150,179,248,.1);
-    font-size: 35px;
+    font-size: 25px;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
@@ -44,7 +47,7 @@ body{
     border-style: dotted;
     top: 125px;
     left: 500px;   
-    
+
 }
 
 /* The sticky class is added to the header with JS when it reaches its scroll position */

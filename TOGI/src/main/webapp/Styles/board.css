@@ -1,5 +1,6 @@
 .header{
     margin-bottom: 80px;
+    font-family: '/Styles/rioGlamour.otf', sans-serif;
 }
 .newPost{
     position: relative;
@@ -28,28 +29,33 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size:contain;
-    border-style: dotted;
     width: 200px;
     height: 85px;
 }
 table{
-    width: 97%
+    width: 75%;
+    margin-left: 350px;
+    font-family: '/Styles/rioGlamour.otf', sans-serif;
+
 }
 .content{
     position: relative;  
     background: rgba(39,164,221, .2);
     float: left;
-    width: 100%;
-    border-style: dotted;
+    width: 75%;
+    border-style: solid;
+    border-color: black;
+    color: black;
+    border-width: 2px;
     padding: 20px;
     height: 100px;
     margin-bottom: 20px;
+
 }
 
 .imgdiv{
     position: relative;
     float: left;
-    border-style: dotted;
     left: -10px;
     width: 100px;
     height: 100%;
@@ -62,8 +68,10 @@ table{
 .title{
     position: relative;
     float:right;
-    border-style: dotted;
-    width: 90%;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    width: 85%;
     height: 50%;
     padding: 20px;
     margin-bottom: 10px;
