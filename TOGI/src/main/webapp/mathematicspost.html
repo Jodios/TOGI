@@ -42,7 +42,7 @@
             }
             function loadComments() {
                 $.ajax({
-                    url: 'api/polcomments/get2',
+                    url: 'api/mathcomments/get2',
                     type: 'get',
                     dataType: 'json',
                     success: function (data) {
@@ -119,7 +119,7 @@
                     comment: comment
                 });
                 $.ajax({
-                    url: 'api/polcomments/post2',
+                    url: 'api/mathcomments/post2',
                     type: 'post',
                     data: data,
                     contentType: 'application/json',
@@ -127,7 +127,7 @@
                     success: function (resp) {
 //                        alert('success');
                         loadComments();
-
+                        window.location.reload();
                     },
                     error: function () {
 
