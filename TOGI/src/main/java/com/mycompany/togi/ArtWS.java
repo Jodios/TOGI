@@ -28,7 +28,6 @@ public class ArtWS {
     private ArtService artService;
 
     @GET
-    @Path("get")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public synchronized Response readArt() {
@@ -39,24 +38,7 @@ public class ArtWS {
             return Response.status(Status.NO_CONTENT).build();
         }
         return Response.ok(art).build();
-    }
-    
-    @GET
-    @Path("get2")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public synchronized Response readArt2() {
-
-        List<Art> art = artService.selectItems();
-
-        if (art == null) {
-            return Response.status(Status.NO_CONTENT).build();
-        }
-        return Response.ok(art).build();
-    }
-    
-
-    
+    }    
 
     @POST
     @Path("post")

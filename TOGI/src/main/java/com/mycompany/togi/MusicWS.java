@@ -1,4 +1,3 @@
-
 package com.mycompany.togi;
 
 import java.math.BigDecimal;
@@ -19,8 +18,9 @@ import javax.ws.rs.core.Response.Status;
 
 @Path("mucomments")
 public class MusicWS {
-      public static Integer pcounter=0;
-     public static Integer ccounter=0;
+
+    public static Integer pcounter = 0;
+    public static Integer ccounter = 0;
 
     @Context
     private UriInfo context;
@@ -34,33 +34,32 @@ public class MusicWS {
     public Response readMusic() {
 
         List<Music> music = musicService.selectItems();
-        
 
         if (music == null) {
             return Response.status(Status.NO_CONTENT).build();
         }
         return Response.ok(music).build();
     }
-     @GET
+
+    @GET
     @Path("get2")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response readMusic2() {
 
         List<Music> music = musicService.selectItems();
-        
 
         if (music == null) {
             return Response.status(Status.NO_CONTENT).build();
         }
         return Response.ok(music).build();
     }
-    
+
     @POST
     @Path("post")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response createMusic(Music music) {  
+    public Response createMusic(Music music) {
         Board b = new Board();
         music.setCommentnum(b.getCommentnum());
 
@@ -74,34 +73,21 @@ public class MusicWS {
         return Response.ok(music.getId()).build();
     }
 
-     @POST
+    @POST
     @Path("post2")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response createMusic2(Music music) {  
-          music.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
+    public Response createMusic2(Music music) {
+        music.setId(Long.MIN_VALUE + Long.MAX_VALUE / 2);
         music.setCommentnum(ccounter);
         ccounter++;
         music.setPost(pcounter);
         Date date = new Date();
         music.setDate(date);
         music.setBoard("Music");
-     
-      
-       musicService.persist(music);
+
+        musicService.persist(music);
         return Response.ok(music.getId()).build();
     }
 
-
-
 }
-
-
-
-
-
-
-
-
-
-
