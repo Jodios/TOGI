@@ -17,47 +17,55 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-@Path("comments")
-public class ArtWS {
+@Path("mucomments")
+public class MusicWS {
     public static int counter=0;
 
     @Context
     private UriInfo context;
     @EJB
-    private ArtService artService;
-    private GamesService gamesservice;
+    private MusicService musicService;
 
     @GET
     @Path("get")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response readArt() {
+    public Response readMusic() {
 
-        List<Art> art = artService.selectItems();
+        List<Music> music = musicService.selectItems();
         
 
-        if (art == null) {
+        if (music == null) {
             return Response.status(Status.NO_CONTENT).build();
         }
-        return Response.ok(art).build();
+        return Response.ok(music).build();
     }
     
     @POST
     @Path("post")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response createArt(Art art) {  
-        art.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
+    public Response createMusic(Music music) {  
+        music.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
         Board b=new Board();
-        art.setCommentnum(b.getCommentnum());
+        music.setCommentnum(b.getCommentnum());
        
        
         Date date = new Date();
-        art.setDate(date);
-        art.setBoard("Art");
-        art.setPost(1);  
-        artService.persist(art);
-        return Response.ok(art.getId()).build();
+        music.setDate(date);
+        music.setBoard("Music");
+        music.setPost(1);  
+        musicService.persist(music);
+        return Response.ok(music.getId()).build();
+    }
+      public Response readmusic() {
+
+        List<Music> music = musicService.selectItems();
+
+        if (music == null) {
+            return Response.status(Response.Status.NO_CONTENT).build();
+        }
+        return Response.ok(music).build();
     }
 
 

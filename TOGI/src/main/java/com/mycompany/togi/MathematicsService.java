@@ -27,5 +27,8 @@ public List<Mathematics> selectItems(){
 public void persist(Mathematics math){
     em.persist(math);
 }
+ public Mathematics selectById(Long id) {
+        return em.find(Mathematics.class, id);
+    }
 }
 

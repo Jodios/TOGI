@@ -17,47 +17,46 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-@Path("comments")
-public class ArtWS {
+@Path("mathcomments")
+public class MathematicsWS {
     public static int counter=0;
 
     @Context
     private UriInfo context;
     @EJB
-    private ArtService artService;
-    private GamesService gamesservice;
+    private MathematicsService mathService;
 
     @GET
     @Path("get")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response readArt() {
+    public Response readMathematics() {
 
-        List<Art> art = artService.selectItems();
+        List<Mathematics> math = mathService.selectItems();
         
 
-        if (art == null) {
+        if (math == null) {
             return Response.status(Status.NO_CONTENT).build();
         }
-        return Response.ok(art).build();
+        return Response.ok(math).build();
     }
     
     @POST
     @Path("post")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response createArt(Art art) {  
-        art.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
+    public Response createMathematics(Mathematics math) {  
+        math.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
         Board b=new Board();
-        art.setCommentnum(b.getCommentnum());
+        math.setCommentnum(b.getCommentnum());
        
        
         Date date = new Date();
-        art.setDate(date);
-        art.setBoard("Art");
-        art.setPost(1);  
-        artService.persist(art);
-        return Response.ok(art.getId()).build();
+        math.setDate(date);
+        math.setBoard("Mathematics");
+        math.setPost(1);  
+        mathService.persist(math);
+        return Response.ok(math.getId()).build();
     }
 
 

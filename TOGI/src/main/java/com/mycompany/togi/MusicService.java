@@ -25,7 +25,7 @@ public List<Music> selectItems(){
     TypedQuery<Music> q=em.createQuery("select m from Music m",Music.class);
     return q.getResultList();
 }
-public void persist(Art art){
-    em.persist(art);
+public void persist(Music music){
+    em.persist(music);
 }
 }

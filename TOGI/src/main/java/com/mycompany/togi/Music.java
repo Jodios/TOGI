@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.togi;
 
 import java.io.Serializable;
@@ -13,24 +8,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ *
+ * @author nolan
+ */
 @Entity
 @Table(name="Music")
 public class Music implements Serializable {
 
-    @Id
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "Postnum")
     private Integer post;
     @Column(name = "Date_")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
+
+    public void setCommentnum(Integer commentnum) {
+        this.commentnum = commentnum;
+       
+    }
     @Size(max = 45)
     @Column(name = "Title")
     private String title;
@@ -42,19 +44,31 @@ public class Music implements Serializable {
     @Size(max = 9999)
     @Column(name = "Comment")
     private String comment;
+    @Size(max = 500)
+    @Column(name = "imglink")
+    private String image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+  
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
- 
+
+    
 
     public Long getId() {
         return id;
     }
 
     public String getTitle() {
-    
         return title;
     }
 
@@ -73,19 +87,22 @@ public class Music implements Serializable {
 
     public Integer getCommentnum() {
         return commentnum;
-    }
-
-    public void setCommentnum(Integer commentnum) {
-        this.commentnum = commentnum;
+        
     }
 
     public String getComment() {
         return comment;
     }
 
+
+
+
     public void setComment(String comment) {
         this.comment = comment;
+  
     }
+
+  
 
     @Override
     public int hashCode() {
@@ -96,7 +113,7 @@ public class Music implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+
         if (!(object instanceof Music)) {
             return false;
         }
@@ -109,7 +126,7 @@ public class Music implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.togi.Music[ id=" + id + " ]";
+        return "Togi.Music[ id=" + id + " ]";
     }
 
     public Music() {
@@ -124,10 +141,11 @@ public class Music implements Serializable {
     }
 
     public void setPost(Integer post) {
+        
         this.post = post;
     }
 
-    
+   
 
     public String getBoard() {
         return board;
@@ -137,6 +155,13 @@ public class Music implements Serializable {
         this.board = board;
     }
 
-  
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     
 }
