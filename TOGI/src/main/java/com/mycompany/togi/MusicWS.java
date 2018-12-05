@@ -61,7 +61,6 @@ public class MusicWS {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response createMusic(Music music) {  
-       music.setId(Long.MIN_VALUE + Long.MAX_VALUE / 2);
         Board b = new Board();
         music.setCommentnum(b.getCommentnum());
 
