@@ -49,7 +49,7 @@ public class PoliticsWS {
         pol.setCommentnum(board.getCommentnum());
         Integer i=board.getCommentnum()+1;
         board.setCommentnum(i);       
-       
+     
         Date date = new Date();
         pol.setDate(date);
         pol.setBoard("Politics");

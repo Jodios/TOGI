@@ -17,9 +17,10 @@
             <h2 class="threadName">Thread Name</h2>
             <button type="button" class="newComment" id="buttonReply">Reply</button>
             <form action="politics.html" style="display:none" method="post" id="replyBox">
-                Image URL: <input type="text" name="image" id="image">
+                 Title: <input type="text" name="title" id="title"><span id="errorc" class="error"></span>
+                Image URL: <input type="text" name="image" id="image"><span id="errorc" class="error"></span>
                 <fieldset>
-                    <legend>Comment</legend>
+                    <legend>Comment</legend><span id="errorc" class="error"></span>
                     <textarea rows="5" cols="50" name="comment" id="comment"
                               placeholder="Enter your comment here..."></textarea>
 
@@ -46,7 +47,7 @@
                             var tr = "<tr><td><div class = \"content\">" +
                                     "<div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div>" +
                                     "<div class = \"title\" >" +
-                                    r.comment +
+                                   r.title +":     " + r.comment +
                                     "</div>" + "</div></td></tr>";
                             $('#tdata').append(tr);
 //                            table.append("<tr><td><div class = \"content\">" +
@@ -97,20 +98,26 @@
                 window.location.reload();
                 var img = $("#image").val();
                 var comment = $('#comment').val();
+                var title=$('#title').val();
                 $('#errorc').html('');
                 $('#error').html('');
-                if (img.length === 0 || comment.length === 0) {
+                $('#error').html('');
+                if (img.length === 0 || comment.length === 0 ||title.length === 0) {
                     if (img.length === 0) {
                         $('#errorc').html('Invalid Image URL');
                     }
                     if (comment.length === 0) {
                         $('#error').html('Invalid Comment');
                     }
+                    if(title.length === 0){
+                         $('#error').html('Ivalid Title');
+                    }
                     return;
                 }
                 var data = JSON.stringify({
                     image: img,
-                    comment: comment
+                    comment: comment,
+                    title: title
                 });
                 $.ajax({
                     url: 'api/polcomments/post',
