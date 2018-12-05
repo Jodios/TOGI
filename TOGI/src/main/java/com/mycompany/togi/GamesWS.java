@@ -1,3 +1,4 @@
+
 package com.mycompany.togi;
 
 import java.math.BigDecimal;
@@ -18,15 +19,13 @@ import javax.ws.rs.core.Response.Status;
 
 @Path("gcomments")
 public class GamesWS {
-
-    private static int postCounter = 1;
-    private static int commentCounter = 1;
+    private static int postCounter=1;
 
     @Context
     private UriInfo context;
     @EJB
     private GamesService gamesService;
-
+    
     @GET
     @Path("get")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -34,32 +33,33 @@ public class GamesWS {
     public Response readGames() {
 
         List<Games> games = gamesService.selectItems();
+        
 
         if (games == null) {
             return Response.status(Status.NO_CONTENT).build();
         }
         return Response.ok(games).build();
     }
-
+    
     @POST
     @Path("post")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response createGames(Games games) {
-        games.setId(Long.MIN_VALUE + Long.MAX_VALUE / 2);
-        games.setCommentnum(commentCounter);
-
+    public Response createGames(Games games) {  
+        games.setId(Long.MIN_VALUE+Long.MAX_VALUE/2);
+        Board b=new Board();
+        games.setCommentnum(b.getCommentnum());
+       
+       
         Date date = new Date();
         games.setDate(date);
         games.setBoard("Games");
-        games.setPost(postCounter);
+        games.setPost(postCounter);  
         gamesService.persist(games);
         postCounter++;
-        commentCounter++;
         return Response.ok(games.getId()).build();
     }
-
-    public Response readgames() {
+      public Response readgames() {
 
         List<Games> games = gamesService.selectItems();
 
@@ -68,5 +68,7 @@ public class GamesWS {
         }
         return Response.ok(games).build();
     }
+
+
 
 }
