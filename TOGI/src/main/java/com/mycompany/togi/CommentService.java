@@ -26,7 +26,7 @@ public class CommentService {
         em.persist(comment);
     }
 
-    public Art selectById(Long id) {
-        return em.find(Art.class, id);
+    public Comment selectById(Long id) {
+        return em.find(Comment.class, id);
     }
 }

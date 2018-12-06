@@ -77,16 +77,6 @@
                 loadComments();
             });
 
-            var header = document.getElementById("myHeader");
-            var sticky = header.offsetTop;
-
-            function stickyHeader() {
-                if (window.pageYOffset > sticky) {
-                    header.classList.add("sticky");
-                } else {
-                    header.classList.remove("sticky");
-                }
-            }
             document.getElementById("buttonReply").onclick = function () {
                 hideCommentBox();
             };
@@ -120,10 +110,8 @@
                     contentType: 'application/json',
                     dataType: 'text',
                     success: function (resp) {
-//                        alert('success');
                         loadComments();
                         window.location.reload();
-
                     },
                     error: function () {
                         
