@@ -43,12 +43,12 @@
             }
             function loadComments() {
                 $.ajax({
-                    url: 'api/posts/', //this will work whenever we have only one table :)
+                    url: 'api/posts', //this will work whenever we have only one table :)
                     type: 'get',
                     dataType: 'json',
                     success: function (data) {
-                        var board = decodeURI(getUrlVars()["board"]);
-                        document.getElementById("boardName").innerHTML = board;
+//                        var board = decodeURI(getUrlVars()["board"]);
+//                        document.getElementById("boardName").innerHTML = board;
                         $('#tdata').empty();
                         $.each(data, function (i, r) {
                             if (r.title !== undefined) {
@@ -104,7 +104,7 @@
                     title: title
                 });
                 $.ajax({
-                    url: 'api/posts/', //this will work whenever we have only one table :)
+                    url: 'api/posts', //this will work whenever we have only one table :)
                     type: 'post',
                     data: data,
                     contentType: 'application/json',

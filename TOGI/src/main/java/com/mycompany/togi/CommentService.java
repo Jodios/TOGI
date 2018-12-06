@@ -18,7 +18,7 @@ public class CommentService {
     private EntityManager em;
 
     public List<Comment> selectItems() {
-        TypedQuery<Comment> q = em.createQuery("select a from Posts a", Comment.class);
+        TypedQuery<Comment> q = em.createQuery("select a from Comment a", Comment.class);
         return q.getResultList();
     }
 
