@@ -46,14 +46,14 @@
                     type: 'get',
                     dataType: 'json',
                     success: function (data) {
-//                        var post = getUrlVars()["post"];
+                        var post = getUrlVars()["post"];
                         var title = decodeURI(getUrlVars()["title"]);
                         var board = decodeURI(getUrlVars()["board"]);
                         document.getElementById("title").innerHTML = title;
 
                         $('#tdata').empty();
                         $.each(data, function (i, r) {
-                            if ((r.title==title) && (r.board==board)) {
+                            if ((r.title==title)) {
                                 var tr = "<tr><td><div class = \"content\">" +
                                         "<div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div>" +
                                         "<div class = \"title\" >" +
@@ -100,7 +100,7 @@
                 }
                   
                 var comment = $('#comment').val();
-                var board = board;
+               
                 if ( comment.length === 0 ) {
                     return;
                 }
@@ -112,7 +112,7 @@
                   
                 });
                 $.ajax({
-                    url: 'api/posts', //this will work whenever we have only one table :)
+                    url: 'api/comments', //this will work whenever we have only one table :)
                     type: 'post',
                     data: data,
                     contentType: 'application/json',

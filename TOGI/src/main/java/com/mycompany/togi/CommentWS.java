@@ -48,7 +48,6 @@ public class CommentWS {
         comment.setCommentnum(PostWS.ccounter);
         Date date = new Date();
         comment.setDate(date);
-        comment.setPost(null);
 
         
         commentService.persist(comment);
