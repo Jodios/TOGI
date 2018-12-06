@@ -11,21 +11,21 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-/**
- *
- * @author NolanPC
- */
 @Stateless
-public class MusicService {
+public class CommentService {
+    @PersistenceContext
+    private EntityManager em;
 
-   @PersistenceContext
-private EntityManager em;
+    public List<Art> selectItems() {
+        TypedQuery<Art> q = em.createQuery("select a from Art a", Art.class);
+        return q.getResultList();
+    }
 
-public List<Music> selectItems(){
-    TypedQuery<Music> q=em.createQuery("select m from Music m",Music.class);
-    return q.getResultList();
-}
-public void persist(Music music){
-    em.persist(music);
-}
+    public void persist(Art art) {
+        em.persist(art);
+    }
+
+    public Art selectById(Long id) {
+        return em.find(Art.class, id);
+    }
 }

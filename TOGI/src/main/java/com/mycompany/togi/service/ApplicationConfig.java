@@ -25,13 +25,9 @@ public class ApplicationConfig extends Application {
  
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(com.mycompany.togi.ArtWS.class);
-        resources.add(com.mycompany.togi.GamesWS.class);
-        resources.add(com.mycompany.togi.MathematicsWS.class);
-        resources.add(com.mycompany.togi.MusicWS.class);
-        resources.add(com.mycompany.togi.PhotographyWS.class);
+        resources.add(com.mycompany.togi.CommentWS.class);
         resources.add(com.mycompany.togi.PoliticsWS.class);
-        resources.add(com.mycompany.togi.RandomWS.class);
-        resources.add(com.mycompany.togi.TechnologyWS.class);
+        resources.add(com.mycompany.togi.ThreadWS.class);
     }
     
 }

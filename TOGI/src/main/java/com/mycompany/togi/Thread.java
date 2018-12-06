@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.mycompany.togi;
 
 import java.io.Serializable;
@@ -20,8 +25,8 @@ import javax.validation.constraints.Size;
  * @author nolan
  */
 @Entity
-@Table(name="Games")
-public class Games implements Serializable {
+@Table(name="Art")
+public class Thread implements Serializable {
 
     @Column(name = "Postnum")
     private Integer post;
@@ -114,10 +119,10 @@ public class Games implements Serializable {
     @Override
     public boolean equals(Object object) {
 
-        if (!(object instanceof Games)) {
+        if (!(object instanceof Thread)) {
             return false;
         }
-        Games other = (Games) object;
+        Thread other = (Thread) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -126,13 +131,13 @@ public class Games implements Serializable {
 
     @Override
     public String toString() {
-        return "Togi.Games[ id=" + id + " ]";
+        return "Togi.Art[ id=" + id + " ]";
     }
 
-    public Games() {
+    public Thread() {
     }
 
-    public Games(Integer post) {
+    public Thread(Integer post) {
         this.post = post;
     }
 

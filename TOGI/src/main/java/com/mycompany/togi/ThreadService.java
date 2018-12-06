@@ -11,22 +11,21 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-/**
- *
- * @author NolanPC
- */
 @Stateless
-public class TechnologyService {
+public class ThreadService {
+    @PersistenceContext
+    private EntityManager em;
 
-  @PersistenceContext
-private EntityManager em;
+    public List<Art> selectItems() {
+        TypedQuery<Art> q = em.createQuery("select a from Art a", Art.class);
+        return q.getResultList();
+    }
 
-public List<Technology> selectItems(){
-    TypedQuery<Technology> q=em.createQuery("select t from Technology t",Technology.class);
-    return q.getResultList();
-}
-public void persist(Technology technology){
-    em.persist(technology);
-}
+    public void persist(Art art) {
+        em.persist(art);
+    }
 
+    public Art selectById(Long id) {
+        return em.find(Art.class, id);
+    }
 }
