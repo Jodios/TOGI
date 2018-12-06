@@ -18,7 +18,7 @@ public class CommentService {
     private EntityManager em;
 
     public List<Comment> selectItems() {
-        TypedQuery<Comment> q = em.createQuery("select a from Posts a", Comment.class);
+        TypedQuery<Comment> q = em.createQuery("select a from Comment a", Comment.class);
         return q.getResultList();
     }
 
@@ -26,7 +26,7 @@ public class CommentService {
         em.persist(comment);
     }
 
-    public Art selectById(Long id) {
-        return em.find(Art.class, id);
+    public Comment selectById(Long id) {
+        return em.find(Comment.class, id);
     }
 }
