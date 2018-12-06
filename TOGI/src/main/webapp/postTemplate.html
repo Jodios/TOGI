@@ -49,13 +49,12 @@
                         var post = getUrlVars()["post"];
                         var title = decodeURI(getUrlVars()["title"]);
                         var board = decodeURI(getUrlVars()["board"]);
-                        document.getElementById("title").innerHTML = title;
-
+                        document.getElementById("title").innerHTML = board + "/" + title ;
                         $('#tdata').empty();
                         $.each(data, function (i, r) {
                             if ((r.title==title)) {
                                 var tr = "<tr><td><div class = \"content\">" +
-                                        "<div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div>" +
+                                        "<object><a href = '" + r.image + "'><div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div></a></object>" +
                                         "<div class = \"title\" >" +
                                         r.comment +
                                         "</div>" + "</div></td></tr>";
@@ -64,13 +63,8 @@
 
                             }
                         });
-
-
-
                     },
-
                     error: function () {
-//                        alert('Error');
                     }
                 });
             }
@@ -133,3 +127,11 @@
 
     </body>
 </html>
+
+
+
+
+
+
+
+
