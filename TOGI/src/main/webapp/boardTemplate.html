@@ -47,8 +47,8 @@
                     type: 'get',
                     dataType: 'json',
                     success: function (data) {
-                        var board = decodeURI(getUrlVars()["board"]);
-                        document.getElementById("boardName").innerHTML = board;
+//                        var board = decodeURI(getUrlVars()["board"]);
+//                        document.getElementById("boardName").innerHTML = board;
                         $('#tdata').empty();
                         $.each(data, function (i, r) {
                             if (r.title !== undefined) {
@@ -77,16 +77,6 @@
                 loadComments();
             });
 
-            var header = document.getElementById("myHeader");
-            var sticky = header.offsetTop;
-
-            function stickyHeader() {
-                if (window.pageYOffset > sticky) {
-                    header.classList.add("sticky");
-                } else {
-                    header.classList.remove("sticky");
-                }
-            }
             document.getElementById("buttonReply").onclick = function () {
                 hideCommentBox();
             };
@@ -120,10 +110,8 @@
                     contentType: 'application/json',
                     dataType: 'text',
                     success: function (resp) {
-//                        alert('success');
                         loadComments();
                         window.location.reload();
-
                     },
                     error: function () {
                         
