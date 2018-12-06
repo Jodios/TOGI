@@ -42,7 +42,7 @@
             }
             function loadComments() {
                 $.ajax({
-                    url: 'api/polcomments/get2',
+                    url: 'api/comments/',
                     type: 'get',
                     dataType: 'json',
                     success: function (data) {
@@ -70,7 +70,7 @@
                     },
 
                     error: function () {
-                        alert('Error');
+                        
                     }
                 });
             }
@@ -87,13 +87,6 @@
             var header = document.getElementById("myHeader");
             var sticky = header.offsetTop;
 
-            function stickyHeader() {
-                if (window.pageYOffset > sticky) {
-                    header.classList.add("sticky");
-                } else {
-                    header.classList.remove("sticky");
-                }
-            }
             document.getElementById("buttonReply").onclick = function () {
                 hideCommentBox();
             };
@@ -119,7 +112,7 @@
                     comment: comment
                 });
                 $.ajax({
-                    url: 'api/polcomments/post2',
+                    url: 'api/commments/',
                     type: 'post',
                     data: data,
                     contentType: 'application/json',

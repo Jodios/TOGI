@@ -14,7 +14,7 @@
                 <div class = "logo"></div>
             </a>
             <button type="button" class="newComment" id="buttonReply" >Reply</button>
-            <form action="gamespost.html" style="display:none" method="post" id="replyBox">
+            <form action="politicspost.html" style="display:none" method="post" id="replyBox">
                 Image URL: <input type="text" name="image" id="image">
                 <fieldset>
                     <legend>Comment</legend>
@@ -42,18 +42,18 @@
             }
             function loadComments() {
                 $.ajax({
-                    url: 'api/comments/',
+                    url: 'api/mathcomments/get2',
                     type: 'get',
                     dataType: 'json',
                     success: function (data) {
                         var post = getUrlVars()["post"];
-                        var title = getUrlVars()["title"];
-                        var title = decodeURI(title);
+                        var title = decodeURI(getUrlVars()["title"]);
+                        var board = decodeURI(getUrlVars()["board"]);
                         document.getElementById("title").innerHTML = title;
 
                         $('#tdata').empty();
                         $.each(data, function (i, r) {
-                            if (post == r.post) {
+                            if ((post == r.post)&&(board == r.board)) {
                                 var tr = "<tr><td><div class = \"content\">" +
                                         "<div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div>" +
                                         "<div class = \"title\" >" +
@@ -70,7 +70,7 @@
                     },
 
                     error: function () {
-                        
+                        alert('Error');
                     }
                 });
             }
@@ -107,7 +107,6 @@
             }
             $('#buttonPost').click(function () {
                 var img = $("#image").val();
-                var brd = $("#board").val();
                 if (img === "") {
                     img = "sampleLogo.png";
                 }
@@ -116,12 +115,11 @@
                     return;
                 }
                 var data = JSON.stringify({
-                    board: brd,
                     image: img,
                     comment: comment
                 });
                 $.ajax({
-                    url: 'api/comments/',
+                    url: 'api/mathcomments/post2',
                     type: 'post',
                     data: data,
                     contentType: 'application/json',
