@@ -47,8 +47,8 @@
                     type: 'get',
                     dataType: 'json',
                     success: function (data) {
-//                        var board = decodeURI(getUrlVars()["board"]);
-//                        document.getElementById("boardName").innerHTML = board;
+                        var board = decodeURI(getUrlVars()["board"]);
+                        document.getElementById("boardName").innerHTML = board;
                         $('#tdata').empty();
                         $.each(data, function (i, r) {
                             if (r.title !== undefined) {
