@@ -1,7 +1,6 @@
 package com.mycompany.togi;
 
-import static com.mycompany.togi.PoliticsWS.ccounter;
-import static com.mycompany.togi.PoliticsWS.pcounter;
+import static com.mycompany.togi.PostWS.pcounter;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -46,7 +45,6 @@ public class CommentWS {
         comment.setId(Long.MIN_VALUE + Long.MAX_VALUE / 2);
         Board b = new Board();
         comment.setCommentnum(b.getCommentnum());
-
         Date date = new Date();
         comment.setDate(date);
         comment.setBoard(b.getCurrentboard());

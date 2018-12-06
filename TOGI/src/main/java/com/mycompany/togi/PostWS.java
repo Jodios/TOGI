@@ -1,7 +1,5 @@
 package com.mycompany.togi;
 
-import static com.mycompany.togi.PoliticsWS.ccounter;
-import static com.mycompany.togi.PoliticsWS.pcounter;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -16,7 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-@Path("threads")
+@Path("posts")
 public class PostWS {
 
     public static Integer pcounter = 0;
