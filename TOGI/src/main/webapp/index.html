@@ -28,37 +28,28 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script type="text/javascript">
             document.getElementById("buttonPolitics").onclick = function () {
-                var boardName = "Politics";
-                var myClass = Java.type("com.mycompany.togi.Board");
-                myClass.setCurrentboard(boardName);
-                var b = new Board();
-                b.setCurrentBoard(boardName);
-                alert(b.getCurrentboard);
-                alert(";lakjsdf;lkajdf;flkjasdsff;lkjk");
-                console.log(";lakjsdf;lkajsdf");
-                location.href = "politics.html";
-                location.href = "boardTemplate.html";
+                location.href = "boardTemplate.html?board=Politics";
             };
             document.getElementById("buttonMathematics").onclick = function () {
-                location.href = "boardTemplate.html";
+                location.href = "boardTemplate.html?board=Mathematics";
             };
             document.getElementById("buttonTechnology").onclick = function () {
-                location.href = "boardTemplate.html";
+                location.href = "boardTemplate.html?board=Technology";
             };
             document.getElementById("buttonGames").onclick = function () {
-                location.href = "boardTemplate.html";
+                location.href = "boardTemplate.html?board=Games";
             };
             document.getElementById("buttonMusic").onclick = function () {
-                location.href = "boardTemplate.html";
+                location.href = "boardTemplate.html?board=Music";
             };
             document.getElementById("buttonRandom").onclick = function () {
-                location.href = "boardTemplate.html";
+                location.href = "boardTemplate.html?board=Random";
             };
             document.getElementById("buttonPhotography").onclick = function () {
-                location.href = "boardTemplate.html";
+                location.href = "boardTemplate.html?board=Photography";
             };
             document.getElementById("buttonArt").onclick = function () {
-                location.href = "boardTemplate.html";
+                location.href = "boardTemplate.html?board=Art";
             };
         </script>
     </body>
