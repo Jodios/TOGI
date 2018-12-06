@@ -9,7 +9,7 @@
     </head>
     <body>
         <div class="header" id="myHeader">
-            <h2 class="boardName" id="boardName">Politics</h2>
+            <h2 class="boardName" id="boardName"></h2>
             <a href="index.html">
                 <div class = "logo"></div>
             </a>
@@ -47,22 +47,20 @@
                     type: 'get',
                     dataType: 'json',
                     success: function (data) {
-//                        var board = decodeURI(getUrlVars()["board"]);
-//                        document.getElementById("boardName").innerHTML = board;
+                        var board = decodeURI(getUrlVars()["board"]);
+                        document.getElementById("boardName").innerHTML = board;
                         $('#tdata').empty();
                         $.each(data, function (i, r) {
                             if (r.title !== undefined) {
-                                console.log(r.board);
-                                if(r.board == board){
-                                    var tr = "<tr><td><a href = 'testpost.html?post=" + r.post + "&title=" + r.title + "&board=" + board + "'><div class = \"content\">" +
+//                                console.log(r.board);
+//                                if(r.board == board){
+                                    var tr = "<tr><td><a href = 'testpost.html?post=" + r.post + "&title=" + r.title + "&board=" + r.board + "'><div class = \"content\">" +
                                             "<object><a href = '" + r.image + "'><div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div></a></object>" +
                                             "<div class = \"title\" ><b>" +
                                             r.title +
                                             "</b></div>" + "</div></a></td></tr>";
                                     $('#tdata').append(tr);
-                                }
-                            } else {
-
+                                
                             }
                         });
                     },
@@ -94,14 +92,14 @@
                     img = "sampleLogo.png";
                 }
                 var comment = $('#comment').val();
-                var title = $('#title').val();
+                var title = $('#boardName').val();
                 if ( comment.length === 0 || title.length === 0) {
                     return;
                 }
                 var data = JSON.stringify({
                     image: img,
                     comment: comment,
-                    title: title
+                    board: title
                 });
                 $.ajax({
                     url: 'api/posts', //this will work whenever we have only one table :)
