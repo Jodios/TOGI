@@ -29,8 +29,13 @@
         <script type="text/javascript">
             document.getElementById("buttonPolitics").onclick = function () {
                 var boardName = "Politics";
+                var myClass = Java.type("com.mycompany.togi.Board");
+                myClass.setCurrentboard(boardName);
                 var b = new Board();
                 b.setCurrentBoard(boardName);
+                alert(b.getCurrentboard);
+                alert(";lakjsdf;lkajdf;flkjasdsff;lkjk");
+                console.log(";lakjsdf;lkajsdf");
                 location.href = "politics.html";
             };
             document.getElementById("buttonMathematics").onclick = function () {
