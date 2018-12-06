@@ -9,12 +9,12 @@
     </head>
     <body>
         <div class="header" id="myHeader">
-            <h2 class="boardName">Politics</h2>
+            <h2 class="boardName" id="boardName"></h2>
             <a href="index.html">
                 <div class = "logo"></div>
             </a>
             <button type="button" class="newComment" id="buttonReply">Create Post</button>
-            <form action="politics.html" style="display:none" method="post" id="replyBox">
+            <form action="boardTemplate.html" style="display:none" method="post" id="replyBox">
                 Title: <input type="text" name="title" id="title" required>
                 Image URL: <input type="text" name="image" id="image">
                 <fieldset>
@@ -34,23 +34,35 @@
 
 
         <script>
+            function getUrlVars() {
+                var vars = {};
+                var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+                    vars[key] = value;
+                });
+                return vars;
+            }
             function loadComments() {
                 $.ajax({
-                    url: 'api/posts/',
+                    url: 'api/posts', //this will work whenever we have only one table :)
                     type: 'get',
                     dataType: 'json',
                     success: function (data) {
+                        var board = decodeURI(getUrlVars()["board"]);
+                        document.getElementById("boardName").innerHTML = board;
+                        let thisPage = "boardTemplate.html?board=" + board;
+                        $('#replyBox').attr('action', thisPage);
                         $('#tdata').empty();
                         $.each(data, function (i, r) {
-                            if (r.title !== undefined) {
-                                var tr = "<tr><td><a href = 'politicspost.html?post=" + r.post + "&title=" + r.title + "'><div class = \"content\">" +
-                                        "<object><a href = '" + r.image + "'><div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div></a></object>" +
-                                        "<div class = \"title\" ><b>" +
-                                        r.title +
-                                        "</b></div>" + "</div></a></td></tr>";
-                                $('#tdata').append(tr);
-                            } else {
-
+//                            if (r.title !== undefined) {
+//                                console.log(r.board);
+                                if(r.board == board){
+                                    var tr = "<tr><td><a href = 'postTemplate.html?post=" + r.post + "&title=" + r.title + "&board=" + r.board + "'><div class = \"content\">" +
+                                            "<object><a href = '" + r.image + "'><div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div></a></object>" +
+                                            "<div class = \"title\" ><b>" +
+                                            r.title +
+                                            "</b></div>" + "</div></a></td></tr>";
+                                    $('#tdata').append(tr);
+                                
                             }
                         });
                     },
@@ -65,16 +77,6 @@
                 loadComments();
             });
 
-            var header = document.getElementById("myHeader");
-            var sticky = header.offsetTop;
-
-            function stickyHeader() {
-                if (window.pageYOffset > sticky) {
-                    header.classList.add("sticky");
-                } else {
-                    header.classList.remove("sticky");
-                }
-            }
             document.getElementById("buttonReply").onclick = function () {
                 hideCommentBox();
             };
@@ -87,34 +89,35 @@
                 }
             }
             $('#buttonPost').click(function () {
+                 var board = decodeURI(getUrlVars()["board"]);
                 var img = $("#image").val();
                 if (img === ""){
                     img = "sampleLogo.png";
                 }
+                 var title = $("#title").val();
                 var comment = $('#comment').val();
-                var title = $('#title').val();
+                var board = board;
                 if ( comment.length === 0 || title.length === 0) {
                     return;
                 }
                 var data = JSON.stringify({
                     image: img,
                     comment: comment,
+                    board: board,
                     title: title
                 });
                 $.ajax({
-                    url: 'api/posts/',
+                    url: 'api/posts', //this will work whenever we have only one table :)
                     type: 'post',
                     data: data,
                     contentType: 'application/json',
                     dataType: 'text',
                     success: function (resp) {
-//                        alert('success');
                         loadComments();
                         window.location.reload();
-
                     },
                     error: function () {
-//                        alert('Error');
+                        
                     }
                 });
 

@@ -43,13 +43,14 @@ public class CommentWS {
     @Produces(MediaType.TEXT_PLAIN)
     public Response createComment(Comment comment) {
         comment.setId(Long.MIN_VALUE + Long.MAX_VALUE / 2);
-        Board b = new Board();
-        comment.setCommentnum(b.getCommentnum());
+    
+        PostWS.ccounter++;
+        comment.setCommentnum(PostWS.ccounter);
         Date date = new Date();
         comment.setDate(date);
-        comment.setBoard(b.getCurrentboard());
+     
         comment.setPost(pcounter);
-        ccounter++;
+        
         commentService.persist(comment);
         return Response.ok(comment.getId()).build();
     }

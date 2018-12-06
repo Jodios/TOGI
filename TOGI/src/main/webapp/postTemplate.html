@@ -92,6 +92,7 @@
                 }
             }
             $('#buttonPost').click(function () {
+                var board = decodeURI(getUrlVars()["board"]);
                 var img = $("#image").val();
                 if (img === "") {
                     img = "sampleLogo.png";
@@ -102,7 +103,9 @@
                 }
                 var data = JSON.stringify({
                     image: img,
-                    comment: comment
+                    comment: comment,
+                    
+                    board: board
                 });
                 $.ajax({
                     url: 'api/comments',

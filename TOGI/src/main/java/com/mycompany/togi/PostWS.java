@@ -42,14 +42,14 @@ public class PostWS {
     @Produces(MediaType.TEXT_PLAIN)
     public Response createPost(Post post) {
         post.setId(Long.MIN_VALUE + Long.MAX_VALUE / 2);
-        Board b = new Board();
-        post.setCommentnum(b.getCommentnum());
+         ccounter++;
+        post.setCommentnum(ccounter);
         Date date = new Date();
         post.setDate(date);
-       
-        pcounter++;
         post.setPost(pcounter);
-        ccounter++;
+        pcounter++;
+        
+      
         postService.persist(post);
         return Response.ok(post.getId()).build();
     }
