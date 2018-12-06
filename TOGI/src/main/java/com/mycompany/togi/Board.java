@@ -4,7 +4,7 @@ public class Board {
 
     private Integer commentnum = 0;
     private String currentboard = "";
-    
+
     public Integer getCommentnum() {
         commentnum++;
         return commentnum;

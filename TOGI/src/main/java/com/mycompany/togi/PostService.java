@@ -12,20 +12,21 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 @Stateless
-public class ThreadService {
+public class PostService {
+
     @PersistenceContext
     private EntityManager em;
 
-    public List<Art> selectItems() {
-        TypedQuery<Art> q = em.createQuery("select a from Art a", Art.class);
+    public List<Post> selectItems() {
+        TypedQuery<Post> q = em.createQuery("select a from Post a", Post.class);
         return q.getResultList();
     }
 
-    public void persist(Art art) {
-        em.persist(art);
+    public void persist(Post post) {
+        em.persist(post);
     }
 
-    public Art selectById(Long id) {
-        return em.find(Art.class, id);
+    public Post selectById(Long id) {
+        return em.find(Post.class, id);
     }
 }

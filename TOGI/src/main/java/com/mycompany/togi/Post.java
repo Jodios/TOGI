@@ -25,32 +25,27 @@ import javax.validation.constraints.Size;
  * @author nolan
  */
 @Entity
-@Table(name="Art")
-public class Thread implements Serializable {
+@Table(name = "Posts")
+public class Post implements Serializable {
 
-    @Column(name = "Postnum")
+    @Column(name = "PostNum")
     private Integer post;
     @Column(name = "Date_")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
-
-    public void setCommentnum(Integer commentnum) {
-        this.commentnum = commentnum;
-       
-    }
     @Size(max = 45)
     @Column(name = "Title")
     private String title;
     @Size(max = 45)
     @Column(name = "Board")
     private String board;
-    @Column(name = "Commentnum")
+    @Column(name = "CommentNum")
     private Integer commentnum;
     @Size(max = 9999)
     @Column(name = "Comment")
     private String comment;
     @Size(max = 500)
-    @Column(name = "imglink")
+    @Column(name = "ImageLink")
     private String image;
 
     public String getImage() {
@@ -60,14 +55,11 @@ public class Thread implements Serializable {
     public void setImage(String image) {
         this.image = image;
     }
-  
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    
 
     public Long getId() {
         return id;
@@ -83,7 +75,7 @@ public class Thread implements Serializable {
 
     public Date getDate() {
         return date;
-        
+
     }
 
     public void setDate(Date date) {
@@ -92,22 +84,22 @@ public class Thread implements Serializable {
 
     public Integer getCommentnum() {
         return commentnum;
-        
+
+    }
+
+    public void setCommentnum(Integer commentnum) {
+        this.commentnum = commentnum;
+
     }
 
     public String getComment() {
         return comment;
     }
 
-
-
-
     public void setComment(String comment) {
         this.comment = comment;
-  
-    }
 
-  
+    }
 
     @Override
     public int hashCode() {
@@ -119,10 +111,10 @@ public class Thread implements Serializable {
     @Override
     public boolean equals(Object object) {
 
-        if (!(object instanceof Thread)) {
+        if (!(object instanceof Post)) {
             return false;
         }
-        Thread other = (Thread) object;
+        Post other = (Post) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -134,10 +126,10 @@ public class Thread implements Serializable {
         return "Togi.Art[ id=" + id + " ]";
     }
 
-    public Thread() {
+    public Post() {
     }
 
-    public Thread(Integer post) {
+    public Post(Integer post) {
         this.post = post;
     }
 
@@ -146,11 +138,9 @@ public class Thread implements Serializable {
     }
 
     public void setPost(Integer post) {
-        
+
         this.post = post;
     }
-
-   
 
     public String getBoard() {
         return board;
@@ -168,5 +158,4 @@ public class Thread implements Serializable {
         this.id = id;
     }
 
-    
 }

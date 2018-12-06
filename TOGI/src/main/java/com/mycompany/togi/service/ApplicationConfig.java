@@ -21,13 +21,12 @@ public class ApplicationConfig extends Application {
         addRestResourceClasses(resources);
         return resources;
     }
-
  
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(com.mycompany.togi.ArtWS.class);
         resources.add(com.mycompany.togi.CommentWS.class);
         resources.add(com.mycompany.togi.PoliticsWS.class);
-        resources.add(com.mycompany.togi.ThreadWS.class);
+        resources.add(com.mycompany.togi.PostWS.class);
     }
     
 }

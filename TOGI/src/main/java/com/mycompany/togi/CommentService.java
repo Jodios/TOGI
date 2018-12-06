@@ -13,16 +13,17 @@ import javax.persistence.TypedQuery;
 
 @Stateless
 public class CommentService {
+
     @PersistenceContext
     private EntityManager em;
 
-    public List<Art> selectItems() {
-        TypedQuery<Art> q = em.createQuery("select a from Art a", Art.class);
+    public List<Comment> selectItems() {
+        TypedQuery<Comment> q = em.createQuery("select a from Posts a", Comment.class);
         return q.getResultList();
     }
 
-    public void persist(Art art) {
-        em.persist(art);
+    public void persist(Comment comment) {
+        em.persist(comment);
     }
 
     public Art selectById(Long id) {

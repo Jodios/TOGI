@@ -16,43 +16,43 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-@Path("comments")
-public class CommentWS {
+@Path("threads")
+public class PostWS {
 
+    public static Integer pcounter = 0;
     public static Integer ccounter = 0;
 
     @Context
     private UriInfo context;
     @EJB
-    private CommentService commentService;
+    private PostService postService;
 
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response readComment() {
+    public Response readPost() {
+        List<Post> post = postService.selectItems();
 
-        List<Comment> comment = commentService.selectItems();
-
-        if (comment == null) {
+        if (post == null) {
             return Response.status(Status.NO_CONTENT).build();
         }
-        return Response.ok(comment).build();
+        return Response.ok(post).build();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response createComment(Comment comment) {
-        comment.setId(Long.MIN_VALUE + Long.MAX_VALUE / 2);
+    public Response createPost(Post post) {
+        post.setId(Long.MIN_VALUE + Long.MAX_VALUE / 2);
         Board b = new Board();
-        comment.setCommentnum(b.getCommentnum());
-
+        post.setCommentnum(b.getCommentnum());
         Date date = new Date();
-        comment.setDate(date);
-        comment.setBoard(b.getCurrentboard());
-        comment.setPost(pcounter);
+        post.setDate(date);
+        post.setBoard(b.getCurrentboard());
+        pcounter++;
+        post.setPost(pcounter);
         ccounter++;
-        commentService.persist(comment);
-        return Response.ok(comment.getId()).build();
+        postService.persist(post);
+        return Response.ok(post.getId()).build();
     }
 }

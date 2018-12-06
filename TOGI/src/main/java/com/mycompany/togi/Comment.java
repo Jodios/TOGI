@@ -25,32 +25,27 @@ import javax.validation.constraints.Size;
  * @author nolan
  */
 @Entity
-@Table(name="Art")
+@Table(name = "Posts")
 public class Comment implements Serializable {
 
-    @Column(name = "Postnum")
+    @Column(name = "PostNum")
     private Integer post;
     @Column(name = "Date_")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
-
-    public void setCommentnum(Integer commentnum) {
-        this.commentnum = commentnum;
-       
-    }
     @Size(max = 45)
     @Column(name = "Title")
     private String title;
     @Size(max = 45)
     @Column(name = "Board")
     private String board;
-    @Column(name = "Commentnum")
+    @Column(name = "CommentNum")
     private Integer commentnum;
     @Size(max = 9999)
     @Column(name = "Comment")
     private String comment;
     @Size(max = 500)
-    @Column(name = "imglink")
+    @Column(name = "ImageLink")
     private String image;
 
     public String getImage() {
@@ -60,14 +55,11 @@ public class Comment implements Serializable {
     public void setImage(String image) {
         this.image = image;
     }
-  
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    
 
     public Long getId() {
         return id;
@@ -83,7 +75,7 @@ public class Comment implements Serializable {
 
     public Date getDate() {
         return date;
-        
+
     }
 
     public void setDate(Date date) {
@@ -92,22 +84,22 @@ public class Comment implements Serializable {
 
     public Integer getCommentnum() {
         return commentnum;
-        
+
+    }
+
+    public void setCommentnum(Integer commentnum) {
+        this.commentnum = commentnum;
+
     }
 
     public String getComment() {
         return comment;
     }
 
-
-
-
     public void setComment(String comment) {
         this.comment = comment;
-  
-    }
 
-  
+    }
 
     @Override
     public int hashCode() {
@@ -146,11 +138,9 @@ public class Comment implements Serializable {
     }
 
     public void setPost(Integer post) {
-        
+
         this.post = post;
     }
-
-   
 
     public String getBoard() {
         return board;
@@ -168,5 +158,4 @@ public class Comment implements Serializable {
         this.id = id;
     }
 
-    
 }
