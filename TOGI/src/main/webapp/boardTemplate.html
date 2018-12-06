@@ -26,109 +26,18 @@
                 <button id="buttonPost">Create Post</button>
             </form>
         </div>
-
-        <table id="tdata">            
-            <tbody>                
+        
+        <table id="tintro"> 
+            <tbody>             
+            </tbody>
+        </table>
+        <table id="tdata"> 
+            <tbody>        
             </tbody>
         </table>
 
 
-        <script>
-            function getUrlVars() {
-                var vars = {};
-                var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
-                    vars[key] = value;
-                });
-                return vars;
-            }
-            function loadComments() {
-                $.ajax({
-                    url: 'api/posts',
-                    type: 'get',
-                    dataType: 'json',
-                    success: function (data) {
-                         var post = getUrlVars()["post"];
-                        var board = decodeURI(getUrlVars()["board"]);
-                        document.getElementById("boardName").innerHTML = board;
-                        let thisPage = "boardTemplate.html?board=" + board;
-                        $('#replyBox').attr('action', thisPage);
-                        $('#tdata').empty();
-                        $.each(data, function (i, r) {
-//                            if (r.title !== undefined) {
-//                                console.log(r.board);
-                                if((r.board == board)&&(r.post!=undefined)){
-                                    var tr = "<tr><td><a href = \"postTemplate.html?post="+r.post  + "&board=" + r.board + "&title=" + r.title + "&deez=nutz\"><div class = \"content\">" +
-                                            "<object><a href = '" + r.image + "'><div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div></a></object>" +
-                                            "<div class = \"title\" ><b>" +
-                                            r.title +
-                                            "</b></div>" + "</div></a></td></tr>";
-                                    console.log(tr);
-                                    $('#tdata').append(tr);
-                                
-                            }
-                        });
-                    },
-                    error: function () {
-//                        alert('Error');
-                    }
-                });
-            }
-
-
-            $(document).ready(function () {
-                loadComments();
-            });
-
-            document.getElementById("buttonReply").onclick = function () {
-                hideCommentBox();
-            };
-            function hideCommentBox() {
-                var x = document.getElementById("replyBox");
-                if (x.style.display === "none") {
-                    x.style.display = "block";
-                } else {
-                    x.style.display = "none";
-                }
-            }
-            $('#buttonPost').click(function () {
-                var board = decodeURI(getUrlVars()["board"]);
-                
-                var img = $("#image").val();
-                if (img === ""){
-                    img = "sampleLogo.png";
-                }
-                 var title = $("#title").val();
-                var comment = $('#comment').val();
-                var board = board;
-                if ( comment.length === 0 || title.length === 0) {
-                    return;
-                }
-                var data = JSON.stringify({
-                   
-                    image: img,
-                    comment: comment,
-                    board: board,
-                    title: title
-                });
-                $.ajax({
-                    url: 'api/posts', 
-                    type: 'post',
-                    data: data,
-                    contentType: 'application/json',
-                    dataType: 'text',
-                    success: function (resp) {
-                        loadComments();
-                        window.location.reload();
-                    },
-                    error: function () {
-                        
-                    }
-                });
-
-                return false;
-            });
-
-        </script>
+        <script src = "JS/board.js"></script>
 
     </body>
 </html>
