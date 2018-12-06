@@ -104,7 +104,7 @@ function loadComments() {
 //                            if (r.title !== undefined) {
 //                                console.log(r.board);
                    if((r.board == board)&&(r.post!=undefined)){
-                       var tr = "<tr><td><a href = \"postTemplate.html?post="+r.post  + "&board=" + r.board + "&title=" + r.title + "&deez=nutz\"><div class = \"content\">" +
+                       var tr = "<tr><td><a href = \"postTemplate.html?post="+r.post  + "&board=" + r.board + "&title=" + r.title + "\"><div class = \"content\">" +
                                "<object><a href = '" + r.image + "'><div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div></a></object>" +
                                "<div class = \"title\" ><b>" +
                                r.title +
