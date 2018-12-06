@@ -46,14 +46,14 @@
                     type: 'get',
                     dataType: 'json',
                     success: function (data) {
-                        var post = getUrlVars()["post"];
+//                        var post = getUrlVars()["post"];
                         var title = decodeURI(getUrlVars()["title"]);
                         var board = decodeURI(getUrlVars()["board"]);
                         document.getElementById("title").innerHTML = title;
 
                         $('#tdata').empty();
                         $.each(data, function (i, r) {
-                            if ((post == r.post)&&(board == r.board)) {
+                            if ((r.title==title) && (r.board==board)) {
                                 var tr = "<tr><td><div class = \"content\">" +
                                         "<div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div>" +
                                         "<div class = \"title\" >" +
@@ -70,7 +70,7 @@
                     },
 
                     error: function () {
-                        alert('Error');
+//                        alert('Error');
                     }
                 });
             }
@@ -92,34 +92,37 @@
                 }
             }
             $('#buttonPost').click(function () {
-                var board = decodeURI(getUrlVars()["board"]);
+                  var title = decodeURI(getUrlVars()["title"]);
+                 var board = decodeURI(getUrlVars()["board"]);
                 var img = $("#image").val();
-                if (img === "") {
+                if (img === ""){
                     img = "sampleLogo.png";
                 }
+                  
                 var comment = $('#comment').val();
-                if (comment.length === 0) {
+                var board = board;
+                if ( comment.length === 0 ) {
                     return;
                 }
                 var data = JSON.stringify({
                     image: img,
                     comment: comment,
-                    
-                    board: board
+                    board: board,
+                    title:title
+                  
                 });
                 $.ajax({
-                    url: 'api/comments',
+                    url: 'api/posts', //this will work whenever we have only one table :)
                     type: 'post',
                     data: data,
                     contentType: 'application/json',
                     dataType: 'text',
                     success: function (resp) {
-//                        alert('success');
                         loadComments();
                         window.location.reload();
                     },
                     error: function () {
-
+                        
                     }
                 });
 

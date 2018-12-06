@@ -47,6 +47,7 @@
                     type: 'get',
                     dataType: 'json',
                     success: function (data) {
+//                         var post = getUrlVars()["post"];
                         var board = decodeURI(getUrlVars()["board"]);
                         document.getElementById("boardName").innerHTML = board;
                         let thisPage = "boardTemplate.html?board=" + board;
@@ -55,8 +56,8 @@
                         $.each(data, function (i, r) {
 //                            if (r.title !== undefined) {
 //                                console.log(r.board);
-                                if(r.board == board){
-                                    var tr = "<tr><td><a href = 'postTemplate.html?post=" + r.post + "&title=" + r.title + "&board=" + r.board + "'><div class = \"content\">" +
+                                if(r.board == board ){
+                                    var tr = "<tr><td><a href = 'postTemplate.html?post="+ r.post  + "&title=" + r.title + "&board=" + r.board + "'><div class = \"content\">" +
                                             "<object><a href = '" + r.image + "'><div class = \"imgdiv\" style=\"background-image: url(" + r.image + ")\"></div></a></object>" +
                                             "<div class = \"title\" ><b>" +
                                             r.title +
@@ -90,6 +91,7 @@
             }
             $('#buttonPost').click(function () {
                  var board = decodeURI(getUrlVars()["board"]);
+                 var postn = getUrlVars()["post"];
                 var img = $("#image").val();
                 if (img === ""){
                     img = "sampleLogo.png";
@@ -101,6 +103,7 @@
                     return;
                 }
                 var data = JSON.stringify({
+                    post: postn,
                     image: img,
                     comment: comment,
                     board: board,

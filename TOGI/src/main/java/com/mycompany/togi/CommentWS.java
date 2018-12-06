@@ -1,6 +1,6 @@
 package com.mycompany.togi;
 
-import static com.mycompany.togi.PostWS.pcounter;
+
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -48,8 +48,8 @@ public class CommentWS {
         comment.setCommentnum(PostWS.ccounter);
         Date date = new Date();
         comment.setDate(date);
-     
-        comment.setPost(pcounter);
+        comment.setPost(null);
+
         
         commentService.persist(comment);
         return Response.ok(comment.getId()).build();

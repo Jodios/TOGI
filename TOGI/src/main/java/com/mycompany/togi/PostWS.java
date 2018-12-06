@@ -17,8 +17,9 @@ import javax.ws.rs.core.Response.Status;
 @Path("posts")
 public class PostWS {
 
-    public static Integer pcounter = 0;
+
     public static Integer ccounter = 0;
+     public static Integer pcounter = 0;
 
     @Context
     private UriInfo context;
@@ -46,6 +47,7 @@ public class PostWS {
         post.setCommentnum(ccounter);
         Date date = new Date();
         post.setDate(date);
+       
         post.setPost(pcounter);
         pcounter++;
         
