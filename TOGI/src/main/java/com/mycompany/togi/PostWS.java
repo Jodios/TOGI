@@ -46,7 +46,7 @@ public class PostWS {
         post.setCommentnum(b.getCommentnum());
         Date date = new Date();
         post.setDate(date);
-        post.setBoard(b.getCurrentboard());
+       
         pcounter++;
         post.setPost(pcounter);
         ccounter++;

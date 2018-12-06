@@ -87,12 +87,13 @@
                 }
             }
             $('#buttonPost').click(function () {
+                 var board = decodeURI(getUrlVars()["board"]);
                 var img = $("#image").val();
                 if (img === ""){
                     img = "sampleLogo.png";
                 }
                 var comment = $('#comment').val();
-                var title = $('#boardName').val();
+                var title = board;
                 if ( comment.length === 0 || title.length === 0) {
                     return;
                 }
